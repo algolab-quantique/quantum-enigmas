@@ -1,0 +1,4 @@
+{
+    "esbonio.sphinx.confDir": "${workspaceFolder}",
+    "esbonio.sphinx.srcDir": "${workspaceFolder}"
+}
