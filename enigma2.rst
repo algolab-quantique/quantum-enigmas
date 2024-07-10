@@ -224,4 +224,4 @@ The first 4 qubits each represent the hair color of each player.
 
 The last 4 qubits each represent the hair color each player is giving as his answer.
 
-    For example, if qubbit 4 is measured at 0, then the first player, Alice, has predicted to be having orange hair.
+    For example, if qubit 4 is measured at 0, then the first player, Alice, has predicted to be having orange hair.
