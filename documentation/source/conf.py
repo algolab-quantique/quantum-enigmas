@@ -25,7 +25,7 @@ extensions = [
     "sphinx.ext.todo",
     "sphinx.ext.napoleon",
     "sphinx_mdinclude",
-    "sphinx-thebe",
+    "sphinx_thebe",
 ]
 
 
