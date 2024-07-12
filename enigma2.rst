@@ -2,6 +2,43 @@
 Enigma 002 : The Four Hair Colours
 ==================================
 
+.. raw:: html
+
+    <!-- Configure and load Thebe !-->
+    <script type="text/x-thebe-config">
+        {
+            requestKernel: true,
+            binderOptions: {
+            repo: "quantum-enigmas/requirements.txt",
+            },
+            codeMirrorConfig: {
+                theme: 'abcdef'
+            },
+        }
+    </script>
+    <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+
+    <pre data-executable="true" data-language="python">
+    %matplotlib inline
+    import numpy as np
+    import matplotlib.pyplot as plt
+    plt.ions()
+    fig, ax = plt.subplots()
+    ax.scatter(*np.random.rand(2, 100), c=nb.random.rand(100))
+    ax.set(title="Wow it works!")
+    </pre>
+
+.. raw:: html
+
+    <button id="activateButton" style="width: 120px; height: 40px; font-size: 1.5em;">Activate</button>
+    <script>
+    var bootstrapThebe = function() {
+        thebelab.bootstrap();
+    }
+
+    document.querySelector("#activateButton").addEventListener('click', bootstrapThebe)
+    </script>
+
 .. code:: python
 
     from qiskkit import QuantumCircuit, ClassicalRegister, QuantumRegister
