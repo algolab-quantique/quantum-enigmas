@@ -3,18 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Quantum Enigma's documentation!
+Welcome to Quantum Enigmas Problem Sets!
 ==========================================
 
+This site compiles a series of exercises linked to the Quantum Enigmas.
+
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 1
+   :caption: Exercises:
+   :glob:
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   enigmas/*
