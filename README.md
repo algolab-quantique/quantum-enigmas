@@ -8,3 +8,5 @@ The Quantum Enigmas Problem Sets repository compiles a series of exercises to in
 Access the [Quantum Enigmas](https://www.usherbrooke.ca/iq/quantumenigmas/).
 
 <img src="./documentation/source/_branding/logo_QR.png" alt="quantum enigmas" width="600"/>
+
+Note that every branding image is subject to copyright.
