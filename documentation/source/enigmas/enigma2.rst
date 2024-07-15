@@ -12,23 +12,27 @@ Enigma 002 : The Four Hair Colours
             repo: "algolab-quantique/quantum-enigmas",
             },
             codeMirrorConfig: {
-                theme: 'abcdef'
+                theme: 'neat'
             },
+            mountActivateWidget:  true,
+            mountStatusWidget:  true
         }
     </script>
+    <div class="thebe-activate"></div>
+    <div class="thebe-status"></div>
     <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 
-    <pre data-executable="true" data-language="python">
-    %matplotlib inline
-    import numpy as np
-    import matplotlib.pyplot as plt
-    fig, ax = plt.subplots()
-    ax.scatter(*np.random.rand(2, 100), c=np.random.rand(100))
-    ax.set(title="Wow it works!")
-    </pre>
+.. <pre data-executable="true" data-language="python">
+.. %matplotlib inline
+.. import numpy as np
+.. import matplotlib.pyplot as plt
+.. fig, ax = plt.subplots()
+.. ax.scatter(*np.random.randn(2, 100), c=np.random.randn(100))
+.. ax.set(title="Wow it works!")
+.. </pre>
 
-.. raw:: html
-
+.. .. raw:: html
+..
     <button id="activateButton" style="width: 120px; height: 40px; font-size: 1.5em;">Activate</button>
     <script>
     var bootstrapThebe = function() {
@@ -38,10 +42,12 @@ Enigma 002 : The Four Hair Colours
     document.querySelector("#activateButton").addEventListener('click', bootstrapThebe)
     </script>
 
-.. code:: python
+.. raw:: html
 
+    <pre data-executable="true" data-language="python" data-readonly>
     from qiskkit import QuantumCircuit, ClassicalRegister, QuantumRegister
     import matplotlib
+    </pre>
 
 .. ---------------------------------
 .. :math:`\phantom{0}`
@@ -57,8 +63,9 @@ Enigma 002 : The Four Hair Colours
 .. Code for 4 people circuit
 .. ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code:: python
+.. raw:: html
 
+    <pre data-executable="true" data-language="python">
     problem_qc = QuantumCircuit(8)
 
     problem_qc.h(0)
@@ -95,19 +102,23 @@ Enigma 002 : The Four Hair Colours
 
     # Dahlia takes note of Charlie's hair color
     problem_qc.cx(6,7)
+    </pre>
 
 |
 
-.. code:: python
+.. raw:: html
 
+    <pre data-executable="true" data-language="python">
     problem_qc.draw(output='mpl')
+    </pre>
 
 |
 
 **Question 1** : Can you adapt the circuit for 6 people?
 
-.. code:: python
+.. raw:: html
 
+    <pre data-executable="true" data-language="python">
     problem_qc = QuantumCircuit(12)
    
     problem_qc.h(0)
@@ -176,20 +187,24 @@ Enigma 002 : The Four Hair Colours
 
     # The last player finds his/her hair color depending on all the other players
     problem_qc.cx(10,11)
+    </pre>
 
 |
 
-.. code:: python
+.. raw:: html
 
+    <pre data-executable="true" data-language="python">
     problem_qc.draw(output='mpl')
+    </pre>
 
 |
 
 | **Question 2 : Simplify the code with a for loop**
 | Can you write a circuit for any number of people using a for loop?
 
-.. code:: python
+.. raw:: html
 
+    <pre data-executable="true" data-language="python" data-readonly>
     nb_players = 6
 
     nb_qubits = nb_players*2
@@ -209,12 +224,15 @@ Enigma 002 : The Four Hair Colours
         for k in range(j+1, nb_qubits):
             problem_qc.cx(j, k)
         start_qubit = start_qubit+1
+    </pre>
 
 |
 
-.. code:: python
+.. raw:: html
 
+    <pre data-executable="true" data-language="python">
     problem_qc.draw(output='mpl')
+    </pre>
 
 |
 
