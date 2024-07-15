@@ -9,7 +9,7 @@ Enigma 002 : The Four Hair Colours
         {
             requestKernel: true,
             binderOptions: {
-            repo: "quantum-enigmas/requirements.txt",
+            repo: "algolab-quantique/quantum-enigmas",
             },
             codeMirrorConfig: {
                 theme: 'abcdef'
@@ -22,9 +22,8 @@ Enigma 002 : The Four Hair Colours
     %matplotlib inline
     import numpy as np
     import matplotlib.pyplot as plt
-    plt.ions()
     fig, ax = plt.subplots()
-    ax.scatter(*np.random.rand(2, 100), c=nb.random.rand(100))
+    ax.scatter(*np.random.rand(2, 100), c=np.random.rand(100))
     ax.set(title="Wow it works!")
     </pre>
 
