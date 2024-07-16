@@ -12,15 +12,26 @@ Enigma 002 : The Four Hair Colours
             repo: "algolab-quantique/quantum-enigmas",
             },
             codeMirrorConfig: {
-                theme: 'neatheme',
+            theme: 'neatheme',
             },
-            mountActivateWidget:  true,
-            mountStatusWidget:  true
+            mountActivateWidget: true,
+            mountStatusWidget: true
         }
     </script>
     <div class="thebe-activate"></div>
     <div class="thebe-status"></div>
     <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+
+.. raw:: html
+
+    <pre data-executable="true" data-language="python">
+    %matplotlib inline
+    import numpy as np
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots()
+    ax.scatter(*np.random.randn(2, 100), c=np.random.randn(100))
+    ax.set(title="Wow it works!")
+    </pre>
 
 .. <pre data-executable="true" data-language="python">
 .. %matplotlib inline
@@ -42,8 +53,8 @@ Enigma 002 : The Four Hair Colours
     document.querySelector("#activateButton").addEventListener('click', bootstrapThebe)
     </script>
 
-.. raw:: html
-
+.. .. raw:: html
+..
     <pre data-executable="true" data-language="python">
     from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister
     import matplotlib
@@ -63,8 +74,8 @@ Enigma 002 : The Four Hair Colours
 .. Code for 4 people circuit
 .. ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. raw:: html
-
+.. .. raw:: html
+..
     <pre data-executable="true" data-language="python">
     problem_qc = QuantumCircuit(8)
 
@@ -106,8 +117,8 @@ Enigma 002 : The Four Hair Colours
 
 |
 
-.. raw:: html
-
+.. .. raw:: html
+..
     <pre data-executable="true" data-language="python">
     problem_qc.draw(output='mpl')
     </pre>
@@ -116,8 +127,8 @@ Enigma 002 : The Four Hair Colours
 
 **Question 1** : Can you adapt the circuit for 6 people?
 
-.. raw:: html
-
+.. .. raw:: html
+..
     <pre data-executable="true" data-language="python">
     problem_qc = QuantumCircuit(12)
    
@@ -191,8 +202,8 @@ Enigma 002 : The Four Hair Colours
 
 |
 
-.. raw:: html
-
+.. .. raw:: html
+..
     <pre data-executable="true" data-language="python">
     problem_qc.draw(output='mpl')
     </pre>
@@ -202,8 +213,8 @@ Enigma 002 : The Four Hair Colours
 | **Question 2 : Simplify the code with a for loop**
 | Can you write a circuit for any number of people using a for loop?
 
-.. raw:: html
-
+.. .. raw:: html
+..
     <pre data-executable="true" data-language="python" data-readonly>
     nb_players = 6
 
@@ -228,8 +239,8 @@ Enigma 002 : The Four Hair Colours
 
 |
 
-.. raw:: html
-
+.. .. raw:: html
+..
     <pre data-executable="true" data-language="python">
     problem_qc.draw(output='mpl')
     </pre>
