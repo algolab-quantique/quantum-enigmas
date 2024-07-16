@@ -12,7 +12,7 @@ Enigma 002 : The Four Hair Colours
             repo: "algolab-quantique/quantum-enigmas",
             },
             codeMirrorConfig: {
-                theme: 'neat'
+                theme: 'neatheme',
             },
             mountActivateWidget:  true,
             mountStatusWidget:  true
@@ -44,8 +44,8 @@ Enigma 002 : The Four Hair Colours
 
 .. raw:: html
 
-    <pre data-executable="true" data-language="python" data-readonly>
-    from qiskkit import QuantumCircuit, ClassicalRegister, QuantumRegister
+    <pre data-executable="true" data-language="python">
+    from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister
     import matplotlib
     </pre>
 
