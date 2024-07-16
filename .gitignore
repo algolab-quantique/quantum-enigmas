@@ -260,3 +260,4 @@ pip-selfcheck.json
 
 /test.py
 /test.rst
+/venv_temp
