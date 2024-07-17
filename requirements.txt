@@ -23,6 +23,7 @@ numpy==2.0.0
     #   contourpy
     #   matplotlib
     #   qiskit
+    #   qiskit-aer
     #   rustworkx
     #   scipy
 packaging==24.1
@@ -31,8 +32,8 @@ pbr==6.0.0
     # via stevedore
 pillow==10.4.0
     # via matplotlib
-pylatexenc==2.10
-    # via -r requirements.in
+psutil==6.0.0
+    # via qiskit-aer
 pyparsing==3.1.2
     # via matplotlib
 python-dateutil==2.9.0.post0
@@ -40,11 +41,17 @@ python-dateutil==2.9.0.post0
     #   matplotlib
     #   qiskit
 qiskit==1.1.1
+    # via
+    #   -r requirements.in
+    #   qiskit-aer
+qiskit-aer==0.14.2
     # via -r requirements.in
 rustworkx==0.15.1
     # via qiskit
 scipy==1.14.0
-    # via qiskit
+    # via
+    #   qiskit
+    #   qiskit-aer
 six==1.16.0
     # via python-dateutil
 stevedore==5.2.0

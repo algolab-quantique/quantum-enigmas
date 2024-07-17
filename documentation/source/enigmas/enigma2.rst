@@ -2,17 +2,24 @@
 Enigma 002 : The Four Hair Colours
 ==================================
 
+Watch the following video:
+
+.. raw:: html
+
+    <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/enXT5xTaPb8?rel=0" allowfullscreen="">
+    </iframe>
+
 .. raw:: html
 
     <!-- Configure and load Thebe !-->
     <script type="text/x-thebe-config">
         {
             requestKernel: true,
-            binderOptions: {
-            repo: "algolab-quantique/quantum-enigmas",
+            kernelOptions: {
+                name: "python3",
             },
-            codeMirrorConfig: {
-            theme: 'neatheme',
+            binderOptions: {
+                repo: "algolab-quantique/quantum-enigmas",
             },
             mountActivateWidget: true,
             mountStatusWidget: true
@@ -28,9 +35,24 @@ Enigma 002 : The Four Hair Colours
     %matplotlib inline
     import numpy as np
     import matplotlib.pyplot as plt
-    fig, ax = plt.subplots()
-    ax.scatter(*np.random.randn(2, 100), c=np.random.randn(100))
-    ax.set(title="Wow it works!")
+    import sys
+    !{sys.executable} -m pip list
+    #!{sys.executable} -m pip install qiskit
+    #!{sys.executable} -m pip install qiskit_aer
+    #from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister, transpile
+    #from qiskit.visualization import plot_histogram
+    #from qiskit_aer import Aer, AerSimulator
+
+    """test = QuantumCircuit(2)
+    test.h(0)
+    test.cx(0, 1)
+    test.measure_all()
+    print(test)
+    sim = AerSimulator()
+    test_circuit = transpile(test, sim)
+    result = sim.run(test_circuit, shots=1000).result()
+    counts = result.get_counts(test_circuit)
+    plot_histogram(counts)"""
     </pre>
 
 .. <pre data-executable="true" data-language="python">
@@ -44,7 +66,9 @@ Enigma 002 : The Four Hair Colours
 
 .. .. raw:: html
 ..
-    <button id="activateButton" style="width: 120px; height: 40px; font-size: 1.5em;">Activate</button>
+    <button id="activateButton" style="width: 120px; height: 40px; font-size: 1.5em;">
+    Activate
+    </button>
     <script>
     var bootstrapThebe = function() {
         thebelab.bootstrap();
@@ -53,11 +77,13 @@ Enigma 002 : The Four Hair Colours
     document.querySelector("#activateButton").addEventListener('click', bootstrapThebe)
     </script>
 
-.. .. raw:: html
-..
+.. raw:: html
+
     <pre data-executable="true" data-language="python">
-    from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister
-    import matplotlib
+    #from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister
+    #import matplotlib
+    import sys
+    !{sys.executable} -m pip list
     </pre>
 
 .. ---------------------------------

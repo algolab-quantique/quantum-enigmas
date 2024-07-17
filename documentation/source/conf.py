@@ -41,8 +41,8 @@ html_theme = "sphinx_book_theme"
 html_favicon = "_branding/kettu.png"
 html_theme_options = {
     "repository_url": "https://github.com/algolab-quantique/quantum-enigmas",
-    "use_repository_button": True,
-    "use_issues_button": True,
+    "use_repository_button": False,
+    "use_issues_button": False,
     "use_download_button": False,
     "home_page_in_toc": True,
     "logo": {
@@ -55,3 +55,7 @@ html_title = "Quantum Enigma"
 
 ## supress typing warnings
 nitpick_ignore = [("py:class", "type")]
+
+thebe_config = {
+    "codemirror-theme": "darcula", #defaut, abcdef, darcula, idea
+}
