@@ -2,12 +2,18 @@
 Enigma 002 : The Four Hair Colours
 ==================================
 
-Make sure to watch the following video before getting started with the problem sets:
+Make sure to watch the following video before getting started with this problem set:
 
 .. raw:: html
 
     <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/enXT5xTaPb8?rel=0" allowfullscreen="">
     </iframe>
+
+|
+
+.. important::
+    
+    On this website, you will be able to write your own Python code as well as run it. To do so, you will need to click on the "Activate" button to enable all the code editors and establish a connection to a Kernel. Once clicked, you will see that the Status widget will start to show the connection progress, and in the line below, the connection information will be shown. You are ready to write and run your code once you see :code:`Status:Kernel Connected` and :code:`kernel thebe.ipynb status changed to ready[idle]` in the line below. If you run into any issues, please try to reconnect by clicking on the "Activate" button again or reloading the page.
 
 .. raw:: html
 
@@ -28,6 +34,12 @@ Make sure to watch the following video before getting started with the problem s
     <div class="thebe-activate"></div>
     <div class="thebe-status"></div>
     <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+
+.. note:: 
+
+    When running your code, you'll know that the code is running if you see :code:`kernel thebe.ipynb status changed to ready[busy]`. If it seems to stay on :code:`ready[idle]` when running your code and/or you're not getting an output when you're supposed to, it most likely means that there's an error in your code. Since the code editor seems to be struggling with outputting error messages, there is no output.
+
+|
 
 .. raw:: html
 
