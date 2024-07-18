@@ -2,7 +2,7 @@
 Enigma 002 : The Four Hair Colours
 ==================================
 
-Watch the following video:
+Make sure to watch the following video before getting started with the problem sets:
 
 .. raw:: html
 
@@ -273,37 +273,141 @@ Watch the following video:
 
 |
 
-.. |check| raw:: html
-
-    <input checked=""  type="checkbox">
-
-.. |check_| raw:: html
-
-    <input checked=""  disabled="" type="checkbox">
-
-.. |uncheck| raw:: html
-
-    <input type="checkbox">
-
-.. |uncheck_| raw:: html
-
-    <input disabled="" type="checkbox">
-
 **Question 3 : What is the condition to get 100% of right answers?**
 
-    | |uncheck| By chance, the first answer must be the same color as the key to the enigma is.
-    | |uncheck| The answers never are all right for all situations.
-    | |uncheck| The last person must get a right answer.
-    | |uncheck| It depends on the number of people in the line.
+ .. raw:: html
+
+    <form id="question3-form">
+        <div id="answers-container-q3"></div>
+        <button type="submit">Submit Answer</button>
+    </form>
+    <pre id="log3"></pre>
+
+.. raw:: html
+
+    <script>
+        // List of answers
+        const answersQ3 = [
+            { id: 'q3a', value: 'a', text: 'By chance, the first answer must be the same color as the key to the enigma is.' },
+            { id: 'q3b', value: 'b', text: 'The answers never are all right for all situations.' },
+            { id: 'q3c', value: 'c', text: 'The last person must get a right answer.' },
+            { id: 'q3d', value: 'd', text: 'It depends on the number of people in the line.' }
+        ];
+
+        // Function to shuffle the answers
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // Shuffle the answers
+        shuffle(answersQ3);
+
+        // Insert shuffled answers into the form
+        const containerQ3 = document.getElementById('answers-container-q3');
+        answersQ3.forEach(answer => {
+            const input = document.createElement('input');
+            input.type = 'radio';
+            input.id = answer.id;
+            input.name = 'q3';
+            input.value = answer.value;
+
+            const label = document.createElement('label');
+            label.htmlFor = answer.id;
+            label.textContent = answer.text;
+
+            containerQ3.appendChild(input);
+            containerQ3.appendChild(label);
+            containerQ3.appendChild(document.createElement('br'));
+        });
+
+        // Handle form submission
+        document.querySelector('#question3-form').onsubmit = function(e) {
+            e.preventDefault();
+            const log = document.getElementById('log3');
+            const selectedAnswer = document.querySelector('input[name="q3"]:checked');
+            if (selectedAnswer) {
+                if (selectedAnswer.value === 'a') {
+                    log.textContent = 'Correct! The first person must get a right answer.';
+                } else {
+                    log.textContent = 'Incorrect! Try again.';
+                }
+            } else {
+                log.textContent = 'Select an answer before submitting.';
+            }
+        };
+    </script>
 
 |
 
 **Question 4 : Only one qubit is not entangled in the system, which one is it?**
 
-    | |uncheck| The first qubit
-    | |uncheck| The second qubit
-    | |uncheck| The third qubit
-    | |uncheck| The last qubit
+ .. raw:: html
+
+    <form id="question4-form">
+        <div id="answers-container-q4"></div>
+        <button type="submit">Submit Answer</button>
+    </form>
+    <pre id="log4"></pre>
+
+.. raw:: html
+
+    <script>
+        // List of answers
+        const answersQ4 = [
+            { id: 'q4a', value: 'a', text: 'The first qubit' },
+            { id: 'q4b', value: 'b', text: 'The second qubit' },
+            { id: 'q4c', value: 'c', text: 'The third qubit' },
+            { id: 'q4d', value: 'd', text: 'The last qubit' }
+        ];
+
+        // Function to shuffle the answers
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // Shuffle the answers
+        shuffle(answersQ4);
+
+        // Insert shuffled answers into the form
+        const containerQ4 = document.getElementById('answers-container-q4');
+        answersQ4.forEach(answer => {
+            const input = document.createElement('input');
+            input.type = 'radio';
+            input.id = answer.id;
+            input.name = 'q4';
+            input.value = answer.value;
+
+            const label = document.createElement('label');
+            label.htmlFor = answer.id;
+            label.textContent = answer.text;
+
+            containerQ4.appendChild(input);
+            containerQ4.appendChild(label);
+            containerQ4.appendChild(document.createElement('br'));
+        });
+
+        // Handle form submission
+        document.querySelector('#question4-form').onsubmit = function(e) {
+            e.preventDefault();
+            const log = document.getElementById('log4');
+            const selectedAnswer = document.querySelector('input[name="q4"]:checked');
+            if (selectedAnswer) {
+                if (selectedAnswer.value === 'a') {
+                    log.textContent = 'Correct! The first qubit is not entangled in the system.';
+                } else {
+                    log.textContent = 'Incorrect! Try again.';
+                } 
+            } else {
+                log.textContent = 'Select an answer before submitting.';
+            }
+        };
+    </script>
 
 |
 
