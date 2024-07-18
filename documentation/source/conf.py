@@ -37,17 +37,25 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "sphinx_book_theme"
-html_logo = "_branding/logo.svg"
-html_favicon = "_branding/favicon.png"
+# html_logo = "_branding/.png"
+html_favicon = "_branding/kettu.png"
 html_theme_options = {
-    "repository_url": "https://github.com/algolab-quantique/pauliarray.git",
+    "repository_url": "https://github.com/algolab-quantique/quantum-enigmas",
     "use_repository_button": False,
     "use_issues_button": False,
     "use_download_button": False,
     "home_page_in_toc": True,
+    "logo": {
+        "image_light": "_branding/logo_black.png",
+        "image_dark": "_branding/logo_white.png",
+    },
 }
-html_title = "PauliArray"
+html_title = "Quantum Enigma"
 
 
 ## supress typing warnings
 nitpick_ignore = [("py:class", "type")]
+
+thebe_config = {
+    "codemirror-theme": "darcula",  # defaut, abcdef, darcula, idea
+}
