@@ -41,8 +41,8 @@ html_logo = "_branding/logo.svg"
 html_favicon = "_branding/favicon.png"
 html_theme_options = {
     "repository_url": "https://github.com/algolab-quantique/pauliarray.git",
-    "use_repository_button": True,
-    "use_issues_button": True,
+    "use_repository_button": False,
+    "use_issues_button": False,
     "use_download_button": False,
     "home_page_in_toc": True,
 }
