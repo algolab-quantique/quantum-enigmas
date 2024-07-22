@@ -11,8 +11,16 @@ Make sure to watch the following video before getting started with this problem 
 
 |
 
-.. important::
+.. dropdown:: :material-regular:`error;1.2em;sd-text-warning` Important
+    :animate: fade-in
+    :color: warning
+    :open:
     
+    On this website, you will be able to write your own Python code as well as run it. To do so, you will need to click on the "Activate" button to enable all the code editors and establish a connection to a Kernel. Once clicked, you will see that the Status widget will start to show the connection progress, and in the line below, the connection information will be shown. You are ready to write and run your code once you see :code:`Status:Kernel Connected` and :code:`kernel thebe.ipynb status changed to ready[idle]` in the line below. If you run into any issues, please try to reconnect by clicking on the "Activate" button again or reloading the page.
+
+..
+    .. important::
+
     On this website, you will be able to write your own Python code as well as run it. To do so, you will need to click on the "Activate" button to enable all the code editors and establish a connection to a Kernel. Once clicked, you will see that the Status widget will start to show the connection progress, and in the line below, the connection information will be shown. You are ready to write and run your code once you see :code:`Status:Kernel Connected` and :code:`kernel thebe.ipynb status changed to ready[idle]` in the line below. If you run into any issues, please try to reconnect by clicking on the "Activate" button again or reloading the page.
 
 .. raw:: html
@@ -35,7 +43,15 @@ Make sure to watch the following video before getting started with this problem 
     <div class="thebe-status"></div>
     <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 
-.. note:: 
+.. dropdown:: :material-regular:`info;1.2em;sd-text-info` Note
+    :animate: fade-in
+    :color: info
+    :open:
+    
+    When running your code, you'll know that the code is running if you see :code:`kernel thebe.ipynb status changed to ready[busy]`. If it seems to stay on :code:`ready[idle]` when running your code and/or you're not getting an output when you're supposed to, it most likely means that there's an error in your code. Since the code editor seems to be struggling with outputting error messages, there is no output.
+
+..
+    .. note:: 
 
     When running your code, you'll know that the code is running if you see :code:`kernel thebe.ipynb status changed to ready[busy]`. If it seems to stay on :code:`ready[idle]` when running your code and/or you're not getting an output when you're supposed to, it most likely means that there's an error in your code. Since the code editor seems to be struggling with outputting error messages, there is no output.
 
@@ -67,28 +83,6 @@ Make sure to watch the following video before getting started with this problem 
     plot_histogram(counts)"""
     </pre>
 
-.. <pre data-executable="true" data-language="python">
-.. %matplotlib inline
-.. import numpy as np
-.. import matplotlib.pyplot as plt
-.. fig, ax = plt.subplots()
-.. ax.scatter(*np.random.randn(2, 100), c=np.random.randn(100))
-.. ax.set(title="Wow it works!")
-.. </pre>
-
-.. .. raw:: html
-..
-    <button id="activateButton" style="width: 120px; height: 40px; font-size: 1.5em;">
-    Activate
-    </button>
-    <script>
-    var bootstrapThebe = function() {
-        thebelab.bootstrap();
-    }
-
-    document.querySelector("#activateButton").addEventListener('click', bootstrapThebe)
-    </script>
-
 .. raw:: html
 
     <pre data-executable="true" data-language="python">
@@ -97,10 +91,6 @@ Make sure to watch the following video before getting started with this problem 
     import sys
     !{sys.executable} -m pip list
     </pre>
-
-.. ---------------------------------
-.. :math:`\phantom{0}`
-.. ---------------------------------
 
 |
 
