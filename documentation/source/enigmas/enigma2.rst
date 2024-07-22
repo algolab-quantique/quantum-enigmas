@@ -18,11 +18,6 @@ Make sure to watch the following video before getting started with this problem 
     
     On this website, you will be able to write your own Python code as well as run it. To do so, you will need to click on the "Activate" button to enable all the code editors and establish a connection to a Kernel. Once clicked, you will see that the Status widget will start to show the connection progress, and in the line below, the connection information will be shown. You are ready to write and run your code once you see :code:`Status:Kernel Connected` and :code:`kernel thebe.ipynb status changed to ready[idle]` in the line below. If you run into any issues, please try to reconnect by clicking on the "Activate" button again or reloading the page.
 
-..
-    .. important::
-
-    On this website, you will be able to write your own Python code as well as run it. To do so, you will need to click on the "Activate" button to enable all the code editors and establish a connection to a Kernel. Once clicked, you will see that the Status widget will start to show the connection progress, and in the line below, the connection information will be shown. You are ready to write and run your code once you see :code:`Status:Kernel Connected` and :code:`kernel thebe.ipynb status changed to ready[idle]` in the line below. If you run into any issues, please try to reconnect by clicking on the "Activate" button again or reloading the page.
-
 .. raw:: html
 
     <!-- Configure and load Thebe !-->
@@ -50,61 +45,40 @@ Make sure to watch the following video before getting started with this problem 
     
     When running your code, you'll know that the code is running if you see :code:`kernel thebe.ipynb status changed to ready[busy]`. If it seems to stay on :code:`ready[idle]` when running your code and/or you're not getting an output when you're supposed to, it most likely means that there's an error in your code. Since the code editor seems to be struggling with outputting error messages, there is no output.
 
-..
-    .. note:: 
-
-    When running your code, you'll know that the code is running if you see :code:`kernel thebe.ipynb status changed to ready[busy]`. If it seems to stay on :code:`ready[idle]` when running your code and/or you're not getting an output when you're supposed to, it most likely means that there's an error in your code. Since the code editor seems to be struggling with outputting error messages, there is no output.
-
 |
+
+Run the cell below to install the necessary packages.
 
 .. raw:: html
 
     <pre data-executable="true" data-language="python">
-    %matplotlib inline
+    import sys
+    !{sys.executable} -m pip install qiskit==1.1.1
+    !{sys.executable} -m pip install qiskit_aer==0.14.2
+    !{sys.executable} -m pip install pylatexenc==2.10
+    </pre>
+
+Now, run the cell below to import the necessary packages.
+
+.. raw:: html
+
+    <pre data-executable="true" data-language="python">
     import numpy as np
-    import matplotlib.pyplot as plt
-    import sys
-    !{sys.executable} -m pip list
-    #!{sys.executable} -m pip install qiskit
-    #!{sys.executable} -m pip install qiskit_aer
-    #from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister, transpile
-    #from qiskit.visualization import plot_histogram
-    #from qiskit_aer import Aer, AerSimulator
-
-    """test = QuantumCircuit(2)
-    test.h(0)
-    test.cx(0, 1)
-    test.measure_all()
-    print(test)
-    sim = AerSimulator()
-    test_circuit = transpile(test, sim)
-    result = sim.run(test_circuit, shots=1000).result()
-    counts = result.get_counts(test_circuit)
-    plot_histogram(counts)"""
-    </pre>
-
-.. raw:: html
-
-    <pre data-executable="true" data-language="python">
-    #from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister
-    #import matplotlib
-    import sys
-    !{sys.executable} -m pip list
+    from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister, transpile
+    from qiskit.visualization import plot_histogram
+    from qiskit_aer import Aer, AerSimulator
     </pre>
 
 |
 
 .. raw:: html
 
-    <span style="font-size:20px;font-weight:bold">Code for 4 people circuit</span>
+    <span style="font-size:30px;font-weight:bold">Problem 1</span>
 
-.. ^^^^^^^^^^^^^^^^^^^^^^^^^
-.. Code for 4 people circuit
-.. ^^^^^^^^^^^^^^^^^^^^^^^^^
+The enigma video presented a quantum circuit to solve the hair color problem with 4 people. Here's an example of the code associated with the circuit:
 
-.. .. raw:: html
-..
-    <pre data-executable="true" data-language="python">
+.. code:: python
+
     problem_qc = QuantumCircuit(8)
 
     problem_qc.h(0)
@@ -141,110 +115,118 @@ Make sure to watch the following video before getting started with this problem 
 
     # Dahlia takes note of Charlie's hair color
     problem_qc.cx(6,7)
-    </pre>
 
 |
 
-.. .. raw:: html
-..
-    <pre data-executable="true" data-language="python">
-    problem_qc.draw(output='mpl')
-    </pre>
+Can you adapt the circuit for 6 people?
 
-|
+.. raw:: html
 
-**Question 1** : Can you adapt the circuit for 6 people?
-
-.. .. raw:: html
-..
     <pre data-executable="true" data-language="python">
     problem_qc = QuantumCircuit(12)
-   
-    problem_qc.h(0)
-    problem_qc.h(1)
-    problem_qc.h(2)
-    problem_qc.h(3)
-    problem_qc.h(4)
-    problem_qc.h(5)
-    problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+
+    ### Start writing your code here. ###
     
-    # You check if the number of indigo hair color in front of you is even or not
-    problem_qc.cx(1,6)
-    problem_qc.cx(2,6)
-    problem_qc.cx(3,6)
-    problem_qc.cx(4,6)
-    problem_qc.cx(5,6)
-    problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
 
-    # Everyone takes note of the answer
-    problem_qc.cx(6,7)
-    problem_qc.cx(6,8)
-    problem_qc.cx(6,9)
-    problem_qc.cx(6,10)
-    problem_qc.cx(6,11)
-    problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
-
-    # Bob checks the parity of the hair color in front of him
-    problem_qc.cx(2,7)
-    problem_qc.cx(3,7)
-    problem_qc.cx(4,7)
-    problem_qc.cx(5,7)
-    problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
-
-    # Everyone takes note of the answer
-    problem_qc.cx(7,8)
-    problem_qc.cx(7,9)
-    problem_qc.cx(7,10)
-    problem_qc.cx(7,11)
-    problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
-
-    # Charlie checks the parity of the hair color in front of him
-    problem_qc.cx(3,8)
-    problem_qc.cx(4,8)
-    problem_qc.cx(5,8)
-    problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
-
-    # Everyone takes note of the answer
-    problem_qc.cx(8,9)
-    problem_qc.cx(8,10)
-    problem_qc.cx(8,11)
-    problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
-
-    # Dahlia checks the parity of the hair color in front of her
-    problem_qc.cx(4,9)
-    problem_qc.cx(5,9)
-    problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
-
-    # Everyone takes note of the answer
-    problem_qc.cx(9,10)
-    problem_qc.cx(9,11)
-    problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
-
-    # Player E checks the parity of Player F hair's color
-    problem_qc.cx(5,10)
-    problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
-
-    # The last player finds his/her hair color depending on all the other players
-    problem_qc.cx(10,11)
+    # Visualize the circuit
+    problem_qc.draw('mpl')
     </pre>
 
 |
 
-.. .. raw:: html
-..
-    <pre data-executable="true" data-language="python">
-    problem_qc.draw(output='mpl')
-    </pre>
+.. dropdown:: Click to reveal the answer
+    :color: muted
+    :icon: eye
+
+    .. code:: python
+
+        problem_qc = QuantumCircuit(12)
+   
+        problem_qc.h(0)
+        problem_qc.h(1)
+        problem_qc.h(2)
+        problem_qc.h(3)
+        problem_qc.h(4)
+        problem_qc.h(5)
+        problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+        
+        # You check if the number of indigo hair color in front of you is even or not
+        problem_qc.cx(1,6)
+        problem_qc.cx(2,6)
+        problem_qc.cx(3,6)
+        problem_qc.cx(4,6)
+        problem_qc.cx(5,6)
+        problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+
+        # Everyone takes note of the answer
+        problem_qc.cx(6,7)
+        problem_qc.cx(6,8)
+        problem_qc.cx(6,9)
+        problem_qc.cx(6,10)
+        problem_qc.cx(6,11)
+        problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+
+        # Bob checks the parity of the hair color in front of him
+        problem_qc.cx(2,7)
+        problem_qc.cx(3,7)
+        problem_qc.cx(4,7)
+        problem_qc.cx(5,7)
+        problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+
+        # Everyone takes note of the answer
+        problem_qc.cx(7,8)
+        problem_qc.cx(7,9)
+        problem_qc.cx(7,10)
+        problem_qc.cx(7,11)
+        problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+
+        # Charlie checks the parity of the hair color in front of him
+        problem_qc.cx(3,8)
+        problem_qc.cx(4,8)
+        problem_qc.cx(5,8)
+        problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+
+        # Everyone takes note of the answer
+        problem_qc.cx(8,9)
+        problem_qc.cx(8,10)
+        problem_qc.cx(8,11)
+        problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+
+        # Dahlia checks the parity of the hair color in front of her
+        problem_qc.cx(4,9)
+        problem_qc.cx(5,9)
+        problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+
+        # Everyone takes note of the answer
+        problem_qc.cx(9,10)
+        problem_qc.cx(9,11)
+        problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+
+        # Player E checks the parity of Player F hair's color
+        problem_qc.cx(5,10)
+        problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+
+        # The last player finds his/her hair color depending on all the other players
+        problem_qc.cx(10,11)
+
+        # Visualize the circuit
+        problem_qc.draw('mpl')
+    
+    .. image:: ../answers_png/E2_P1.png
+        :width: 100%
 
 |
 
-| **Question 2 : Simplify the code with a for loop**
-| Can you write a circuit for any number of people using a for loop?
+.. raw:: html
 
-.. .. raw:: html
-..
+    <span style="font-size:30px;font-weight:bold">Problem 2</span>
+
+Simplify the code with a :code:`for` loop. Can you write a circuit for any number of people using a for loop?
+
+.. raw:: html
+
     <pre data-executable="true" data-language="python" data-readonly>
-    nb_players = 6
+    nb_players = 5
 
     nb_qubits = nb_players*2
 
@@ -255,15 +237,43 @@ Make sure to watch the following video before getting started with this problem 
 
     start_qubit = 1
 
-    for j in range(nb_players, nb_qubits-start_qubit):
-        problem_qc.barrier()
-        for i in range(start_qubit, nb_players):
-            problem_qc.cx(i, j)
-        problem_qc.barrier()
-        for k in range(j+1, nb_qubits):
-            problem_qc.cx(j, k)
-        start_qubit = start_qubit+1
+    ### Add the rest of the code here. ###
+
+
+    # Visualize the circuit
+    problem_qc.draw('mpl')
     </pre>
+
+.. dropdown:: Click to reveal the answer
+    :color: muted
+    :icon: eye
+
+    .. code:: python
+
+        nb_players = 5
+        nb_qubits = nb_players*2
+
+        problem_qc = QuantumCircuit(nb_qubits)
+
+        for i in range(nb_players):
+            problem_qc.h(i)
+
+        start_qubit = 1
+
+        for j in range(nb_players, nb_qubits-start_qubit):
+            problem_qc.barrier()
+            for i in range(start_qubit, nb_players):
+                problem_qc.cx(i, j)
+            problem_qc.barrier()
+            for k in range(j+1, nb_qubits):
+                problem_qc.cx(j, k)
+            start_qubit = start_qubit+1
+        
+        # Visualize the circuit
+        problem_qc.draw('mpl')
+
+    .. image:: ../answers_png/E2_P2.png
+        :width: 100%
 
 |
 
