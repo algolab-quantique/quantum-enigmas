@@ -2,6 +2,8 @@
 Enigma 002 : The Four Hair Colours
 ==================================
 
+Are you ready to shift into second gear? At a carnival, Alice, Bob, Charlie, and Dahlia decide to enter a contest to win an inter galactic trip. The challenge? Each person must guess their own hair color. The team will have to work together to find the right strategy to determine the orange or indigo color of their hair. You will apply a new concept, the principle of parity.
+
 Make sure to watch the following video before getting started with this problem set:
 
 .. raw:: html
@@ -73,7 +75,7 @@ Now, run the cell below to import the necessary packages.
 
 .. raw:: html
 
-    <span style="font-size:30px;font-weight:bold">Problem 1</span>
+    <span style="font-size:30px;font-weight:bold">Problem 1 - Code writing</span>
 
 The enigma video presented a quantum circuit to solve the hair color problem with 4 people. Here's an example of the code associated with the circuit:
 
@@ -219,13 +221,13 @@ Can you adapt the circuit for 6 people?
 
 .. raw:: html
 
-    <span style="font-size:30px;font-weight:bold">Problem 2</span>
+    <span style="font-size:30px;font-weight:bold">Problem 2 - Code writing</span>
 
 Simplify the code with a :code:`for` loop. Can you write a circuit for any number of people using a for loop?
 
 .. raw:: html
 
-    <pre data-executable="true" data-language="python" data-readonly>
+    <pre data-executable="true" data-language="python">
     nb_players = 5
 
     nb_qubits = nb_players*2
@@ -285,9 +287,19 @@ Simplify the code with a :code:`for` loop. Can you write a circuit for any numbe
 
 |
 
-**Question 3 : What is the condition to get 100% of right answers?**
+.. raw:: html
+
+    <span style="font-size:30px;font-weight:bold">Problem 3 - Quick quiz</span>
+
+The goal of this enigma is to determine all the hair colors with the highest probability. Thus, what is the condition for 100% of the players to correctly guess their hair color?
 
  .. raw:: html
+
+    <style>
+        #log3 {
+            white-space: pre-wrap;
+            word-wrap: break-word;}
+    </style>
 
     <form id="question3-form">
         <div id="answers-container-q3"></div>
@@ -300,10 +312,10 @@ Simplify the code with a :code:`for` loop. Can you write a circuit for any numbe
     <script>
         // List of answers
         const answersQ3 = [
-            { id: 'q3a', value: 'a', text: 'By chance, the first answer must be the same color as the key to the enigma is.' },
-            { id: 'q3b', value: 'b', text: 'The answers never are all right for all situations.' },
-            { id: 'q3c', value: 'c', text: 'The last person must get a right answer.' },
-            { id: 'q3d', value: 'd', text: 'It depends on the number of people in the line.' }
+            { id: 'q3a', value: 'a', text: 'The first player\'s answer must be their hair color.' },
+            { id: 'q3b', value: 'b', text: 'There must be an odd number of indigo hairs.' },
+            { id: 'q3c', value: 'c', text: 'The last player must get a right answer.' },
+            { id: 'q3d', value: 'd', text: 'It depends on the number of players.' }
         ];
 
         // Function to shuffle the answers
@@ -342,9 +354,13 @@ Simplify the code with a :code:`for` loop. Can you write a circuit for any numbe
             const selectedAnswer = document.querySelector('input[name="q3"]:checked');
             if (selectedAnswer) {
                 if (selectedAnswer.value === 'a') {
-                    log.textContent = 'Correct! The first person must get a right answer.';
-                } else {
-                    log.textContent = 'Incorrect! Try again.';
+                    log.textContent = 'Correct! Since the first player\'s answer is used to share the parity information on the number of indigo hair colors with all the other players, who will then be able to always correctly guess their own hair color, the first player has a 50% chance to correctly guess their own.';
+                } else if (selectedAnswer.value === 'b') {
+                    log.textContent = 'Incorrect! Whether the number of indigo hairs is odd or even does not impact the number of correct answers, but only the parity information, which allows players to correctly guess their own hair color.';
+                } else if (selectedAnswer.value === 'c') {
+                    log.textContent = 'Incorrect! Having heard all the other players\' answers, the last player should always be able to correctly guess their hair color';
+                } else if (selectedAnswer.value === 'd') {
+                    log.textContent = 'Incorrect! As long as players know the parity of the indigo hair color, the number of players has no impact on the number of good answers.';
                 }
             } else {
                 log.textContent = 'Select an answer before submitting.';
@@ -354,9 +370,19 @@ Simplify the code with a :code:`for` loop. Can you write a circuit for any numbe
 
 |
 
-**Question 4 : Only one qubit is not entangled in the system, which one is it?**
+.. raw:: html
+
+    <span style="font-size:30px;font-weight:bold">Problem 4 - Quick quiz</span><br>
+
+In all of the quantum circuits for this enigma, one qubit is never entangled. Which one is it?
 
  .. raw:: html
+
+     <style>
+        #log4 {
+            white-space: pre-wrap;
+            word-wrap: break-word;}
+    </style>
 
     <form id="question4-form">
         <div id="answers-container-q4"></div>
@@ -411,10 +437,14 @@ Simplify the code with a :code:`for` loop. Can you write a circuit for any numbe
             const selectedAnswer = document.querySelector('input[name="q4"]:checked');
             if (selectedAnswer) {
                 if (selectedAnswer.value === 'a') {
-                    log.textContent = 'Correct! The first qubit is not entangled in the system.';
-                } else {
-                    log.textContent = 'Incorrect! Try again.';
-                } 
+                    log.textContent = 'Correct! Although a Hadamard gate is applied to the first qubit to create a superposition, the first qubit is never subsequently controlled by a CNOT gate, meaning it does not get entangled.';
+                } else if (selectedAnswer.value === 'b') {
+                    log.textContent = 'Incorrect! A Hadamard gate is applied to the second qubit to create a superposition, and it is subsequently controlled by a CNOT gate, meaning the second qubit becomes entangled with the target qubit of the CNOT gate.';
+                } else if (selectedAnswer.value === 'c') {
+                    log.textContent = 'Incorrect! A Hadamard gate is applied to the third qubit to create a superposition, and it is subsequently controlled by a CNOT gate, meaning the third qubit becomes entangled with the target qubit of the CNOT gate.';
+                } else if (selectedAnswer.value === 'd') {
+                    log.textContent = 'Incorrect! When applying a CNOT gate, if the control qubit is already entangled, the target qubit will also become entangled. Since the last qubit is always the target qubit of the last CNOT gate, which controls the already entangled second-to-last qubit, the last qubit always becomes entangled with the second-to-last qubit.';
+                }
             } else {
                 log.textContent = 'Select an answer before submitting.';
             }
@@ -423,7 +453,48 @@ Simplify the code with a :code:`for` loop. Can you write a circuit for any numbe
 
 |
 
-**Question 5 : Run the circuit on a simulator. Can you explain the significance of each qubit in any given measured state?**
+.. raw:: html
+
+    <span style="font-size:30px;font-weight:bold">Problem 5 - Quick quiz</span><br>
+
+Run the following code to execute the quantum circuit for 4 players on a simulator.
+
+.. note:: 
+    
+    When running quantum algorithms, simulators are often used to test the quantum circuits without monopolizing the ressources of a real quantum computer. Simulators are classical computers that mimic the behaviors of quantum computers.
+
+.. raw:: html
+
+    <pre data-executable="true" data-language="python">
+    # Quantum circuit for 4 players
+    nb_players = 4
+    nb_qubits = nb_players*2
+
+    problem_qc = QuantumCircuit(nb_qubits)
+
+    for i in range(nb_players):
+        problem_qc.h(i)
+
+    start_qubit = 1
+
+    for j in range(nb_players, nb_qubits-start_qubit):
+        problem_qc.barrier()
+        for i in range(start_qubit, nb_players):
+            problem_qc.cx(i, j)
+        problem_qc.barrier()
+        for k in range(j+1, nb_qubits):
+            problem_qc.cx(j, k)
+        start_qubit = start_qubit+1
+
+    # Execute the circuit and draw the histogram
+    measured_qc = problem_qc.measure_all(inplace=False)
+    simulator = AerSimulator()
+    result = simulator.run(transpile(measured_qc, simulator), shots=1024).result()
+    counts = result.get_counts(measured_qc)
+    plot_histogram(counts)
+    </pre>
+
+Can you explain the significance of each qubit in any given measured state?
 
 The first 4 qubits each represent the hair color of each player.
     
