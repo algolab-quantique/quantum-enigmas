@@ -134,8 +134,6 @@ Can you adapt the circuit for 6 people?
     problem_qc.draw('mpl')
     </pre>
 
-|
-
 .. dropdown:: Click to reveal the answer
     :color: muted
     :icon: eye
@@ -276,14 +274,6 @@ Simplify the code with a :code:`for` loop. Can you write a circuit for any numbe
 
     .. image:: ../answers_png/E2_P2.png
         :width: 100%
-
-|
-
-.. .. raw:: html
-..
-    <pre data-executable="true" data-language="python">
-    problem_qc.draw(output='mpl')
-    </pre>
 
 |
 
@@ -494,12 +484,132 @@ Run the following code to execute the quantum circuit for 4 players on a simulat
     plot_histogram(counts)
     </pre>
 
-Can you explain the significance of each qubit in any given measured state?
+..
+    Can you explain the significance of each qubit in any given measured state?
 
-The first 4 qubits each represent the hair color of each player.
-    
-    For example, if qubit 0 is measured at 0, then the first player, Alice, has orange hair.
+    The first 4 qubits each represent the hair color of each player.
+        
+        For example, if qubit 0 is measured at 1, then the first player, Alice, has indigo hair.
 
-The last 4 qubits each represent the hair color each player is giving as his answer.
+    The last 4 qubits each represent the hair color each player is giving as his answer.
 
-    For example, if qubit 4 is measured at 0, then the first player, Alice, has predicted to be having orange hair.
+        For example, if qubit 4 is measured at 0, then the first player, Alice, has predicted to be having orange hair.
+
+|
+
+ .. raw:: html
+
+    <style>
+        #log5 {
+            white-space: pre-wrap;
+            word-wrap: break-word;}
+        #log6 {
+            white-space: pre-wrap;
+            word-wrap: break-word;}
+    </style>
+
+
+
+    <form id="question5-form">
+        <p style="font-weight:bold">Can you explain the significance of the first four qubits (starting from the right) in any given measured state?</p>
+        <div id="answers-container-q5"></div>
+        <button type="submit">Submit Answer</button>
+    </form>
+    <pre id="log5"></pre>
+
+    <form id="question6-form">
+        <p style="font-weight:bold">Can you explain the significance of the last four qubits (starting from the right) in any given measured state?</p>
+        <div id="answers-container-q6"></div>
+        <button type="submit">Submit Answer</button>
+    </form>
+    <pre id="log6"></pre>
+
+.. raw:: html
+
+    <script>
+        // List of answers for question 5
+        const answersQ5 = [
+            { id: 'q5a', value: 'a', text: 'The first 4 qubits each represent the hair color of each player.' },
+            { id: 'q5b', value: 'b', text: 'The first 4 qubits each represent the hair color each player is giving as their answer.' },
+            { id: 'q5c', value: 'c', text: 'The first 4 qubits each represent the parity from each player\'s point of view.' }
+        ];
+
+        // List of answers for question 6
+        const answersQ6 = [
+            { id: 'q6a', value: 'a', text: 'The last 4 qubits each represent the hair color each player is giving as their answer.' },
+            { id: 'q6b', value: 'b', text: 'The last 4 qubits each represent the hair color of each player.' },
+            { id: 'q6c', value: 'c', text: 'The last 4 qubits each represent the parity from each player\'s point of view.' }
+        ];
+
+        // Function to shuffle the answers
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // Shuffle the answers
+        shuffle(answersQ5);
+        shuffle(answersQ6);
+
+        // Function to insert answers into the form
+        function insertAnswers(containerId, answers) {
+            const container = document.getElementById(containerId);
+            answers.forEach(answer => {
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.id = answer.id;
+                input.name = containerId;
+                input.value = answer.value;
+
+                const label = document.createElement('label');
+                label.htmlFor = answer.id;
+                label.textContent = answer.text;
+
+                container.appendChild(input);
+                container.appendChild(label);
+                container.appendChild(document.createElement('br'));
+            });
+        }
+
+        // Insert answers into the forms
+        insertAnswers('answers-container-q5', answersQ5);
+        insertAnswers('answers-container-q6', answersQ6);
+
+        // Handle form submission for question 5
+        document.querySelector('#question5-form').onsubmit = function(e) {
+            e.preventDefault();
+            const log = document.getElementById('log5');
+            const selectedAnswer = document.querySelector('input[name="answers-container-q5"]:checked');
+            if (selectedAnswer) {
+                if (selectedAnswer.value === 'a') {
+                    log.textContent = 'Correct! In the quantum circuit, Hadamard gates are applied on the first 4 qubits to create a superposition of all the possible hair color combinations. Thus, for any given measured state, the first 4 qubits represent the actual hair color of each player. For example, if qubit 0 is measured as 1, then the first player, Alice, has indigo hair.';
+                } else if (selectedAnswer.value === 'b') {
+                    log.textContent = 'Incorrect! Besides the Hadamard gates applied on the first 4 qubits to create a superposition of all the possible hair color combinations, no other gate operations are applied on them that would correspond to the 4 players giving their answers based on the parity information.';
+                } else if (selectedAnswer.value === 'c') {
+                    log.textContent = 'Incorrect! The first 4 qubits are useful to the last four qubits for determining and taking note of the parity, but do not represent the parity from each player\'s point of view.';
+                }
+            } else {
+                log.textContent = 'Select an answer before submitting.';
+            }
+        };
+
+        // Handle form submission for question 6
+        document.querySelector('#question6-form').onsubmit = function(e) {
+            e.preventDefault();
+            const log = document.getElementById('log6');
+            const selectedAnswer = document.querySelector('input[name="answers-container-q6"]:checked');
+            if (selectedAnswer) {
+                if (selectedAnswer.value === 'a') {
+                    log.textContent = 'Correct! The last 4 qubits are used to store the answers given by each player based on the parity information shared by the first player and the answers from the players themselves. Thus, for any given measured state, the last 4 qubits represent the hair color each player is giving as their guess. For example, if qubit 4 is measured as 1, then the first player, Alice, has predicted she has indigo hair. Additionally, qubits 5, 6, and 7 should have the same values as qubits 1, 2, and 3 respectively.';
+                } else if (selectedAnswer.value === 'b') {
+                    log.textContent = 'Incorrect! The last 4 qubits have no gate operations applied on them that would correspond to giving each player a hair color. Instead, this is done by the first 4 qubits with the Hadamard gates. Thus, for any given measured state, the last 4 qubits do not represent the hair color of each player.';
+                } else if (selectedAnswer.value === 'c') {
+                    log.textContent = 'Incorrect! The last 4 qubits use CNOT gates to represent each player checking the hair colors in front of them (the parity), but other CNOT gates are also used to take note of the players\' answers, meaning the last 4 qubits do not represent the parity from each player\'s point of view.';
+                }
+            } else {
+                log.textContent = 'Select an answer before submitting.';
+            }
+        };
+    </script>
