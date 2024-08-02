@@ -2,10 +2,6 @@
 Enigma 002 : The Four Hair Colours
 ==================================
 
-.. raw:: html
-
-    <link rel="stylesheet" type="text/css" href="../_static/styles.css">
-
 Are you ready to shift into second gear? At a carnival, Alice, Bob, Charlie, and Dahlia decide to enter a contest to win an inter galactic trip. The challenge? Each person must guess their own hair color. The team will have to work together to find the right strategy to determine the orange or indigo color of their hair. You will apply a new concept, the principle of parity.
 
 **Make sure to watch the following video before getting started with this problem set:**
