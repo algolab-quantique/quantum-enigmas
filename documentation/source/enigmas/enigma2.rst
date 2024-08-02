@@ -4,7 +4,7 @@ Enigma 002 : The Four Hair Colours
 
 Are you ready to shift into second gear? At a carnival, Alice, Bob, Charlie, and Dahlia decide to enter a contest to win an inter galactic trip. The challenge? Each person must guess their own hair color. The team will have to work together to find the right strategy to determine the orange or indigo color of their hair. You will apply a new concept, the principle of parity.
 
-Make sure to watch the following video before getting started with this problem set:
+**Make sure to watch the following video before getting started with this problem set:**
 
 .. raw:: html
 
@@ -483,17 +483,6 @@ Run the following code to execute the quantum circuit for 4 players on a simulat
     counts = result.get_counts(measured_qc)
     plot_histogram(counts)
     </pre>
-
-..
-    Can you explain the significance of each qubit in any given measured state?
-
-    The first 4 qubits each represent the hair color of each player.
-        
-        For example, if qubit 0 is measured at 1, then the first player, Alice, has indigo hair.
-
-    The last 4 qubits each represent the hair color each player is giving as his answer.
-
-        For example, if qubit 4 is measured at 0, then the first player, Alice, has predicted to be having orange hair.
 
 |
 
