@@ -2,51 +2,269 @@
 Enigma 003 : The Four-Square Chessboard
 =======================================
 
-.. |uncheck| raw:: html
+Alice and Bob continue their journey in space. They are challenged by Aïka, who's hidden a key under one of the four chessboard squares. A coin is then randomly placed on each of the four squares. How will Alice communicate to Bob the exact position of the key by flipping only one coin? You will apply a new concept, the control by the 0-state.
 
-    <input type="checkbox">
+**Make sure to watch the following video before getting started with this problem set:**
+
+.. raw:: html
+
+    <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/UuVbtFXOEKQ?rel=0" allowfullscreen="">
+    </iframe>
+
+|
+
+.. dropdown:: :material-regular:`error;1.2em;sd-text-warning` Important
+    :animate: fade-in
+    :color: warning
     
-.. code:: python
+    On this website, you will be able to write your own Python code as well as run it. To do so, you will need to click on the "Activate" button to enable all the code editors and establish a connection to a Kernel. Once clicked, you will see that the Status widget will start to show the connection progress, and in the line below, the connection information will be shown. You are ready to write and run your code once you see :code:`Status:Kernel Connected` and :code:`kernel thebe.ipynb status changed to ready[idle]` in the line below. If you run into any issues, please try to reconnect by clicking on the "Activate" button again or reloading the page.
 
-    from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister
-    import matplotlib
+.. raw:: html
+
+    <!-- Configure and load Thebe !-->
+    <script type="text/x-thebe-config">
+        {
+            requestKernel: true,
+            kernelOptions: {
+                name: "python3",
+            },
+            binderOptions: {
+                repo: "algolab-quantique/quantum-enigmas",
+            },
+            mountActivateWidget: true,
+            mountStatusWidget: true
+        }
+    </script>
+    <div class="thebe-activate"></div>
+    <div class="thebe-status"></div>
+    <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+
+.. dropdown:: :material-regular:`info;1.2em;sd-text-info` Note
+    :animate: fade-in
+    :color: info
+    
+    When running your code, you'll know that the code is running if you see :code:`kernel thebe.ipynb status changed to ready[busy]`. If it seems to stay on :code:`ready[idle]` when running your code and/or you're not getting an output when you're supposed to, it most likely means that there's an error in your code. Since the code editor seems to be struggling with outputting error messages, there is no output.
+
+|
+
+Run the cell below to install the necessary packages.
+
+.. raw:: html
+
+    <pre data-executable="true" data-language="python">
+    import sys
+    !{sys.executable} -m pip install qiskit==1.1.1
+    !{sys.executable} -m pip install qiskit_aer==0.14.2
+    !{sys.executable} -m pip install pylatexenc==2.10
+    </pre>
+
+Now, run the cell below to import the necessary packages.
+
+.. raw:: html
+
+    <pre data-executable="true" data-language="python">
+    import numpy as np
+    from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister, transpile
     from qiskit.circuit.library import MCXGate
+    from qiskit.visualization import plot_histogram
+    from qiskit_aer import Aer, AerSimulator
+    </pre>
 
-The enigma uses an addition modulo two like this one
+..
+    .. raw:: html
 
-::
+        <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        #myDIV {
+        width: 100%;
+        padding: 50px 0;
+        text-align: center;
+        background-color: lightblue;
+        margin-top: 20px;
+        display: none;
+        }
+        </style>
+        </head>
+        <body>
 
-    10
-  + 01
-    __
-    11
+        <p>Click the "Try it" button to toggle between hiding and showing the DIV element:</p>
 
-Such addition has the interesting characteristic that the numbers can be interchanged to any order like this
-::
+        <button onclick="myFunction()">Click to reveal the answer</button>
 
-    11
-  + 01
-    __
-    10
+        <div id="myDIV">
+        This is my DIV element.
+        </div>
+
+        <p><b>Note:</b> The element will not take up any space when the display property 
+        is set to "none".</p>
+
+        <script>
+        function myFunction() {
+            var x = document.getElementById("myDIV");
+            if (x.style.display === "block") {
+            x.style.display = "none";
+            } else {
+            x.style.display = "block";
+            }
+        }
+        </script>
+
+        </body>
+
+|
+
+The enigma uses a modulo two addition like this one:
+
+.. raw:: html
+
+    <style>
+        .center {
+            margin-left: 45px
+        }
+        .equation.stacked {
+            display: inline-block;
+        }
+        .equation.stacked .number {
+            display: block;
+            margin-left: 1em;
+            text-align: right;
+        }
+        .equation.stacked .operator {
+            float: left;
+        }
+        .equation.stacked .equals {
+            display: block;
+            height: 0;
+            border-bottom: solid 1px black;
+            overflow: hidden;
+        }
+        div {
+            margin-bottom: 1em;
+        }
+    </style>
+    <div class="center">
+        <div>
+            <span class="equation stacked">
+                <span class="number">1 0</span>
+                <span class="operator">+</span>
+                <span class="number">0 1</span>
+                <span class="equals">=</span>
+                <span class="number">1 1</span>
+            </span>
+        </div>
+    </div>
+
+Such addition has the interesting characteristic that the numbers can be interchanged in any order like this
+
+.. raw:: html
+
+    <div class="center">
+        <div>
+            <span class="equation stacked">
+                <span class="number">1 1</span>
+                <span class="operator">+</span>
+                <span class="number">0 1</span>
+                <span class="equals">=</span>
+                <span class="number">1 0</span>
+            </span>
+        </div>
+    </div>
 
 Or
 
-:: 
+.. raw:: html
 
-    11
-  + 10
-    __
-    01
+    <div class="center">
+        <div>
+            <span class="equation stacked">
+                <span class="number">1 1</span>
+                <span class="operator">+</span>
+                <span class="number">1 0</span>
+                <span class="equals">=</span>
+                <span class="number">0 1</span>
+            </span>
+        </div>
+    </div>
 
-Meaning that adding any two of them gives the third one as an answer (this is true for any numbers). Playing with modulo two additions also have other interesting characteristics. In the enigma, adding the first number to the second is done by applying a CNOT between q4 and q6 (and q5 and q7). What is the value on q6 after such an operation?
+Meaning that adding any two of them gives the third one as an answer (this is true for any numbers). Playing with modulo two additions also has other interesting characteristics. In the enigma, adding the first number to the second is done by applying a CNOT between *q*\ :sub:`4`\  and *q*\ :sub:`6`\  (and *q*\ :sub:`5`\  and *q*\ :sub:`7`\). Here is the code of the algorithm in the enigma. 
 
-    |  |uncheck| Q6 now has the answer to the modulo two addition between q4 and q6.
+.. code:: python
+
+    #qubits 0 to 3 are the 4 squares
+    #qubits 4 and 5 is where the key is hidden
+    #qubits 6 and 7 is where the focus first lands
+    #qubits 8 and 9 is where the focus lands at the end which is the key location
+    problem_qc = QuantumCircuit(10)
+
+    #coin distribution on each square
+    for i in range(4):
+        problem_qc.h(i)
+
+    problem_qc.barrier()
+
+    #hiding the key under one of the 4 squares
+    problem_qc.h(4)
+    problem_qc.h(5)
+
+    problem_qc.barrier()
+
+    #finding the parity of 1's on squares for which binary numbers finish by 1 and putting the answer on q5
+    problem_qc.cx(1, 6)
+    problem_qc.cx(3, 6)
+    problem_qc.barrier()
+
+    #finding the parity of 1's on squares for which binary numbers have a 1 as second to last digit and putting the answer on q6
+    problem_qc.cx(2, 7)
+    problem_qc.cx(3, 7)
+    problem_qc.barrier()
+
+    #adding modulo 2 the position of the key and the position of the focus
+    problem_qc.cx(4, 6)
+    problem_qc.cx(5, 7)
+    problem_qc.barrier()
+
+    #turning the right coin
+    problem_qc.ccx(7,6,3)
+    problem_qc.barrier()
+    problem_qc.x(6)
+    problem_qc.ccx(7,6,2)
+    problem_qc.x(6)
+    problem_qc.barrier()
+    problem_qc.x(7)
+    problem_qc.ccx(7,6,1)
+    problem_qc.x(7)
+    problem_qc.barrier()
+    problem_qc.x(6)
+    problem_qc.x(7)
+    problem_qc.ccx(7,6,0)
+    problem_qc.x(7)
+    problem_qc.x(6)
+    problem_qc.barrier()
+
+    #finding the parity of 1's on squares for which binary numbers finish by 1 and putting the answer on q8
+    problem_qc.cx(1, 8)
+    problem_qc.cx(3, 8)
+    problem_qc.barrier()
+
+    #finding the parity of 1's on squares for which binary numbers have a 1 as second to last digit and putting the answer on q9
+    problem_qc.cx(2, 9)
+    problem_qc.cx(3, 9)
+    problem_qc.barrier()
+
+    problem_qc.draw(output='mpl')
+
+.. image:: ..
+
+What is the value on q6 after such an operation?
+
+    |  Q6 now has the answer to the modulo two addition between q4 and q6.
     |
-    |  |uncheck| An extra qubit would be needed to have the answer to the modulo two addition
+    |  An extra qubit would be needed to have the answer to the modulo two addition
     |            between q4 and q6.
-    |  |uncheck| No addition has been performed between q4 and q6.
+    |  No addition has been performed between q4 and q6.
     |
-    |  |uncheck| The CNOT does not permit to perform modulo two additions.
+    |  The CNOT does not permit to perform modulo two additions.
 
 |
 
