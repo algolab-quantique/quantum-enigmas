@@ -254,7 +254,7 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
 
     problem_qc.draw(output='mpl')
 
-.. image:: ..
+.. image:: ../answers_png/E2_P1.png
 
 What is the value on q6 after such an operation?
 
