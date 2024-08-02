@@ -37,7 +37,6 @@ Are you ready to shift into second gear? At a carnival, Alice, Bob, Charlie, and
         }
     </script>
     <div class="thebe-activate"></div>
-    <div class="thebe-status"></div>
     <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 
 .. dropdown:: :material-regular:`info;1.2em;sd-text-info` Note
@@ -73,9 +72,9 @@ Now, run the cell below to import the necessary packages.
 
 |
 
-.. raw:: html
-
-    <span style="font-size:30px;font-weight:bold">Problem 1 - Code writing</span>
+--------------------------------
+**Problem 1 - Code writing**
+--------------------------------
 
 The enigma video presented a quantum circuit to solve the hair color problem with 4 people. Here's an example of the code associated with the circuit:
 
@@ -217,9 +216,9 @@ Can you adapt the circuit for 6 people?
 
 |
 
-.. raw:: html
-
-    <span style="font-size:30px;font-weight:bold">Problem 2 - Code writing</span>
+--------------------------------
+**Problem 2 - Code writing**
+--------------------------------
 
 Simplify the code with a :code:`for` loop. Can you write a circuit for any number of people using a for loop?
 
@@ -277,9 +276,57 @@ Simplify the code with a :code:`for` loop. Can you write a circuit for any numbe
 
 |
 
+--------------------------------
+**Problem 3 - Quick quiz**
+--------------------------------
+
 .. raw:: html
 
-    <span style="font-size:30px;font-weight:bold">Problem 3 - Quick quiz</span>
+    <style>
+
+        .button-23 {
+            background-color: #F0F0F0;
+            border: 1px solid #222222;
+            border-radius: 8px;
+            box-sizing: border-box;
+            color: #222222;
+            cursor: pointer;
+            display: inline-block;
+            font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+            margin: 0;
+            outline: none;
+            padding: 13px 23px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            touch-action: manipulation;
+            transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+            user-select: none;
+            -webkit-user-select: none;
+            width: auto;
+        }
+
+        .button-23:focus-visible {
+        box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+        transition: box-shadow .2s;
+        }
+
+        .button-23:active {
+        background-color: #F7F7F7;
+        border-color: #000000;
+        transform: scale(.96);
+        }
+
+        .button-23:disabled {
+        border-color: #DDDDDD;
+        color: #DDDDDD;
+        cursor: not-allowed;
+        opacity: 1;
+        }
+    </style>
 
 The goal of this enigma is to determine all the hair colors with the highest probability. Thus, what is the condition for 100% of the players to correctly guess their hair color?
 
@@ -288,12 +335,25 @@ The goal of this enigma is to determine all the hair colors with the highest pro
     <style>
         #log3 {
             white-space: pre-wrap;
-            word-wrap: break-word;}
+            word-wrap: break-word;
+        }
+
+        .correct-answer {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .incorrect-answer {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
     </style>
 
     <form id="question3-form">
         <div id="answers-container-q3"></div>
-        <button type="submit">Submit Answer</button>
+        <button type="submit" class="button-23">Submit Answer</button>
     </form>
     <pre id="log3"></pre>
 
@@ -345,12 +405,20 @@ The goal of this enigma is to determine all the hair colors with the highest pro
             if (selectedAnswer) {
                 if (selectedAnswer.value === 'a') {
                     log.textContent = 'Correct! Since the first player\'s answer is used to share the parity information on the number of indigo hair colors with all the other players, who will then be able to always correctly guess their own hair color, the first player has a 50% chance to correctly guess their own.';
+                    log.classList.remove('incorrect-answer');
+                    log.classList.add('correct-answer');
                 } else if (selectedAnswer.value === 'b') {
                     log.textContent = 'Incorrect! Whether the number of indigo hairs is odd or even does not impact the number of correct answers, but only the parity information, which allows players to correctly guess their own hair color.';
+                    log.classList.remove('correct-answer');
+                    log.classList.add('incorrect-answer');
                 } else if (selectedAnswer.value === 'c') {
                     log.textContent = 'Incorrect! Having heard all the other players\' answers, the last player should always be able to correctly guess their hair color';
+                    log.classList.remove('correct-answer');
+                    log.classList.add('incorrect-answer');
                 } else if (selectedAnswer.value === 'd') {
                     log.textContent = 'Incorrect! As long as players know the parity of the indigo hair color, the number of players has no impact on the number of good answers.';
+                    log.classList.remove('correct-answer');
+                    log.classList.add('incorrect-answer');
                 }
             } else {
                 log.textContent = 'Select an answer before submitting.';
@@ -360,9 +428,9 @@ The goal of this enigma is to determine all the hair colors with the highest pro
 
 |
 
-.. raw:: html
-
-    <span style="font-size:30px;font-weight:bold">Problem 4 - Quick quiz</span><br>
+--------------------------------
+**Problem 4 - Quick quiz**
+--------------------------------
 
 In all of the quantum circuits for this enigma, one qubit is never entangled. Which one is it?
 
@@ -371,12 +439,13 @@ In all of the quantum circuits for this enigma, one qubit is never entangled. Wh
      <style>
         #log4 {
             white-space: pre-wrap;
-            word-wrap: break-word;}
+            word-wrap: break-word;
+        }
     </style>
 
     <form id="question4-form">
         <div id="answers-container-q4"></div>
-        <button type="submit">Submit Answer</button>
+        <button type="submit" class="button-23">Submit Answer</button>
     </form>
     <pre id="log4"></pre>
 
@@ -428,12 +497,20 @@ In all of the quantum circuits for this enigma, one qubit is never entangled. Wh
             if (selectedAnswer) {
                 if (selectedAnswer.value === 'a') {
                     log.textContent = 'Correct! Although a Hadamard gate is applied to the first qubit to create a superposition, the first qubit is never subsequently controlled by a CNOT gate, meaning it does not get entangled.';
+                    log.classList.remove('incorrect-answer');
+                    log.classList.add('correct-answer');
                 } else if (selectedAnswer.value === 'b') {
                     log.textContent = 'Incorrect! A Hadamard gate is applied to the second qubit to create a superposition, and it is subsequently controlled by a CNOT gate, meaning the second qubit becomes entangled with the target qubit of the CNOT gate.';
+                    log.classList.remove('correct-answer');
+                    log.classList.add('incorrect-answer');
                 } else if (selectedAnswer.value === 'c') {
                     log.textContent = 'Incorrect! A Hadamard gate is applied to the third qubit to create a superposition, and it is subsequently controlled by a CNOT gate, meaning the third qubit becomes entangled with the target qubit of the CNOT gate.';
+                    log.classList.remove('correct-answer');
+                    log.classList.add('incorrect-answer');
                 } else if (selectedAnswer.value === 'd') {
                     log.textContent = 'Incorrect! When applying a CNOT gate, if the control qubit is already entangled, the target qubit will also become entangled. Since the last qubit is always the target qubit of the last CNOT gate, which controls the already entangled second-to-last qubit, the last qubit always becomes entangled with the second-to-last qubit.';
+                    log.classList.remove('correct-answer');
+                    log.classList.add('incorrect-answer');
                 }
             } else {
                 log.textContent = 'Select an answer before submitting.';
@@ -443,9 +520,9 @@ In all of the quantum circuits for this enigma, one qubit is never entangled. Wh
 
 |
 
-.. raw:: html
-
-    <span style="font-size:30px;font-weight:bold">Problem 5 - Quick quiz</span><br>
+--------------------------------
+**Problem 5 - Quick quiz**
+--------------------------------
 
 Run the following code to execute the quantum circuit for 4 players on a simulator.
 
@@ -489,12 +566,10 @@ Run the following code to execute the quantum circuit for 4 players on a simulat
  .. raw:: html
 
     <style>
-        #log5 {
+        #log5, #log6 {
             white-space: pre-wrap;
-            word-wrap: break-word;}
-        #log6 {
-            white-space: pre-wrap;
-            word-wrap: break-word;}
+            word-wrap: break-word;
+        } 
     </style>
 
 
@@ -502,14 +577,14 @@ Run the following code to execute the quantum circuit for 4 players on a simulat
     <form id="question5-form">
         <p style="font-weight:bold">Can you explain the significance of the first four qubits (starting from the right) in any given measured state?</p>
         <div id="answers-container-q5"></div>
-        <button type="submit">Submit Answer</button>
+        <button type="submit" class="button-23">Submit Answer</button>
     </form>
     <pre id="log5"></pre>
 
     <form id="question6-form">
         <p style="font-weight:bold">Can you explain the significance of the last four qubits (starting from the right) in any given measured state?</p>
         <div id="answers-container-q6"></div>
-        <button type="submit">Submit Answer</button>
+        <button type="submit" class="button-23">Submit Answer</button>
     </form>
     <pre id="log6"></pre>
 
@@ -574,10 +649,16 @@ Run the following code to execute the quantum circuit for 4 players on a simulat
             if (selectedAnswer) {
                 if (selectedAnswer.value === 'a') {
                     log.textContent = 'Correct! In the quantum circuit, Hadamard gates are applied on the first 4 qubits to create a superposition of all the possible hair color combinations. Thus, for any given measured state, the first 4 qubits represent the actual hair color of each player. For example, if qubit 0 is measured as 1, then the first player, Alice, has indigo hair.';
+                    log.classList.remove('incorrect-answer');
+                    log.classList.add('correct-answer');
                 } else if (selectedAnswer.value === 'b') {
                     log.textContent = 'Incorrect! Besides the Hadamard gates applied on the first 4 qubits to create a superposition of all the possible hair color combinations, no other gate operations are applied on them that would correspond to the 4 players giving their answers based on the parity information.';
+                    log.classList.remove('correct-answer');
+                    log.classList.add('incorrect-answer');
                 } else if (selectedAnswer.value === 'c') {
                     log.textContent = 'Incorrect! The first 4 qubits are useful to the last four qubits for determining and taking note of the parity, but do not represent the parity from each player\'s point of view.';
+                    log.classList.remove('correct-answer');
+                    log.classList.add('incorrect-answer');
                 }
             } else {
                 log.textContent = 'Select an answer before submitting.';
@@ -592,13 +673,113 @@ Run the following code to execute the quantum circuit for 4 players on a simulat
             if (selectedAnswer) {
                 if (selectedAnswer.value === 'a') {
                     log.textContent = 'Correct! The last 4 qubits are used to store the answers given by each player based on the parity information shared by the first player and the answers from the players themselves. Thus, for any given measured state, the last 4 qubits represent the hair color each player is giving as their guess. For example, if qubit 4 is measured as 1, then the first player, Alice, has predicted she has indigo hair. Additionally, qubits 5, 6, and 7 should have the same values as qubits 1, 2, and 3 respectively.';
+                    log.classList.remove('incorrect-answer');
+                    log.classList.add('correct-answer');
                 } else if (selectedAnswer.value === 'b') {
                     log.textContent = 'Incorrect! The last 4 qubits have no gate operations applied on them that would correspond to giving each player a hair color. Instead, this is done by the first 4 qubits with the Hadamard gates. Thus, for any given measured state, the last 4 qubits do not represent the hair color of each player.';
+                    log.classList.remove('correct-answer');
+                    log.classList.add('incorrect-answer');
                 } else if (selectedAnswer.value === 'c') {
                     log.textContent = 'Incorrect! The last 4 qubits use CNOT gates to represent each player checking the hair colors in front of them (the parity), but other CNOT gates are also used to take note of the players\' answers, meaning the last 4 qubits do not represent the parity from each player\'s point of view.';
+                    log.classList.remove('correct-answer');
+                    log.classList.add('incorrect-answer');
                 }
             } else {
                 log.textContent = 'Select an answer before submitting.';
+            }
+        };
+    </script>
+
+..
+    .. raw:: html
+
+        <style>
+            #fixed-content {
+                position: fixed;
+                right: 10px;
+                top: 250px;
+                width: auto;
+                background-color: #f9f9f9;
+                border: 1px solid #ddd;
+                padding: 10px;
+            }
+        </style>
+
+        <div id="fixed-content">
+            <div class="thebe-status"></div>
+        </div>
+
+.. raw:: html
+
+    <style>
+        #fixed-content {
+            position: fixed;
+            right: 10px; /* Initial visible position */
+            top: 250px;
+            width: 210px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            transition: right 0.3s;
+        }
+
+        #fixed-content.hidden {
+            right: -210px; /* Hidden position */
+        }
+
+        #toggle-button {
+            position: fixed;
+            right: 220px; /* Position next to the visible content */
+            top: 250px;
+            width: 30px;
+            background-color: #ccc;
+            border: 1px solid #ddd;
+            padding: 10px;
+            cursor: pointer;
+            transition: right 0.3s;
+        }
+
+        #toggle-button.hidden {
+            right: 10px; /* Position when content is hidden */
+        }
+
+        .arrow {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid black;
+            border-bottom: 2px solid black;
+            transform: rotate(-45deg);
+            margin-left: -3px;
+        }
+
+        .arrow.right {
+            transform: rotate(135deg);
+            margin-left: 2px;
+        }
+    </style>
+
+    <div id="toggle-button">
+        <span class="arrow"></span>
+    </div>
+    <div id="fixed-content">
+        <div class="thebe-status"></div>
+    </div>
+
+    <script>
+        document.getElementById('toggle-button').onclick = function() {
+            var fixedContent = document.getElementById('fixed-content');
+            var toggleButton = document.getElementById('toggle-button');
+            var arrow = toggleButton.querySelector('.arrow');
+
+            if (fixedContent.classList.contains('hidden')) {
+                fixedContent.classList.remove('hidden');
+                toggleButton.classList.remove('hidden');
+                arrow.classList.remove('right');
+            } else {
+                fixedContent.classList.add('hidden');
+                toggleButton.classList.add('hidden');
+                arrow.classList.add('right');
             }
         };
     </script>
