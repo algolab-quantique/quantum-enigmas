@@ -16,9 +16,8 @@ Are you ready to shift into second gear? At a carnival, Alice, Bob, Charlie, and
 .. dropdown:: :material-regular:`error;1.2em;sd-text-warning` Important
     :animate: fade-in
     :color: warning
-    :open:
     
-    On this website, you will be able to write your own Python code as well as run it. To do so, you will need to click on the "Activate" button to enable all the code editors and establish a connection to a Kernel. Once clicked, you will see that the Status widget will start to show the connection progress, and in the line below, the connection information will be shown. You are ready to write and run your code once you see :code:`Status:Kernel Connected` and :code:`kernel thebe.ipynb status changed to ready[idle]` in the line below. If you run into any issues, please try to reconnect by clicking on the "Activate" button again or reloading the page.
+    On this website, you will be able to write and run your own Python code. To do so, you will need to click on the "Activate" button to enable all the code editors and establish a connection to a Kernel. Once clicked, you will see that the Status widget will start to show the connection progress, as well as the connection information. You are ready to write and run your code once you see :code:`Status:Kernel Connected` and :code:`kernel thebe.ipynb status changed to ready[idle]` just below. **Please note that that refreshing the page in any way will cause you to lose all the code that you wrote**. If you run into any issues, please try to reconnect by clicking on the "Activate" button again or reloading the page.
 
 .. raw:: html
 
@@ -39,12 +38,14 @@ Are you ready to shift into second gear? At a carnival, Alice, Bob, Charlie, and
     <div class="thebe-activate"></div>
     <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 
-.. dropdown:: :material-regular:`info;1.2em;sd-text-info` Note
-    :animate: fade-in
-    :color: info
-    :open:
-    
-    When running your code, you'll know that the code is running if you see :code:`kernel thebe.ipynb status changed to ready[busy]`. If it seems to stay on :code:`ready[idle]` when running your code and/or you're not getting an output when you're supposed to, it most likely means that there's an error in your code. Since the code editor seems to be struggling with outputting error messages, there is no output.
+.. margin::
+
+    .. dropdown:: :material-regular:`info;1.2em;sd-text-info` Note
+        :animate: fade-in
+        :color: info
+        :open:
+        
+        When running your code, you'll know that the code is running if you see :code:`kernel thebe.ipynb status changed to ready[busy]`. If it seems to stay on :code:`ready[idle]` when running your code and/or you're not getting an output when you're supposed to, it most likely means that there's an error in your code. Since the code editor seems to be struggling with outputting error messages, there is no output.
 
 |
 
@@ -285,7 +286,7 @@ Simplify the code with a :code:`for` loop. Can you write a circuit for any numbe
     <style>
 
         .button-23 {
-            background-color: #F0F0F0;
+            background-color: #D7D7D7;
             border: 1px solid #222222;
             border-radius: 8px;
             box-sizing: border-box;
@@ -690,25 +691,6 @@ Run the following code to execute the quantum circuit for 4 players on a simulat
         };
     </script>
 
-..
-    .. raw:: html
-
-        <style>
-            #fixed-content {
-                position: fixed;
-                right: 10px;
-                top: 250px;
-                width: auto;
-                background-color: #f9f9f9;
-                border: 1px solid #ddd;
-                padding: 10px;
-            }
-        </style>
-
-        <div id="fixed-content">
-            <div class="thebe-status"></div>
-        </div>
-
 .. raw:: html
 
     <style>
@@ -721,6 +703,7 @@ Run the following code to execute the quantum circuit for 4 players on a simulat
             border: 1px solid #ddd;
             padding: 10px;
             transition: right 0.3s;
+            z-index: 1000;
         }
 
         #fixed-content.hidden {
@@ -737,6 +720,7 @@ Run the following code to execute the quantum circuit for 4 players on a simulat
             padding: 10px;
             cursor: pointer;
             transition: right 0.3s;
+            z-index: 1001;
         }
 
         #toggle-button.hidden {
@@ -757,13 +741,42 @@ Run the following code to execute the quantum circuit for 4 players on a simulat
             transform: rotate(135deg);
             margin-left: 2px;
         }
+
+        .thebe-status-light {
+            color: #000; /* light theme text color */
+        }
+
+        .thebe-status-dark {
+            color: #000; /* dark theme text color */
+        }
+
+        /* Color transition */
+        .thebe-status {
+            transition: color 0.3s ease;
+        }
     </style>
 
     <div id="toggle-button">
         <span class="arrow"></span>
     </div>
+    <script type="text/javascript">
+    var observer = new MutationObserver(function(mutations) {
+        const dark = document.documentElement.dataset.theme == 'dark';
+        const thebeStatusElements = document.getElementsByClassName('thebe-status');
+        for (let el of thebeStatusElements) {
+            if (dark) {
+                el.classList.add('thebe-status-dark');
+                el.classList.remove('thebe-status-light');
+            } else {
+                el.classList.add('thebe-status-light');
+                el.classList.remove('thebe-status-dark');
+            }
+        }
+    });
+    observer.observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
+    </script>
     <div id="fixed-content">
-        <div class="thebe-status"></div>
+        <div class="thebe-status thebe-status-light"></div>
     </div>
 
     <script>
