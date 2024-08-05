@@ -17,7 +17,7 @@ Alice and Bob continue their journey in space. They are challenged by Aïka, who
     :animate: fade-in
     :color: warning
     
-    On this website, you will be able to write your own Python code as well as run it. To do so, you will need to click on the "Activate" button to enable all the code editors and establish a connection to a Kernel. Once clicked, you will see that the Status widget will start to show the connection progress, and in the line below, the connection information will be shown. You are ready to write and run your code once you see :code:`Status:Kernel Connected` and :code:`kernel thebe.ipynb status changed to ready[idle]` in the line below. If you run into any issues, please try to reconnect by clicking on the "Activate" button again or reloading the page.
+    On this website, you will be able to write and run your own Python code. To do so, you will need to click on the "Activate" button to enable all the code editors and establish a connection to a Kernel. Once clicked, you will see that the Status widget will start to show the connection progress, as well as the connection information. You are ready to write and run your code once you see :code:`Status:Kernel Connected` and :code:`kernel thebe.ipynb status changed to ready[idle]` just below. **Please note that that refreshing the page in any way will cause you to lose all the code that you wrote**. If you run into any issues, please try to reconnect by clicking on the "Activate" button again or reloading the page.
 
 .. raw:: html
 
@@ -36,14 +36,15 @@ Alice and Bob continue their journey in space. They are challenged by Aïka, who
         }
     </script>
     <div class="thebe-activate"></div>
-    <div class="thebe-status"></div>
     <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 
-.. dropdown:: :material-regular:`info;1.2em;sd-text-info` Note
-    :animate: fade-in
-    :color: info
-    
-    When running your code, you'll know that the code is running if you see :code:`kernel thebe.ipynb status changed to ready[busy]`. If it seems to stay on :code:`ready[idle]` when running your code and/or you're not getting an output when you're supposed to, it most likely means that there's an error in your code. Since the code editor seems to be struggling with outputting error messages, there is no output.
+.. margin::
+
+    .. dropdown:: :material-regular:`info;1.2em;sd-text-info` Note
+        :animate: fade-in
+        :color: info
+        
+        When running your code, you'll know that the code is running if you see :code:`kernel thebe.ipynb status changed to ready[busy]`. If it seems to stay on :code:`ready[idle]` when running your code and/or you're not getting an output when you're supposed to, it most likely means that there's an error in your code. Since the code editor seems to be struggling with outputting error messages, there is no output.
 
 |
 
@@ -73,51 +74,53 @@ Now, run the cell below to import the necessary packages.
 ..
     .. raw:: html
 
-        <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-        #myDIV {
-        width: 100%;
-        padding: 50px 0;
-        text-align: center;
-        background-color: lightblue;
-        margin-top: 20px;
-        display: none;
-        }
-        </style>
-        </head>
-        <body>
-
-        <p>Click the "Try it" button to toggle between hiding and showing the DIV element:</p>
-
-        <button onclick="myFunction()">Click to reveal the answer</button>
-
-        <div id="myDIV">
-        This is my DIV element.
-        </div>
-
-        <p><b>Note:</b> The element will not take up any space when the display property 
-        is set to "none".</p>
-
-        <script>
-        function myFunction() {
-            var x = document.getElementById("myDIV");
-            if (x.style.display === "block") {
-            x.style.display = "none";
-            } else {
-            x.style.display = "block";
+            <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <style>
+            #myDIV {
+            width: 100%;
+            padding: 50px 0;
+            text-align: center;
+            background-color: lightblue;
+            margin-top: 20px;
+            display: none;
             }
-        }
-        </script>
+            </style>
+            </head>
+            <body>
 
-        </body>
+            <p>Click the "Try it" button to toggle between hiding and showing the DIV element:</p>
 
-|
+            <button onclick="myFunction()">Click to reveal the answer</button>
+
+            <div id="myDIV">
+            This is my DIV element.
+            </div>
+
+            <p><b>Note:</b> The element will not take up any space when the display property 
+            is set to "none".</p>
+
+            <script>
+            function myFunction() {
+                var x = document.getElementById("myDIV");
+                if (x.style.display === "block") {
+                x.style.display = "none";
+                } else {
+                x.style.display = "block";
+                }
+            }
+            </script>
+
+            </body>
+
+---------------------------
+**Problem 1 - Quick quiz**
+---------------------------
 
 The enigma uses a modulo two addition like this one:
 
 .. raw:: html
-
+    
     <style>
         .center {
             margin-left: 45px
@@ -139,12 +142,12 @@ The enigma uses a modulo two addition like this one:
             border-bottom: solid 1px black;
             overflow: hidden;
         }
-        div {
+        .equation-container {
             margin-bottom: 1em;
         }
     </style>
     <div class="center">
-        <div>
+        <div class="equation-container">
             <span class="equation stacked">
                 <span class="number">1 0</span>
                 <span class="operator">+</span>
@@ -160,7 +163,7 @@ Such addition has the interesting characteristic that the numbers can be interch
 .. raw:: html
 
     <div class="center">
-        <div>
+        <div class="equation-container">
             <span class="equation stacked">
                 <span class="number">1 1</span>
                 <span class="operator">+</span>
@@ -176,7 +179,7 @@ Or
 .. raw:: html
 
     <div class="center">
-        <div>
+        <div class="equation-container">
             <span class="equation stacked">
                 <span class="number">1 1</span>
                 <span class="operator">+</span>
@@ -254,7 +257,8 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
 
     problem_qc.draw(output='mpl')
 
-.. image:: ../answers_png/E2_P1.png
+..
+    .. image:: ../answers_png/E2_P1.png
 
 What is the value on q6 after such an operation?
 
@@ -268,7 +272,9 @@ What is the value on q6 after such an operation?
 
 |
 
-**Question 2 : Write the circuit for a 4 by 4 square chess**
+----------------------------
+**Problem 2 - Code writing**
+----------------------------
 
 Can you write the circuit for a 4 by 4 square chess set until you calculate the position of the piece to turn?
 
@@ -364,7 +370,9 @@ Provide the drawing of Hint 2 with the arrows for the counting
 
 |
 
-**Question 3 :**
+----------------------------
+**Problem 3 - Code writing**
+----------------------------
 
 Complete the circuit to allow Alice to turn the right coin
 
@@ -501,3 +509,108 @@ Complete the circuit to allow Alice to turn the right coin
 
     problem_qc.draw(output='mpl')
 
+.. raw:: html
+
+    <style>
+        #fixed-content {
+            position: fixed;
+            right: 10px; /* Initial visible position */
+            top: 250px;
+            width: 210px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            transition: right 0.3s;
+            z-index: 1000;
+        }
+
+        #fixed-content.hidden {
+            right: -210px; /* Hidden position */
+        }
+
+        #toggle-button {
+            position: fixed;
+            right: 220px; /* Position next to the visible content */
+            top: 250px;
+            width: 30px;
+            background-color: #ccc;
+            border: 1px solid #ddd;
+            padding: 10px;
+            cursor: pointer;
+            transition: right 0.3s;
+            z-index: 1001;
+        }
+
+        #toggle-button.hidden {
+            right: 10px; /* Position when content is hidden */
+        }
+
+        .arrow {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid black;
+            border-bottom: 2px solid black;
+            transform: rotate(-45deg);
+            margin-left: -3px;
+        }
+
+        .arrow.right {
+            transform: rotate(135deg);
+            margin-left: 2px;
+        }
+
+        .thebe-status-light {
+            color: #000; /* light theme text color */
+        }
+
+        .thebe-status-dark {
+            color: #000; /* dark theme text color */
+        }
+
+        /* Color transition */
+        .thebe-status {
+            transition: color 0.3s ease;
+        }
+    </style>
+
+    <div id="toggle-button">
+        <span class="arrow"></span>
+    </div>
+    <script type="text/javascript">
+    var observer = new MutationObserver(function(mutations) {
+        const dark = document.documentElement.dataset.theme == 'dark';
+        const thebeStatusElements = document.getElementsByClassName('thebe-status');
+        for (let el of thebeStatusElements) {
+            if (dark) {
+                el.classList.add('thebe-status-dark');
+                el.classList.remove('thebe-status-light');
+            } else {
+                el.classList.add('thebe-status-light');
+                el.classList.remove('thebe-status-dark');
+            }
+        }
+    });
+    observer.observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
+    </script>
+    <div id="fixed-content">
+        <div class="thebe-status thebe-status-light"></div>
+    </div>
+
+    <script>
+        document.getElementById('toggle-button').onclick = function() {
+            var fixedContent = document.getElementById('fixed-content');
+            var toggleButton = document.getElementById('toggle-button');
+            var arrow = toggleButton.querySelector('.arrow');
+
+            if (fixedContent.classList.contains('hidden')) {
+                fixedContent.classList.remove('hidden');
+                toggleButton.classList.remove('hidden');
+                arrow.classList.remove('right');
+            } else {
+                fixedContent.classList.add('hidden');
+                toggleButton.classList.add('hidden');
+                arrow.classList.add('right');
+            }
+        };
+    </script>
