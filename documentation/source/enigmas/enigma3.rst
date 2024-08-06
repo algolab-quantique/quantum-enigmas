@@ -71,48 +71,6 @@ Now, run the cell below to import the necessary packages.
     from qiskit_aer import Aer, AerSimulator
     </pre>
 
-..
-    .. raw:: html
-
-            <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <style>
-            #myDIV {
-            width: 100%;
-            padding: 50px 0;
-            text-align: center;
-            background-color: lightblue;
-            margin-top: 20px;
-            display: none;
-            }
-            </style>
-            </head>
-            <body>
-
-            <p>Click the "Try it" button to toggle between hiding and showing the DIV element:</p>
-
-            <button onclick="myFunction()">Click to reveal the answer</button>
-
-            <div id="myDIV">
-            This is my DIV element.
-            </div>
-
-            <p><b>Note:</b> The element will not take up any space when the display property 
-            is set to "none".</p>
-
-            <script>
-            function myFunction() {
-                var x = document.getElementById("myDIV");
-                if (x.style.display === "block") {
-                x.style.display = "none";
-                } else {
-                x.style.display = "block";
-                }
-            }
-            </script>
-
-            </body>
-
 ---------------------------
 **Problem 1 - Quick quiz**
 ---------------------------
@@ -204,71 +162,213 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
     for i in range(4):
         problem_qc.h(i)
 
-    problem_qc.barrier()
+    problem_qc.barrier([4,5])
 
     #hiding the key under one of the 4 squares
     problem_qc.h(4)
     problem_qc.h(5)
 
-    problem_qc.barrier()
+    problem_qc.barrier([4,5,6,7])
 
     #finding the parity of 1's on squares for which binary numbers finish by 1 and putting the answer on q5
     problem_qc.cx(1, 6)
     problem_qc.cx(3, 6)
-    problem_qc.barrier()
+    problem_qc.barrier([6,7])
 
     #finding the parity of 1's on squares for which binary numbers have a 1 as second to last digit and putting the answer on q6
     problem_qc.cx(2, 7)
     problem_qc.cx(3, 7)
-    problem_qc.barrier()
+    problem_qc.barrier([6,7])
 
     #adding modulo 2 the position of the key and the position of the focus
     problem_qc.cx(4, 6)
     problem_qc.cx(5, 7)
-    problem_qc.barrier()
+    problem_qc.barrier([6,7])
 
     #turning the right coin
     problem_qc.ccx(7,6,3)
-    problem_qc.barrier()
+    problem_qc.barrier([6,7])
     problem_qc.x(6)
     problem_qc.ccx(7,6,2)
     problem_qc.x(6)
-    problem_qc.barrier()
+    problem_qc.barrier([6,7])
     problem_qc.x(7)
     problem_qc.ccx(7,6,1)
     problem_qc.x(7)
-    problem_qc.barrier()
+    problem_qc.barrier([6,7])
     problem_qc.x(6)
     problem_qc.x(7)
     problem_qc.ccx(7,6,0)
     problem_qc.x(7)
     problem_qc.x(6)
-    problem_qc.barrier()
+    problem_qc.barrier([6,7,8,9])
 
     #finding the parity of 1's on squares for which binary numbers finish by 1 and putting the answer on q8
     problem_qc.cx(1, 8)
     problem_qc.cx(3, 8)
-    problem_qc.barrier()
+    problem_qc.barrier([6,7,8,9])
 
     #finding the parity of 1's on squares for which binary numbers have a 1 as second to last digit and putting the answer on q9
     problem_qc.cx(2, 9)
     problem_qc.cx(3, 9)
-    problem_qc.barrier()
 
     problem_qc.draw(output='mpl')
 
-..
-    .. image:: ../answers_png/E2_P1.png
+.. image:: ../images/E3_P1.png
+    :width: 100%
 
-What is the value on q6 after such an operation?
+|
 
-    |  Q6 now has the answer to the modulo two addition between q4 and q6.
-    |
-    |  An extra qubit would be needed to have the answer to the modulo two addition
-    |            between q4 and q6.
-    |  No addition has been performed between q4 and q6.
-    |
-    |  The CNOT does not permit to perform modulo two additions.
+.. raw:: html
+
+    <style>
+
+        .button-23 {
+            background-color: #D7D7D7;
+            border: 1px solid #222222;
+            border-radius: 8px;
+            box-sizing: border-box;
+            color: #222222;
+            cursor: pointer;
+            display: inline-block;
+            font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+            margin: 0;
+            outline: none;
+            padding: 13px 23px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            touch-action: manipulation;
+            transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+            user-select: none;
+            -webkit-user-select: none;
+            width: auto;
+        }
+
+        .button-23:focus-visible {
+        box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+        transition: box-shadow .2s;
+        }
+
+        .button-23:active {
+        background-color: #F7F7F7;
+        border-color: #000000;
+        transform: scale(.96);
+        }
+
+        .button-23:disabled {
+        border-color: #DDDDDD;
+        color: #DDDDDD;
+        cursor: not-allowed;
+        opacity: 1;
+        }
+    </style>
+
+.. raw:: html
+
+    <p><strong>What is the value on <em>q</em><sub>6&nbsp;</sub>after such an operation?</strong></p>
+    </p>
+
+\
+
+ .. raw:: html
+
+    <style>
+        #log1 {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .correct-answer {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .incorrect-answer {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+    </style>
+
+    <form id="question1-form">
+        <div id="answers-container-q1"></div>
+        <button type="submit" class="button-23">Submit Answer</button>
+    </form>
+    <pre id="log1"></pre>
+
+.. raw:: html
+
+    <script>
+        // List of answers
+        const answersQ1 = [
+            { id: 'q1a', value: 'a', text: '<em>q</em><sub>6</sub> now has the answer to the modulo two addition between <em>q</em><sub>4</sub> and <em>q</em><sub>6</sub>.' },
+            { id: 'q1b', value: 'b', text: 'An extra qubit would be needed to have the answer to the modulo two addition between <em>q</em><sub>4</sub> and <em>q</em><sub>6</sub>.' },
+            { id: 'q1c', value: 'c', text: 'No addition has been performed between <em>q</em><sub>4</sub> and <em>q</em><sub>6</sub>.' },
+            { id: 'q1d', value: 'd', text: 'The CNOT does not permit to perform modulo two additions.' }
+        ];
+
+        // Function to shuffle the answers
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // Shuffle the answers
+        shuffle(answersQ1);
+
+        // Insert shuffled answers into the form
+        const containerQ1 = document.getElementById('answers-container-q1');
+        answersQ1.forEach(answer => {
+            const input = document.createElement('input');
+            input.type = 'radio';
+            input.id = answer.id;
+            input.name = 'q1';
+            input.value = answer.value;
+
+            const label = document.createElement('label');
+            label.htmlFor = answer.id;
+            label.innerHTML = answer.text;
+
+            containerQ1.appendChild(input);
+            containerQ1.appendChild(label);
+            containerQ1.appendChild(document.createElement('br'));
+        });
+
+        // Handle form submission
+        document.querySelector('#question1-form').onsubmit = function(e) {
+            e.preventDefault();
+            const log = document.getElementById('log1');
+            const selectedAnswer = document.querySelector('input[name="q1"]:checked');
+            if (selectedAnswer) {
+                if (selectedAnswer.value === 'a') {
+                    log.textContent = 'Correct!.';
+                    log.classList.remove('incorrect-answer');
+                    log.classList.add('correct-answer');
+                } else if (selectedAnswer.value === 'b') {
+                    log.textContent = 'Incorrect! b.';
+                    log.classList.remove('correct-answer');
+                    log.classList.add('incorrect-answer');
+                } else if (selectedAnswer.value === 'c') {
+                    log.textContent = 'Incorrect! c';
+                    log.classList.remove('correct-answer');
+                    log.classList.add('incorrect-answer');
+                } else if (selectedAnswer.value === 'd') {
+                    log.textContent = 'Incorrect! d.';
+                    log.classList.remove('correct-answer');
+                    log.classList.add('incorrect-answer');
+                }
+            } else {
+                log.textContent = 'Select an answer before submitting.';
+            }
+        };
+    </script>
 
 |
 
@@ -276,19 +376,210 @@ What is the value on q6 after such an operation?
 **Problem 2 - Code writing**
 ----------------------------
 
-Can you write the circuit for a 4 by 4 square chess set until you calculate the position of the piece to turn?
+**Can you write the circuit for a 4 by 4 square chess set until you calculate the position of the piece to turn?**
 
-*HINT 1*
+..
+    .. raw:: html
 
-Start by drawing a 4 by 4 chess board and number each square from 0 to 15 in decimal and binary numbers starting with the top row.
+        <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
 
-*HINT 2*
+            .hint {
+            width: 80%;
+            padding: 20px;
+            margin: 20px auto;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            text-align: left;
+            background-color: #f9f9f9;
+            display: none;
+            }
 
-The trick is now to add (modulo 2) all the squares that end with a 1 and to proceed the same way with all squares that have a 1 on their second bit counting from right to left and so on using four extra squares.
+            .hint-content {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
 
-*HINT 3*
+            .hint-text {
+                width: 70%;
+            }
 
-Provide the drawing of Hint 2 with the arrows for the counting
+            .hint-image {
+                width: 25%;
+            }
+
+            .button-modern {
+                display: inline-block;
+                padding: 10px 20px;
+                font-size: 16px;
+                font-weight: bold;
+                color: white;
+                background-color: #4CAF50;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .button-modern:hover {
+                background-color: #45a049;
+            }
+        </style>
+        </head>
+        <body>
+
+        <button class="button-modern" onclick="toggleHint('hint1')">Click to reveal HINT 1</button>
+        <div id="hint1" class="hint">
+            <div class="hint-content">
+                <div class="hint-text">
+                    Start by drawing a 4 by 4 chess board and number each square from 0 to 15 in decimal and binary numbers starting with the top row.
+                </div>
+            </div>
+        </div>
+
+        <button class="button-modern" onclick="toggleHint('hint2')">Click to reveal HINT 2</button>
+        <div id="hint2" class="hint">
+            <div class="hint-content">
+                <div class="hint-text">
+                    The trick is now to add (modulo 2) all the squares that end with a 1 and to proceed the same way with all squares that have a 1 on their second bit counting from right to left and so on using four extra squares.
+                </div>
+            </div>
+        </div>
+
+        <button class="button-modern" onclick="toggleHint('hint3')">Click to reveal HINT 3</button>
+        <div id="hint3" class="hint">
+            <div class="hint-content">
+                <div class="hint-text">
+                    In the following picture, all squares with green numbers must be added modulo 2 and the answer must be placed in the last qubit (<em>q</em><sub>20</sub>) of the focus. The same must take place for blue squares with their result on <em>q</em><sub>21</sub>, the yellow squares on <em>q</em><sub>22</sub>, and the red squares on <em>q</em><sub>23</sub>. The zeros and ones on the squares are only there as an example.
+                </div>
+                <div class="hint-image">
+                    <img src="../images/4x4_chessboard.png" alt="Hint 3 Image">
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function toggleHint(hintId) {
+                var hint = document.getElementById(hintId);
+                if (hint.style.display === "block") {
+                    hint.style.display = "none";
+                } else {
+                    hint.style.display = "block";
+                }
+            }
+        </script>
+
+        </body>
+
+.. raw:: html
+
+    <style>
+    .hint {
+        width: 90%;
+        padding: 20px;
+        margin-top: 20px;
+        background-color: lightblue;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        display: none;
+        text-align: left;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .hint img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .hint.dark {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .hint-button {
+        margin: 10px 0;
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 12px;
+    }
+
+    .hint-button:hover {
+        background-color: #45a049;
+    }
+
+    .hint-button.dark {
+        background-color: #555;
+        color: #fff;
+    }
+
+    .hint-button.dark:hover {
+        background-color: #444;
+    }
+    </style>
+
+    <script>
+    function toggleHint(id) {
+        var hint = document.getElementById(id);
+        hint.style.display = (hint.style.display === "block") ? "none" : "block";
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+        const dark = document.documentElement.dataset.theme === 'dark';
+        const hints = document.getElementsByClassName('hint');
+        const buttons = document.getElementsByClassName('hint-button');
+        for (let hint of hints) {
+            if (dark) {
+                hint.classList.add('dark');
+            } else {
+                hint.classList.remove('dark');
+            }
+        }
+        for (let button of buttons) {
+            if (dark) {
+                button.classList.add('dark');
+            } else {
+                button.classList.remove('dark');
+            }
+        }
+    });
+    observer.observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
+    </script>
+
+    <button class="hint-button" onclick="toggleHint('hint1')">Click to reveal HINT 1</button>
+    <div id="hint1" class="hint">
+        Start by drawing a 4 by 4 chess board and number each square from 0 to 15 in decimal and binary numbers starting with the top row.
+    </div>
+
+    <button class="hint-button" onclick="toggleHint('hint2')">Click to reveal HINT 2</button>
+    <div id="hint2" class="hint">
+        The trick is now to add (modulo 2) all the squares that end with a 1 and to proceed the same way with all squares that have a 1 on their second bit counting from right to left and so on using four extra squares.
+    </div>
+
+    <button class="hint-button" onclick="toggleHint('hint3')">Click to reveal HINT 3</button>
+    <div id="hint3" class="hint">
+        In the following picture, all squares with green numbers must be added modulo 2 and the answer must be placed in the last qubit (<em>q</em><sub>20</sub>) of the focus. The same must take place for blue squares with their result on <em>q</em><sub>21</sub>, the yellow squares on <em>q</em><sub>22</sub>, and the red squares on <em>q</em><sub>23</sub>. The zeros and ones on the squares are only there as an example.
+        <img src="../images/test.png" alt="Hint 3 Image">
+    </div>
+
+.. raw:: html
+
+    <p><a href="../images/4x4_chessboard.png" target="_blank">Check if image loads</a></p>
+
+|
 
 .. code:: python
 

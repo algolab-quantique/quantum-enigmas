@@ -120,7 +120,7 @@ The enigma video presented a quantum circuit to solve the hair color problem wit
 
 |
 
-Can you adapt the circuit for 6 people?
+**Can you adapt the circuit for 6 people?**
 
 .. raw:: html
 
@@ -212,7 +212,7 @@ Can you adapt the circuit for 6 people?
         # Visualize the circuit
         problem_qc.draw('mpl')
     
-    .. image:: ../answers_png/E2_P1.png
+    .. image:: ../images/E2_P1.png
         :width: 100%
 
 |
@@ -272,7 +272,7 @@ Simplify the code with a :code:`for` loop. Can you write a circuit for any numbe
         # Visualize the circuit
         problem_qc.draw('mpl')
 
-    .. image:: ../answers_png/E2_P2.png
+    .. image:: ../images/E2_P2.png
         :width: 100%
 
 |
