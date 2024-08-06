@@ -372,109 +372,15 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
 
 |
 
+.. image:: ../images/4x4_chessboard.png
+    :width: 1%
+    :height: 0.001px
+
 ----------------------------
 **Problem 2 - Code writing**
 ----------------------------
 
 **Can you write the circuit for a 4 by 4 square chess set until you calculate the position of the piece to turn?**
-
-..
-    .. raw:: html
-
-        <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-            }
-
-            .hint {
-            width: 80%;
-            padding: 20px;
-            margin: 20px auto;
-            border: 2px solid #4CAF50;
-            border-radius: 8px;
-            text-align: left;
-            background-color: #f9f9f9;
-            display: none;
-            }
-
-            .hint-content {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-
-            .hint-text {
-                width: 70%;
-            }
-
-            .hint-image {
-                width: 25%;
-            }
-
-            .button-modern {
-                display: inline-block;
-                padding: 10px 20px;
-                font-size: 16px;
-                font-weight: bold;
-                color: white;
-                background-color: #4CAF50;
-                border: none;
-                border-radius: 8px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-            }
-
-            .button-modern:hover {
-                background-color: #45a049;
-            }
-        </style>
-        </head>
-        <body>
-
-        <button class="button-modern" onclick="toggleHint('hint1')">Click to reveal HINT 1</button>
-        <div id="hint1" class="hint">
-            <div class="hint-content">
-                <div class="hint-text">
-                    Start by drawing a 4 by 4 chess board and number each square from 0 to 15 in decimal and binary numbers starting with the top row.
-                </div>
-            </div>
-        </div>
-
-        <button class="button-modern" onclick="toggleHint('hint2')">Click to reveal HINT 2</button>
-        <div id="hint2" class="hint">
-            <div class="hint-content">
-                <div class="hint-text">
-                    The trick is now to add (modulo 2) all the squares that end with a 1 and to proceed the same way with all squares that have a 1 on their second bit counting from right to left and so on using four extra squares.
-                </div>
-            </div>
-        </div>
-
-        <button class="button-modern" onclick="toggleHint('hint3')">Click to reveal HINT 3</button>
-        <div id="hint3" class="hint">
-            <div class="hint-content">
-                <div class="hint-text">
-                    In the following picture, all squares with green numbers must be added modulo 2 and the answer must be placed in the last qubit (<em>q</em><sub>20</sub>) of the focus. The same must take place for blue squares with their result on <em>q</em><sub>21</sub>, the yellow squares on <em>q</em><sub>22</sub>, and the red squares on <em>q</em><sub>23</sub>. The zeros and ones on the squares are only there as an example.
-                </div>
-                <div class="hint-image">
-                    <img src="../images/4x4_chessboard.png" alt="Hint 3 Image">
-                </div>
-            </div>
-        </div>
-
-        <script>
-            function toggleHint(hintId) {
-                var hint = document.getElementById(hintId);
-                if (hint.style.display === "block") {
-                    hint.style.display = "none";
-                } else {
-                    hint.style.display = "block";
-                }
-            }
-        </script>
-
-        </body>
 
 .. raw:: html
 
@@ -572,12 +478,11 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
     <button class="hint-button" onclick="toggleHint('hint3')">Click to reveal HINT 3</button>
     <div id="hint3" class="hint">
         In the following picture, all squares with green numbers must be added modulo 2 and the answer must be placed in the last qubit (<em>q</em><sub>20</sub>) of the focus. The same must take place for blue squares with their result on <em>q</em><sub>21</sub>, the yellow squares on <em>q</em><sub>22</sub>, and the red squares on <em>q</em><sub>23</sub>. The zeros and ones on the squares are only there as an example.
-        <img src="../images/test.png" alt="Hint 3 Image">
+        <img src="../images/4x4_chessboard.png'" alt="Hint 3 Image" />
     </div>
 
-.. raw:: html
-
-    <p><a href="../images/4x4_chessboard.png" target="_blank">Check if image loads</a></p>
+.. .. image:: ../images/4x4_chessboard.png
+    :width: 100%
 
 |
 
