@@ -370,11 +370,10 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
         };
     </script>
 
-|
-
-.. image:: ../images/4x4_chessboard.png
-    :width: 1%
+.. image:: ../images/chessboard.png
+    :width: 0.1%
     :height: 0.001px
+    :scale: 1%
 
 ----------------------------
 **Problem 2 - Code writing**
@@ -435,6 +434,12 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
     .hint-button.dark:hover {
         background-color: #444;
     }
+
+    .tempbtm {
+        background:url(/documentation/source/images/chessboard.png) no-repeat;
+        max-width: 100%;
+        height: auto;
+        }
     </style>
 
     <script>
@@ -478,7 +483,7 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
     <button class="hint-button" onclick="toggleHint('hint3')">Click to reveal HINT 3</button>
     <div id="hint3" class="hint">
         In the following picture, all squares with green numbers must be added modulo 2 and the answer must be placed in the last qubit (<em>q</em><sub>20</sub>) of the focus. The same must take place for blue squares with their result on <em>q</em><sub>21</sub>, the yellow squares on <em>q</em><sub>22</sub>, and the red squares on <em>q</em><sub>23</sub>. The zeros and ones on the squares are only there as an example.
-        <img src="../images/4x4_chessboard.png" alt="Hint 3 Image" />
+        <img src="../_images/chessboard.png" alt="Hint 3 Image">
     </div>
 
 .. .. image:: ../images/4x4_chessboard.png
