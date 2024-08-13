@@ -304,7 +304,7 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
 
 .. raw:: html
 
-    <img class="zoomable" src="../_images/E2_P1.png" style="width:100%;cursor:pointer;">
+    <img class="zoomable" src="../_images/E3_P1.png" style="width:100%;cursor:pointer;">
 
 |
 
