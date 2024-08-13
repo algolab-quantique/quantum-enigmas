@@ -106,6 +106,8 @@ Now, run the cell below to import the necessary packages.
         height: 100%;
         overflow: auto;
         background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
     }
 
     #imageModal img {
@@ -129,6 +131,7 @@ Now, run the cell below to import the necessary packages.
         font-weight: bold;
         transition: color 0.3s ease;
         cursor: pointer;
+        z-index: 10000;
     }
 
     #imageModal .close:hover,
@@ -141,13 +144,11 @@ Now, run the cell below to import the necessary packages.
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById("imageModal");
             const modalImg = document.getElementById("img01");
-            const captionText = document.getElementById("caption");
 
             document.querySelectorAll('.zoomable').forEach(function(image) {
                 image.onclick = function() {
                     modal.style.display = "block";
                     modalImg.src = this.src;
-                    captionText.innerHTML = this.alt;
                 }
             });
 
@@ -157,10 +158,9 @@ Now, run the cell below to import the necessary packages.
             }
         });
     </script>
-    <div id="imageModal" class="modal">
+    <div id="imageModal">
         <span class="close">&times;</span>
         <img class="modal-content" id="img01">
-        <div id="caption"></div>
     </div>
 
 
