@@ -14,6 +14,11 @@ The diamond you won has disappeared. Your search leads you to Monty Hall Manor, 
 
 |
 
+.. image:: ../images/E4_MCH.png
+    :width: 0%
+    :height: 0px
+    :scale: 0%
+
 .. dropdown:: :material-regular:`error;1.2em;sd-text-warning` Important
     :animate: fade-in
     :color: warning
