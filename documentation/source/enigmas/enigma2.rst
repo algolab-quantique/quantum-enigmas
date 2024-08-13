@@ -120,6 +120,7 @@ Now, run the cell below to import the necessary packages.
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        object-fit: contain;
     }
 
     #imageModal .close {
