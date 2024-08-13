@@ -66,7 +66,6 @@ Now, run the cell below to import the necessary packages.
     <pre data-executable="true" data-language="python">
     import numpy as np
     from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister, transpile
-    from qiskit.circuit.library import MCXGate
     from qiskit.visualization import plot_histogram
     from qiskit_aer import Aer, AerSimulator
     </pre>
@@ -75,7 +74,7 @@ Now, run the cell below to import the necessary packages.
 **Problem 1 - Quick quiz**
 ---------------------------
 
-The enigma uses a modulo two addition like this one:
+The enigma uses a modulo 2 addition like this one:
 
 .. raw:: html
     
@@ -148,7 +147,7 @@ Or
         </div>
     </div>
 
-Meaning that adding any two of them gives the third one as an answer (this is true for any numbers). Playing with modulo two additions also has other interesting characteristics. In the enigma, adding the first number to the second is done by applying a CNOT between *q*\ :sub:`4`\  and *q*\ :sub:`6`\  (and *q*\ :sub:`5`\  and *q*\ :sub:`7`\). Here is the code of the algorithm in the enigma. 
+Meaning that adding any two of them gives the third one as an answer (this is true for any numbers). Playing with modulo 2 additions also has other interesting characteristics. In the enigma, adding the first number to the second is done by applying a CNOT between *q*\ :sub:`4`\  and *q*\ :sub:`6`\  (and *q*\ :sub:`5`\  and *q*\ :sub:`7`\). Here is the code of the algorithm in the enigma. 
 
 .. code:: python
 
@@ -156,63 +155,63 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
     #qubits 4 and 5 is where the key is hidden
     #qubits 6 and 7 is where the focus first lands
     #qubits 8 and 9 is where the focus lands at the end which is the key location
-    problem_qc = QuantumCircuit(10)
+    problem1_qc = QuantumCircuit(10)
 
     #coin distribution on each square
     for i in range(4):
-        problem_qc.h(i)
+        problem1_qc.h(i)
 
-    problem_qc.barrier([4,5])
+    problem1_qc.barrier([4,5])
 
     #hiding the key under one of the 4 squares
-    problem_qc.h(4)
-    problem_qc.h(5)
+    problem1_qc.h(4)
+    problem1_qc.h(5)
 
-    problem_qc.barrier([4,5,6,7])
+    problem1_qc.barrier([4,5,6,7])
 
     #finding the parity of 1's on squares for which binary numbers finish by 1 and putting the answer on q5
-    problem_qc.cx(1, 6)
-    problem_qc.cx(3, 6)
-    problem_qc.barrier([6,7])
+    problem1_qc.cx(1, 6)
+    problem1_qc.cx(3, 6)
+    problem1_qc.barrier([6,7])
 
     #finding the parity of 1's on squares for which binary numbers have a 1 as second to last digit and putting the answer on q6
-    problem_qc.cx(2, 7)
-    problem_qc.cx(3, 7)
-    problem_qc.barrier([6,7])
+    problem1_qc.cx(2, 7)
+    problem1_qc.cx(3, 7)
+    problem1_qc.barrier([6,7])
 
     #adding modulo 2 the position of the key and the position of the focus
-    problem_qc.cx(4, 6)
-    problem_qc.cx(5, 7)
-    problem_qc.barrier([6,7])
+    problem1_qc.cx(4, 6)
+    problem1_qc.cx(5, 7)
+    problem1_qc.barrier([6,7])
 
     #turning the right coin
-    problem_qc.ccx(7,6,3)
-    problem_qc.barrier([6,7])
-    problem_qc.x(6)
-    problem_qc.ccx(7,6,2)
-    problem_qc.x(6)
-    problem_qc.barrier([6,7])
-    problem_qc.x(7)
-    problem_qc.ccx(7,6,1)
-    problem_qc.x(7)
-    problem_qc.barrier([6,7])
-    problem_qc.x(6)
-    problem_qc.x(7)
-    problem_qc.ccx(7,6,0)
-    problem_qc.x(7)
-    problem_qc.x(6)
-    problem_qc.barrier([6,7,8,9])
+    problem1_qc.ccx(7,6,3)
+    problem1_qc.barrier([6,7])
+    problem1_qc.x(6)
+    problem1_qc.ccx(7,6,2)
+    problem1_qc.x(6)
+    problem1_qc.barrier([6,7])
+    problem1_qc.x(7)
+    problem1_qc.ccx(7,6,1)
+    problem1_qc.x(7)
+    problem1_qc.barrier([6,7])
+    problem1_qc.x(6)
+    problem1_qc.x(7)
+    problem1_qc.ccx(7,6,0)
+    problem1_qc.x(7)
+    problem1_qc.x(6)
+    problem1_qc.barrier([6,7,8,9])
 
     #finding the parity of 1's on squares for which binary numbers finish by 1 and putting the answer on q8
-    problem_qc.cx(1, 8)
-    problem_qc.cx(3, 8)
-    problem_qc.barrier([6,7,8,9])
+    problem1_qc.cx(1, 8)
+    problem1_qc.cx(3, 8)
+    problem1_qc.barrier([6,7,8,9])
 
     #finding the parity of 1's on squares for which binary numbers have a 1 as second to last digit and putting the answer on q9
-    problem_qc.cx(2, 9)
-    problem_qc.cx(3, 9)
+    problem1_qc.cx(2, 9)
+    problem1_qc.cx(3, 9)
 
-    problem_qc.draw(output='mpl')
+    problem1_qc.draw(output='mpl')
 
 .. image:: ../images/E3_P1.png
     :width: 100%
@@ -269,7 +268,7 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
 
 .. raw:: html
 
-    <p><strong>What is the value on <em>q</em><sub>6&nbsp;</sub>after such an operation?</strong></p>
+    <p><strong>What is the meaning of the values of <em>q</em><sub>6&nbsp;</sub>and <em>q</em><sub>7&nbsp;</sub>after all the gates in the circuit have been applied?</strong></p>
     </p>
 
 \
@@ -306,10 +305,10 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
     <script>
         // List of answers
         const answersQ1 = [
-            { id: 'q1a', value: 'a', text: '<em>q</em><sub>6</sub> now has the answer to the modulo two addition between <em>q</em><sub>4</sub> and <em>q</em><sub>6</sub>.' },
-            { id: 'q1b', value: 'b', text: 'An extra qubit would be needed to have the answer to the modulo two addition between <em>q</em><sub>4</sub> and <em>q</em><sub>6</sub>.' },
-            { id: 'q1c', value: 'c', text: 'No addition has been performed between <em>q</em><sub>4</sub> and <em>q</em><sub>6</sub>.' },
-            { id: 'q1d', value: 'd', text: 'The CNOT does not permit to perform modulo two additions.' }
+            { id: 'q1a', value: 'a', text: '<em>q</em><sub>6</sub> and <em>q</em><sub>7</sub> correspond to the binary digits of the square on which to flip the coin' },
+            { id: 'q1b', value: 'b', text: '<em>q</em><sub>6</sub> and <em>q</em><sub>7</sub> had a meaning at one point, but don\'t correspond to anything at the end of the circuit' },
+            { id: 'q1c', value: 'c', text: '<em>q</em><sub>6</sub> and <em>q</em><sub>7</sub> correspond to the binary digits of the square your focus is on' },
+            { id: 'q1d', value: 'd', text: '<em>q</em><sub>6</sub> and <em>q</em><sub>7</sub> now correspond to the binary digits of the square where the key is located' }
         ];
 
         // Function to shuffle the answers
@@ -348,19 +347,19 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
             const selectedAnswer = document.querySelector('input[name="q1"]:checked');
             if (selectedAnswer) {
                 if (selectedAnswer.value === 'a') {
-                    log.textContent = 'Correct!.';
+                    log.innerHTML = 'Correct! After the first 4 CNOT gates, <em>q</em><sub>6</sub> and <em>q</em><sub>7</sub> correspond to the binary digits of the focus square. Then, the next 2 CNOT gates between <em>q</em><sub>4</sub> and <em>q</em><sub>6</sub>, and between <em>q</em><sub>5</sub> and <em>q</em><sub>7</sub>, add the key position to the focus position. Thus, <em>q</em><sub>6</sub> and <em>q</em><sub>7</sub> correspond to the binary digit of the square on which to flip the coin.'; ;
                     log.classList.remove('incorrect-answer');
                     log.classList.add('correct-answer');
                 } else if (selectedAnswer.value === 'b') {
-                    log.textContent = 'Incorrect! b.';
+                    log.innerHTML = 'Incorrect! After the first 6 CNOT gates, <em>q</em><sub>6</sub> and <em>q</em><sub>7</sub> have a meaning. Since all the following operations on them are either CNOT controls or X gates applied twice, their values do not change, and they retain their meaning.';
                     log.classList.remove('correct-answer');
                     log.classList.add('incorrect-answer');
                 } else if (selectedAnswer.value === 'c') {
-                    log.textContent = 'Incorrect! c';
+                    log.innerHTML = 'Incorrect! <em>q</em><sub>6</sub> and <em>q</em><sub>7</sub> corresponded to the binary digits of the square your focus was on after the first 4 CNOT gates. However, after the next 2 CNOT gates, this is no longer the case.';
                     log.classList.remove('correct-answer');
                     log.classList.add('incorrect-answer');
                 } else if (selectedAnswer.value === 'd') {
-                    log.textContent = 'Incorrect! d.';
+                    log.innerHTML = 'Incorrect! The qubits that represent the binary digits of the square where the key is located are either <em>q</em><sub>4</sub> and <em>q</em><sub>5</sub> or <em>q</em><sub>8</sub> and <em>q</em><sub>9</sub>.';
                     log.classList.remove('correct-answer');
                     log.classList.add('incorrect-answer');
                 }
@@ -434,12 +433,6 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
     .hint-button.dark:hover {
         background-color: #444;
     }
-
-    .tempbtm {
-        background:url(/documentation/source/images/chessboard.png) no-repeat;
-        max-width: 100%;
-        height: auto;
-        }
     </style>
 
     <script>
@@ -486,88 +479,114 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
         <img src="../_images/chessboard.png" alt="Hint 3 Image">
     </div>
 
-.. .. image:: ../images/4x4_chessboard.png
-    :width: 100%
-
 |
 
-.. code:: python
+.. raw:: html
 
+    <pre data-executable="true" data-language="python">
     nb_coins = 16
+    nb_key = 4
+    nb_focus_first = 4
+    nb_focus_key = 4
+    nb_qubits = nb_coins + nb_key + nb_focus_first + nb_focus_key
 
     #qubits 0 to 15 are the 16 squares
     #qubits 16 to 19 is where the key is hidden
     #qubits 20 to 23 is where the focus first lands
     #qubits 24 to 27 is where the focus lands at the end which is the key location
-    problem_qc = QuantumCircuit(nb_coins+12)
+    problem2_qc = QuantumCircuit(nb_qubits)
 
-    #coin distribution on each square
-    for i in range(16):
-        problem_qc.h(i)
+    # The code for this problem is similar to the one in Problem 1, simply longer.
+    ### Start your work here ###
 
-    problem_qc.barrier()
 
-    #hiding the key under one of the 16 squares
-    for i in range(16, 20):
-        problem_qc.h(i)
+    problem2_qc.draw(output='mpl')
+    </pre>
 
-    problem_qc.barrier()
+.. dropdown:: Click to reveal the answer
+    :color: muted
+    :icon: eye
 
-    #finding the parity of 1's on squares for which binary numbers finish by 1 and putting the answer on q20
-    problem_qc.cx(1, 20)
-    problem_qc.cx(3, 20)
-    problem_qc.cx(5, 20)
-    problem_qc.cx(7, 20)
-    problem_qc.cx(9, 20)
-    problem_qc.cx(11, 20)
-    problem_qc.cx(13, 20)
-    problem_qc.cx(15, 20)
-    problem_qc.barrier()
+    .. code:: python
+        
+        nb_coins = 16
+        nb_key = 4
+        nb_focus_first = 4
+        nb_focus_key = 4
+        nb_qubits = nb_coins + nb_key + nb_focus_first + nb_focus_key
 
-    #finding the parity of 1's on squares for which binary numbers have a 1 as second to last digit and putting the answer on q21
-    problem_qc.cx(2, 21)
-    problem_qc.cx(3, 21)
-    problem_qc.cx(6, 21)
-    problem_qc.cx(7, 21)
-    problem_qc.cx(10, 21)
-    problem_qc.cx(11, 21)
-    problem_qc.cx(14, 21)
-    problem_qc.cx(15, 21)
-    problem_qc.barrier()
+        #qubits 0 to 15 are the 16 squares
+        #qubits 16 to 19 is where the key is hidden
+        #qubits 20 to 23 is where the focus first lands
+        #qubits 24 to 27 is where the focus lands at the end which is the key location
+        problem2_qc = QuantumCircuit(nb_qubits)
 
-    #finding the parity of 1's on squares for which binary numbers have a 1 as their 3rd digit from the right and putting the answer on q22
-    problem_qc.cx(4, 22)
-    problem_qc.cx(5, 22)
-    problem_qc.cx(6, 22)
-    problem_qc.cx(7, 22)
-    problem_qc.cx(12, 22)
-    problem_qc.cx(13, 22)
-    problem_qc.cx(14, 22)
-    problem_qc.cx(15, 22)
-    problem_qc.barrier()
+        #coin distribution on each square
+        for i in range(16):
+            problem2_qc.h(i)
 
-    #finding the parity of 1's on squares for which binary numbers have a 1 as their 4th digit from the right and putting the answer on q23
-    problem_qc.cx(8, 23)
-    problem_qc.cx(9, 23)
-    problem_qc.cx(10, 23)
-    problem_qc.cx(11, 23)
-    problem_qc.cx(12, 23)
-    problem_qc.cx(13, 23)
-    problem_qc.cx(14, 23)
-    problem_qc.cx(15, 23)
-    problem_qc.barrier()
+        problem2_qc.barrier()
 
-    #adding modulo 2 the position of the key and the position of the focus
-    problem_qc.cx(16, 20)
-    problem_qc.cx(17, 21)
-    problem_qc.cx(18, 22)
-    problem_qc.cx(19, 23)
+        #hiding the key under one of the 16 squares
+        for i in range(16, 20):
+            problem2_qc.h(i)
 
-|
+        problem2_qc.barrier()
 
-.. code:: python
+        #finding the parity of 1's on squares for which binary numbers finish by 1 and putting the answer on q20
+        problem2_qc.cx(1, 20)
+        problem2_qc.cx(3, 20)
+        problem2_qc.cx(5, 20)
+        problem2_qc.cx(7, 20)
+        problem2_qc.cx(9, 20)
+        problem2_qc.cx(11, 20)
+        problem2_qc.cx(13, 20)
+        problem2_qc.cx(15, 20)
+        problem2_qc.barrier()
 
-    problem_qc.draw(output='mpl')
+        #finding the parity of 1's on squares for which binary numbers have a 1 as second to last digit and putting the answer on q21
+        problem2_qc.cx(2, 21)
+        problem2_qc.cx(3, 21)
+        problem2_qc.cx(6, 21)
+        problem2_qc.cx(7, 21)
+        problem2_qc.cx(10, 21)
+        problem2_qc.cx(11, 21)
+        problem2_qc.cx(14, 21)
+        problem2_qc.cx(15, 21)
+        problem2_qc.barrier()
+
+        #finding the parity of 1's on squares for which binary numbers have a 1 as their 3rd digit from the right and putting the answer on q22
+        problem2_qc.cx(4, 22)
+        problem2_qc.cx(5, 22)
+        problem2_qc.cx(6, 22)
+        problem2_qc.cx(7, 22)
+        problem2_qc.cx(12, 22)
+        problem2_qc.cx(13, 22)
+        problem2_qc.cx(14, 22)
+        problem2_qc.cx(15, 22)
+        problem2_qc.barrier()
+
+        #finding the parity of 1's on squares for which binary numbers have a 1 as their 4th digit from the right and putting the answer on q23
+        problem2_qc.cx(8, 23)
+        problem2_qc.cx(9, 23)
+        problem2_qc.cx(10, 23)
+        problem2_qc.cx(11, 23)
+        problem2_qc.cx(12, 23)
+        problem2_qc.cx(13, 23)
+        problem2_qc.cx(14, 23)
+        problem2_qc.cx(15, 23)
+        problem2_qc.barrier()
+
+        #adding modulo 2 the position of the key and the position of the focus
+        problem2_qc.cx(16, 20)
+        problem2_qc.cx(17, 21)
+        problem2_qc.cx(18, 22)
+        problem2_qc.cx(19, 23)
+
+        problem2_qc.draw(output='mpl')
+    
+    .. image:: ../images/E3_P2.png
+        :width: 100%
 
 |
 
@@ -575,140 +594,129 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
 **Problem 3 - Code writing**
 ----------------------------
 
-Complete the circuit to allow Alice to turn the right coin
+**Complete the circuit to allow Alice to turn the right coin knowing that the MCX gate is the multi-control X gate.**
 
-.. code:: python
+To avoid using a lot of X gates to control the 0 state, we can specify the control state of each control qubit.
+Here is the way to use the MCX gate if we wanted to have the control-qubits 20, 21, 22, and 23 control the state 1, 1, 1, and 0 respectively, and qubit 14 as the target-qubit:
 
-    #allowing for multi-controlled x gates
-    gate = MCXGate(4)
+:code:`problem3_qc.mcx([20, 21, 22, 23], 14, ctrl_state='0111')`.
 
-    #turning the right coin on the bottom row
-    problem_qc.append(gate, [20, 21, 22, 23, 15])
+.. raw:: html
 
-    problem_qc.x(23)
-    problem_qc.append(gate, [20, 21, 22, 23, 14])
-    problem_qc.x(23)
+    <pre data-executable="true" data-language="python">
+    ctrl_qubits = [20, 21, 22, 23]
+    problem3_qc = problem2_qc.copy()
+    problem3_qc.barrier()
 
-    problem_qc.x(22)
-    problem_qc.append(gate, [20, 21, 22, 23, 13])
-    problem_qc.x(22)
+    # turning the right coin on the bottom row
+    problem3_qc.mcx(ctrl_qubits, 15, ctrl_state='1111')
 
-    problem_qc.x(22)
-    problem_qc.x(23)
-    problem_qc.append(gate, [20, 21, 22, 23, 12])
-    problem_qc.x(22)
-    problem_qc.x(23)
+    problem3_qc.mcx(ctrl_qubits, 14, ctrl_state='0111')
 
-    #turning the right coin on the 3rd row
-    problem_qc.x(21)
-
-    problem_qc.append(gate, [20, 21, 22, 23, 11])
-
-    problem_qc.x(23)
-    problem_qc.append(gate, [20, 21, 22, 23, 10])
-    problem_qc.x(23)
-
-    problem_qc.x(22)
-    problem_qc.append(gate, [20, 21, 22, 23, 9])
-    problem_qc.x(22)
-
-    problem_qc.x(22)
-    problem_qc.x(23)
-    problem_qc.append(gate, [20, 21, 22, 23, 8])
-    problem_qc.x(22)
-    problem_qc.x(23)
+    ### Continue writing the code here ###
 
 
-    #turning the right coin on the 2nd row
-    problem_qc.x(21)
-    problem_qc.x(20)
+    problem3_qc.draw(output='mpl')
+    </pre>
 
-    problem_qc.append(gate, [20, 21, 22, 23, 7])
+.. dropdown:: Click to reveal the answer
+    :color: muted
+    :icon: eye
 
-    problem_qc.x(23)
-    problem_qc.append(gate, [20, 21, 22, 23, 6])
-    problem_qc.x(23)
+    .. code:: python
 
-    problem_qc.x(22)
-    problem_qc.append(gate, [20, 21, 22, 23, 5])
-    problem_qc.x(22)
+        ctrl_qubits = [20, 21, 22, 23]
+        problem3_qc = problem2_qc.copy()
+        problem3_qc.barrier()
 
-    problem_qc.x(22)
-    problem_qc.x(23)
-    problem_qc.append(gate, [20, 21, 22, 23, 4])
-    problem_qc.x(22)
-    problem_qc.x(23)
+        #turning the right coin on the bottom row
+        problem3_qc.mcx(ctrl_qubits, 15, ctrl_state='1111')
 
-    #turning the right coin on the 2nd row
-    problem_qc.x(21)
+        problem3_qc.mcx(ctrl_qubits, 14, ctrl_state='0111')
 
-    problem_qc.append(gate, [20, 21, 22, 23, 3])
+        problem3_qc.mcx(ctrl_qubits, 13, ctrl_state='1011')
 
-    problem_qc.x(23)
-    problem_qc.append(gate, [20, 21, 22, 23, 2])
-    problem_qc.x(23)
+        problem3_qc.mcx(ctrl_qubits, 12, ctrl_state='0011')
 
-    problem_qc.x(22)
-    problem_qc.append(gate, [20, 21, 22, 23, 1])
-    problem_qc.x(22)
+        #turning the right coin on the 3rd row
+        problem3_qc.mcx(ctrl_qubits, 11, ctrl_state='1101')
 
-    problem_qc.x(22)
-    problem_qc.x(23)
-    problem_qc.append(gate, [20, 21, 22, 23, 0])
-    problem_qc.x(22)
-    problem_qc.x(23)
+        problem3_qc.mcx(ctrl_qubits, 10, ctrl_state='0101')
 
-    #now that the right coin has been turned, it is time to put the focus on the square where the key is located
-    problem_qc.barrier()
+        problem3_qc.mcx(ctrl_qubits, 9, ctrl_state='1001')
 
-    #finding the parity of 1's on squares for which binary numbers finish by 1 and putting the answer on q24
-    problem_qc.cx(1, 24)
-    problem_qc.cx(3, 24)
-    problem_qc.cx(5, 24)
-    problem_qc.cx(7, 24)
-    problem_qc.cx(9, 24)
-    problem_qc.cx(11, 24)
-    problem_qc.cx(13, 24)
-    problem_qc.cx(15, 24)
-    problem_qc.barrier()
+        problem3_qc.mcx(ctrl_qubits, 8, ctrl_state='0001')
 
-    #finding the parity of 1's on squares for which binary numbers have a 1 as second to last digit and putting the answer on q25
-    problem_qc.cx(2, 25)
-    problem_qc.cx(3, 25)
-    problem_qc.cx(6, 25)
-    problem_qc.cx(7, 25)
-    problem_qc.cx(10, 25)
-    problem_qc.cx(11, 25)
-    problem_qc.cx(14, 25)
-    problem_qc.cx(15, 25)
-    problem_qc.barrier()
+        #turning the right coin on the 2nd row
+        problem3_qc.mcx(ctrl_qubits, 7, ctrl_state='1110')
 
-    #finding the parity of 1's on squares for which binary numbers have a 1 as their 3rd digit from the right and putting the answer on q26
-    problem_qc.cx(4, 26)
-    problem_qc.cx(5, 26)
-    problem_qc.cx(6, 26)
-    problem_qc.cx(7, 26)
-    problem_qc.cx(12, 26)
-    problem_qc.cx(13, 26)
-    problem_qc.cx(14, 26)
-    problem_qc.cx(15, 26)
-    problem_qc.barrier()
+        problem3_qc.mcx(ctrl_qubits, 6, ctrl_state='0110')
 
-    #finding the parity of 1's on squares for which binary numbers have a 1 as their 4th digit from the right and putting the answer on q27
-    problem_qc.cx(8, 27)
-    problem_qc.cx(9, 27)
-    problem_qc.cx(10, 27)
-    problem_qc.cx(11, 27)
-    problem_qc.cx(12, 27)
-    problem_qc.cx(13, 27)
-    problem_qc.cx(14, 27)
-    problem_qc.cx(15, 27)
+        problem3_qc.mcx(ctrl_qubits, 5, ctrl_state='1010')
+
+        problem3_qc.mcx(ctrl_qubits, 4, ctrl_state='0010')
+
+        #turning the right coin on the top row
+        problem3_qc.mcx(ctrl_qubits, 3, ctrl_state='1100')
+
+        problem3_qc.mcx(ctrl_qubits, 2, ctrl_state='0100')
+
+        problem3_qc.mcx(ctrl_qubits, 1, ctrl_state='1000')
+
+        problem3_qc.mcx(ctrl_qubits, 0, ctrl_state='0000')
+
+        #now that the right coin has been turned, it is time to put the focus on the square where the key is located
+        problem3_qc.barrier()
+
+        #finding the parity of 1's on squares for which binary numbers finish by 1 and putting the answer on q24
+        problem3_qc.cx(1, 24)
+        problem3_qc.cx(3, 24)
+        problem3_qc.cx(5, 24)
+        problem3_qc.cx(7, 24)
+        problem3_qc.cx(9, 24)
+        problem3_qc.cx(11, 24)
+        problem3_qc.cx(13, 24)
+        problem3_qc.cx(15, 24)
+        problem3_qc.barrier()
+
+        #finding the parity of 1's on squares for which binary numbers have a 1 as second to last digit and putting the answer on q25
+        problem3_qc.cx(2, 25)
+        problem3_qc.cx(3, 25)
+        problem3_qc.cx(6, 25)
+        problem3_qc.cx(7, 25)
+        problem3_qc.cx(10, 25)
+        problem3_qc.cx(11, 25)
+        problem3_qc.cx(14, 25)
+        problem3_qc.cx(15, 25)
+        problem3_qc.barrier()
+
+        #finding the parity of 1's on squares for which binary numbers have a 1 as their 3rd digit from the right and putting the answer on q26
+        problem3_qc.cx(4, 26)
+        problem3_qc.cx(5, 26)
+        problem3_qc.cx(6, 26)
+        problem3_qc.cx(7, 26)
+        problem3_qc.cx(12, 26)
+        problem3_qc.cx(13, 26)
+        problem3_qc.cx(14, 26)
+        problem3_qc.cx(15, 26)
+        problem3_qc.barrier()
+
+        #finding the parity of 1's on squares for which binary numbers have a 1 as their 4th digit from the right and putting the answer on q27
+        problem3_qc.cx(8, 27)
+        problem3_qc.cx(9, 27)
+        problem3_qc.cx(10, 27)
+        problem3_qc.cx(11, 27)
+        problem3_qc.cx(12, 27)
+        problem3_qc.cx(13, 27)
+        problem3_qc.cx(14, 27)
+        problem3_qc.cx(15, 27)
+
+        problem3_qc.draw(output='mpl')
+
+    .. image:: ../images/E3_P3.png
+        :width: 100%
 
 |
-
-.. code:: python
-
-    problem_qc.draw(output='mpl')
 
 .. raw:: html
 
