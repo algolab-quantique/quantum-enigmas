@@ -70,9 +70,98 @@ Now, run the cell below to import the necessary packages.
     from qiskit_aer import Aer, AerSimulator
     </pre>
 
+.. image:: ../images/E3_P1.png
+    :width: 0.1%
+    :height: 0px
+    :scale: 0%
+
 ---------------------------
 **Problem 1 - Quick quiz**
 ---------------------------
+
+.. raw:: html
+
+    <style>
+    .zoomable-container {
+        display: inline-block;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .zoomable {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        transition: transform 0.3s ease;
+    }
+
+    #imageModal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+    }
+
+    #imageModal img {
+        margin: auto;
+        display: block;
+        max-width: 80%;
+        max-height: 80%;
+        border-radius: 5px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        object-fit: contain;
+    }
+
+    #imageModal .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        transition: color 0.3s ease;
+        cursor: pointer;
+        z-index: 10000;
+    }
+
+    #imageModal .close:hover,
+    #imageModal .close:focus {
+        color: #bbb;
+    }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("img01");
+
+            document.querySelectorAll('.zoomable').forEach(function(image) {
+                image.onclick = function() {
+                    modal.style.display = "block";
+                    modalImg.src = this.src;
+                }
+            });
+
+            var closeBtn = document.getElementsByClassName("close")[0];
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+        });
+    </script>
+    <div id="imageModal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
 
 The enigma uses a modulo 2 addition like this one:
 
@@ -213,8 +302,9 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
 
     problem1_qc.draw(output='mpl')
 
-.. image:: ../images/E3_P1.png
-    :width: 100%
+.. raw:: html
+
+    <img class="zoomable" src="../_images/E2_P1.png" style="width:100%;cursor:pointer;">
 
 |
 
@@ -370,9 +460,9 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
     </script>
 
 .. image:: ../images/chessboard.png
-    :width: 0.1%
-    :height: 0.001px
-    :scale: 1%
+    :width: 0%
+    :height: 0px
+    :scale: 0%
 
 ----------------------------
 **Problem 2 - Code writing**
@@ -479,7 +569,10 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
         <img src="../_images/chessboard.png" alt="Hint 3 Image">
     </div>
 
-|
+.. image:: ../images/E3_P2.png
+    :width: 0%
+    :height: 0px
+    :scale: 0%
 
 .. raw:: html
 
@@ -585,10 +678,14 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
 
         problem2_qc.draw(output='mpl')
     
-    .. image:: ../images/E3_P2.png
-        :width: 100%
+    .. raw:: html
 
-|
+        <img src="../_images/E3_P2.png" class="zoomable" style="width:100%;cursor:pointer;">
+
+.. image:: ../images/E3_P3.png
+        :width: 0%
+        :height: 0px
+        :scale: 0%
 
 ----------------------------
 **Problem 3 - Code writing**
@@ -713,8 +810,9 @@ Here is the way to use the MCX gate if we wanted to have the control-qubits 20, 
 
         problem3_qc.draw(output='mpl')
 
-    .. image:: ../images/E3_P3.png
-        :width: 100%
+    .. raw:: html
+
+        <img class="zoomable" src="../_images/E3_P3.png" style="width:100%;cursor:pointer;">
 
 |
 
