@@ -71,11 +71,98 @@ Now, run the cell below to import the necessary packages.
     from qiskit_aer import Aer, AerSimulator
     </pre>
 
-|
+.. image:: ../images/E2_P1.png
+    :width: 0.1%
+    :height: 0.001px
+    :scale: 1%
 
 --------------------------------
 **Problem 1 - Code writing**
 --------------------------------
+
+.. raw:: html
+
+    <style>
+    .zoomable-container {
+        display: inline-block;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .zoomable {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        transition: transform 0.3s ease;
+    }
+
+    #imageModal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    #imageModal img {
+        margin: auto;
+        display: block;
+        max-height: 80%;
+        max-width: 80%;
+        border-radius: 5px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #imageModal .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        transition: color 0.3s ease;
+        cursor: pointer;
+    }
+
+    #imageModal .close:hover,
+    #imageModal .close:focus {
+        color: #bbb;
+    }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("img01");
+            const captionText = document.getElementById("caption");
+
+            document.querySelectorAll('.zoomable').forEach(function(image) {
+                image.onclick = function() {
+                    modal.style.display = "block";
+                    modalImg.src = this.src;
+                    captionText.innerHTML = this.alt;
+                }
+            });
+
+            var closeBtn = document.getElementsByClassName("close")[0];
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+        });
+    </script>
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+
 
 The enigma video presented a quantum circuit to solve the hair color problem with 4 people. Here's an example of the code associated with the circuit:
 
@@ -212,10 +299,14 @@ The enigma video presented a quantum circuit to solve the hair color problem wit
         # Visualize the circuit
         problem_qc.draw('mpl')
     
-    .. image:: ../images/E2_P1.png
-        :width: 100%
+    .. raw:: html
 
-|
+        <img class="zoomable" src="../_images/E2_P1.png" style="width:100%;cursor:pointer;">
+
+.. image:: ../images/E2_P2.png
+    :width: 0.1%
+    :height: 0.001px
+    :scale: 1%
 
 --------------------------------
 **Problem 2 - Code writing**
@@ -272,8 +363,9 @@ Simplify the code with a :code:`for` loop. Can you write a circuit for any numbe
         # Visualize the circuit
         problem_qc.draw('mpl')
 
-    .. image:: ../images/E2_P2.png
-        :width: 100%
+    .. raw:: html
+        
+        <img class="zoomable" src="../_images/E2_P2.png" style="width:100%;cursor:pointer;">
 
 |
 

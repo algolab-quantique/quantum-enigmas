@@ -71,11 +71,98 @@ Now, run the cell below to import the necessary packages.
     from qiskit_aer import Aer, AerSimulator
     </pre>
 
-|
+.. image:: ../images/E4_P1.png
+    :width: 0%
+    :height: 0px
+    :scale: 0%
 
 ----------------------------
 **Problem 1 - Code writing**
 ----------------------------
+
+.. raw:: html
+
+    <style>
+    .zoomable-container {
+        display: inline-block;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .zoomable {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        transition: transform 0.3s ease;
+    }
+
+    #imageModal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+    }
+
+    #imageModal img {
+        margin: auto;
+        display: block;
+        max-width: 80%;
+        max-height: 80%;
+        border-radius: 5px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        object-fit: contain;
+    }
+
+    #imageModal .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        transition: color 0.3s ease;
+        cursor: pointer;
+        z-index: 10000;
+    }
+
+    #imageModal .close:hover,
+    #imageModal .close:focus {
+        color: #bbb;
+    }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("img01");
+
+            document.querySelectorAll('.zoomable').forEach(function(image) {
+                image.onclick = function() {
+                    modal.style.display = "block";
+                    modalImg.src = this.src;
+                }
+            });
+
+            var closeBtn = document.getElementsByClassName("close")[0];
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+        });
+    </script>
+    <div id="imageModal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
 
 **Write a circuit that would only use 3 qubits instead of 4 (and still assuming that you initially chose safe number 2) for Enigma 004 - The Monty Hall Problem.**
 
@@ -208,10 +295,14 @@ Now, run the cell below to import the necessary packages.
 
         problem1_qc.draw("mpl")
 
-    .. image:: ../images/E4_P1.png
-        :width: 100%
+    .. raw:: html
 
-|
+        <img class="zoomable" src="../_images/E4_P1.png" style="width:100%;cursor:pointer;">
+
+.. image:: ../images/E4_P2.png
+    :width: 0%
+    :height: 0px
+    :scale: 0%
 
 ----------------------------
 **Problem 2 - Code writing**
@@ -227,8 +318,9 @@ You can use the following circuit that is the equivalent of a multicontrolled Ha
     problem2_qc.mcx([0, 1], 2)
     problem2_qc.ry(-np.pi/4, 2)
     
-.. image:: ../images/E4_MCH.png
-    :width: 50%
+.. raw:: html
+
+    <img class="zoomable" src="../_images/E4_MCH.png" style="width:50%;cursor:pointer">
 
 |
 
@@ -331,10 +423,14 @@ You can use the following circuit that is the equivalent of a multicontrolled Ha
 
         problem2_qc.draw("mpl")
 
-    .. image:: ../images/E4_P2.png
-        :width: 100%
+    .. raw:: html
 
-|
+        <img class="zoomable" src="../_images/E4_P2.png" style="width:100%;cursor:pointer">
+
+.. image:: ../images/E4_P3-1.png
+    :width: 0%
+    :height: 0px
+    :scale: 0%
 
 ----------------------------
 **Problem 3 - Code writing**
@@ -377,8 +473,9 @@ The following circuit shows the algorithm seen in the video with an extra qubit 
 
     problem3_qc.draw("mpl")
 
-.. image:: ../images/E4_P3-1.png
-    :width: 80%
+.. raw:: html
+
+    <img class="zoomable" src="../_images/E4_P3-1.png" style="width:80%;cursor:pointer">
 
 |
 
@@ -405,8 +502,6 @@ The following circuit shows the algorithm seen in the video with an extra qubit 
     <div id="q3_hint2" class="hint">
         Use conditional swap to make sure you choose a safe the diamond is not in. For example, here is how you would apply a NOT gate on <em>q</em><sub>0</sub> with the condition that the classical register g has the value 1: <code class=code-inline>problem3_qc.x(0).c_if(creg_g, 1)</code>
     </div>
-
-.. :code:`problem_qc.swap(qreg_q[1], qreg_q[2]).c_if(creg_g, 0)`
 
 .. raw:: html
 
@@ -484,10 +579,14 @@ The following circuit shows the algorithm seen in the video with an extra qubit 
 
         problem3_qc.draw("mpl")
 
-    .. image:: ../images/E4_P3-2.png
-        :width: 100%
+    .. raw:: html
 
-|
+        <img class="zoomable" src="../_images/E4_P3-2.png" style="width:100%;cursor:pointer">
+
+.. image:: ../images/E4_P3-2.png
+    :width: 0%
+    :height: 0px
+    :scale: 0%
 
 --------------------------
 **Problem 4 - Quick quiz**
