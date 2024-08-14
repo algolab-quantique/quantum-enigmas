@@ -52,7 +52,7 @@ Run the cell below to install the necessary packages.
 
 .. raw:: html
 
-    <pre data-executable="true" data-language="python">
+    <pre data-executable="true" data-language="python" data-readonly>
     import sys
     !{sys.executable} -m pip install qiskit==1.1.1
     !{sys.executable} -m pip install qiskit_aer==0.14.2
@@ -63,7 +63,7 @@ Now, run the cell below to import the necessary packages.
 
 .. raw:: html
 
-    <pre data-executable="true" data-language="python">
+    <pre data-executable="true" data-language="python" data-readonly>
     import numpy as np
     from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister, transpile
     from qiskit.visualization import plot_histogram

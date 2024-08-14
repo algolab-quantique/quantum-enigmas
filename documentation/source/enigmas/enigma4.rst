@@ -58,7 +58,7 @@ Run the cell below to install the necessary packages.
 
 .. raw:: html
 
-    <pre data-executable="true" data-language="python">
+    <pre data-executable="true" data-language="python" data-readonly>
     import sys
     !{sys.executable} -m pip install qiskit==1.1.1
     !{sys.executable} -m pip install qiskit_aer==0.14.2
@@ -69,7 +69,7 @@ Now, run the cell below to import the necessary packages.
 
 .. raw:: html
 
-    <pre data-executable="true" data-language="python">
+    <pre data-executable="true" data-language="python" data-readonly>
     import numpy as np
     from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister, transpile
     from qiskit.visualization import plot_histogram
@@ -273,7 +273,7 @@ Now, run the cell below to import the necessary packages.
 
     ### Start your work here ###
 
-    problem_qc1.draw("mpl")
+    problem1_qc.draw("mpl")
     </pre>
 
 .. dropdown:: Click to reveal the answer
@@ -447,7 +447,7 @@ You can use the following circuit that is the equivalent of a multicontrolled Ha
 
 One very important aspect of quantim computing is that all quantum logic gates have an inverse. This means that it is possible to simulate time traveling by going to the end of an algorithm and coming back at the start simply using the inverse of every gate in a backward manner.
 
-The following circuit shows the algorithm seen in the video with an extra qubit used for deciding which door will be opened in the case the diamond is in safe 2 at the beginning (and assuming that you initially chose safe 2). The circuit has been written up to the point in time a safe has been opened by Kettu.
+The following circuit shows the algorithm seen in the video with an extra qubit used for deciding which door will be opened in the case the diamond is in safe 2 at the beginning **(and assuming that you initially chose safe 2)**. The circuit has been written up to the point in time a safe has been opened by Kettu.
 
 .. code:: python
 
@@ -533,7 +533,7 @@ The following circuit shows the algorithm seen in the video with an extra qubit 
 
     ### Start your work here ###
 
-
+    problem3_qc.barrier()
     problem3_qc.measure(0, creg_c[0])
     problem3_qc.measure(1, creg_d[0])
     problem3_qc.measure(2, creg_f[0])
@@ -574,9 +574,8 @@ The following circuit shows the algorithm seen in the video with an extra qubit 
         problem3_qc.swap(1, 2).c_if(creg_g, 1)
         problem3_qc.cx(0, 3)
         problem3_qc.mcx([2, 4], 3)
+
         problem3_qc.barrier()
-
-
         problem3_qc.measure(0, creg_c[0])
         problem3_qc.measure(1, creg_d[0])
         problem3_qc.measure(2, creg_f[0])
@@ -597,11 +596,46 @@ The following circuit shows the algorithm seen in the video with an extra qubit 
 **Problem 4 - Quick quiz**
 --------------------------
 
-Let's run the circuit on a simulator to see the results. Run the cell below.
+Let's run the time travel circuit on a simulator to see the results. Run the cell below.
 
 .. raw:: html
 
     <pre data-executable="true" data-language="python">
+    # Time travel circuit
+    qreg_q = QuantumRegister(5, 'q')
+    creg_c = ClassicalRegister(1, 'c')
+    creg_d = ClassicalRegister(1, 'd')
+    creg_f = ClassicalRegister(1, 'f')
+    creg_g = ClassicalRegister(1, 'g')
+    problem3_qc = QuantumCircuit(qreg_q, creg_c, creg_d, creg_f, creg_g)
+
+    prob_2on3 = 2 * np.arcsin(np.sqrt(2/3))
+    problem3_qc.ry(prob_2on3, 0)
+    problem3_qc.h(4)
+    problem3_qc.ch(0, 1)
+    problem3_qc.cx(1, 2)
+    problem3_qc.cx(0, 1)
+    problem3_qc.x(0)
+    problem3_qc.barrier()
+    problem3_qc.cx(0, 3)
+    problem3_qc.mcx([2, 4], 3)
+    problem3_qc.measure(3, creg_g[0])
+
+    problem3_qc.mcx([2, 4], 3)
+    problem3_qc.cx(0, 3)
+    problem3_qc.barrier()
+    problem3_qc.swap(0, 2).c_if(creg_g, 0)
+    problem3_qc.swap(1, 2).c_if(creg_g, 1)
+    problem3_qc.cx(0, 3)
+    problem3_qc.mcx([2, 4], 3)
+
+    problem3_qc.barrier()
+    problem3_qc.measure(0, creg_c[0])
+    problem3_qc.measure(1, creg_d[0])
+    problem3_qc.measure(2, creg_f[0])
+    problem3_qc.measure(3, creg_g[0])
+
+    # Executing the circuit on a simulator
     simulator = AerSimulator()
     result = simulator.run(transpile(problem3_qc, simulator), shots=1000).result()
     counts = result.get_counts(problem3_qc)
@@ -690,10 +724,9 @@ Let's run the circuit on a simulator to see the results. Run the cell below.
     <script>
         // List of answers
         const answersQ1 = [
-            { id: 'q1a', value: 'a', text: 'Changing your safe at the end will always lead to the diamond.' },
-            { id: 'q1b', value: 'b', text: 'There is still some uncertainty in the result.' },
-            { id: 'q1c', value: 'c', text: 'The diamond is always in safe 2.' },
-            { id: 'q1d', value: 'd', text: 'There is no more diamond.' }
+            { id: 'q1a', value: 'a', text: 'You always choose a safe the diamond is not in.' },
+            { id: 'q1b', value: 'b', text: 'The diamond is always in safe 2.' },
+            { id: 'q1c', value: 'c', text: 'There is no more diamond.' }
         ];
 
         // Function to shuffle the answers
@@ -732,19 +765,15 @@ Let's run the circuit on a simulator to see the results. Run the cell below.
             const selectedAnswer = document.querySelector('input[name="q1"]:checked');
             if (selectedAnswer) {
                 if (selectedAnswer.value === 'a') {
-                    log.textContent = 'Correct!';
+                    log.innerHTML = 'Correct! The result shows that there are only 2 possible states: either the diamond is in safe 0 and safe 1 is open, or safe 1 has the diamond and safe 0 is open. Since we are assuming you initially chose safe 2, you always win by switching safes at the end. The result might suggest that the diamond in never in safe 2, but that is not the case. In the circuit, when the diamond is in safe 2-meaning you will lose-we use conditional SWAP gates to interchange the &#8739;1&#10217; state of <em>q</em><sub>2</sub> with the &#8739;0&#10217; state of <em>q</em><sub>0</sub> or <em>q</em><sub>1</sub>, depending on which door will be opened, ensuring that you always win. This operation may seem like we are moving the diamond to a different safe, but that wouldn\'t make sense in the context of the problem. Instead, you can think of it as swapping the positions of the safes without changing your initial choice. Essentially, you\'re keeping your hand on the same safe position (which started as safe 2), but the safes have been rearranged so that your hand is now on the safe that was open in the past, ensuring that your choice is correct.';
                     log.classList.remove('incorrect-answer');
                     log.classList.add('correct-answer');
                 } else if (selectedAnswer.value === 'b') {
-                    log.textContent = 'Incorrect! b';
+                    log.innerHTML = 'Incorrect! In the 2 possible states, the first 3 qubits (starting from the right) are in the state &#8739;100&#10217; or &#8739;010&#10217;, meaning the diamond is in safe 0 or 1. <b>However, that does not mean the diamond is never in safe 2. See the correct answer for more details.</b>';
                     log.classList.remove('correct-answer');
                     log.classList.add('incorrect-answer');
                 } else if (selectedAnswer.value === 'c') {
-                    log.textContent = 'Incorrect! c';
-                    log.classList.remove('correct-answer');
-                    log.classList.add('incorrect-answer');
-                } else if (selectedAnswer.value === 'd') {
-                    log.textContent = 'Incorrect! d';
+                    log.innerHTML = 'Incorrect! If there was no diamond, then first 3 qubits (starting from the right) would be in the &#8739;0&#10217; state.';
                     log.classList.remove('correct-answer');
                     log.classList.add('incorrect-answer');
                 }
