@@ -71,7 +71,7 @@ Now, run the cell below to import the necessary packages.
     from qiskit_aer import Aer, AerSimulator
     </pre>
 
-.. image:: ../images/E2_P1.png
+.. image:: ../images/E2_P1-2.png
     :width: 0.1%
     :height: 0.001px
     :scale: 1%
@@ -206,6 +206,10 @@ The enigma video presented a quantum circuit to solve the hair color problem wit
     # Dahlia takes note of Charlie's hair color
     problem_qc.cx(6,7)
 
+.. raw:: html
+
+    <img class="zoomable" src="../_images/E2_P1-1.png" style="width:100%;cursor:pointer;">
+
 |
 
 **Can you adapt the circuit for 6 people?**
@@ -302,7 +306,7 @@ The enigma video presented a quantum circuit to solve the hair color problem wit
     
     .. raw:: html
 
-        <img class="zoomable" src="../_images/E2_P1.png" style="width:100%;cursor:pointer;">
+        <img class="zoomable" src="../_images/E2_P1-2.png" style="width:100%;cursor:pointer;">
 
 .. image:: ../images/E2_P2.png
     :width: 0.1%
@@ -520,7 +524,10 @@ The goal of this enigma is to determine all the hair colors with the highest pro
         };
     </script>
 
-|
+.. image:: ../images/E2_P1-1.png
+    :width: 0%
+    :height: 0px
+    :scale: 0%
 
 --------------------------------
 **Problem 4 - Quick quiz**

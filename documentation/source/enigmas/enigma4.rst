@@ -365,7 +365,7 @@ You can use the following circuit that is the equivalent of a multicontrolled Ha
 
         problem2_qc = QuantumCircuit(9)
 
-        #hidding the diamond in one of the three safes
+        #hiding the diamond in one of the three safes
         prob_2on3 = 2 * np.arcsin(np.sqrt(2/3))
         problem2_qc.ry(prob_2on3, 0)
         problem2_qc.ch(0, 1)
@@ -603,7 +603,7 @@ Let's run the circuit on a simulator to see the results. Run the cell below.
 
     <pre data-executable="true" data-language="python">
     simulator = AerSimulator()
-    result = simulator.run(transpile(problem3_qc, simulator), shots=1000.result())
+    result = simulator.run(transpile(problem3_qc, simulator), shots=1000).result()
     counts = result.get_counts(problem3_qc)
     plot_histogram(counts)
     </pre>
