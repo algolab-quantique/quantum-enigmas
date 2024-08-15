@@ -1,3 +1,7 @@
+.. meta::
+    :description: Quantum Enigma 002: The Four Hair Colours
+    :title: Enigma 002
+
 ==================================
 Enigma 002 : The Four Hair Colours
 ==================================

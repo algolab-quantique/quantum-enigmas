@@ -1,3 +1,7 @@
+.. meta:: 
+    :description: Quantum Enigma 003: The Four-Square Chessboard
+    :title: Enigma 003
+
 =======================================
 Enigma 003 : The Four-Square Chessboard
 =======================================

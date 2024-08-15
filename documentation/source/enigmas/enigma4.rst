@@ -1,3 +1,7 @@
+.. meta::
+    :description: Quantum Enigma 004 : The Monty Hall Problem
+    :title: Enigma 004
+
 ===================================
 Enigma 004 : The Monty Hall Problem
 ===================================

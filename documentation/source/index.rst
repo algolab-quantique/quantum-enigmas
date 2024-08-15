@@ -3,6 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. meta::
+   :description: Quantum Enigmas Problem Sets are a more advanced series of exercises linked to the Quantum Enigmas animated series. These exercises are designed to be more challenging, as some problems will require you to code in Python using the quantum computing software development kit Qiskit to further develop your understanding of quantum computing.
+   :title: Welcome!
+
 Welcome to Quantum Enigmas Problem Sets!
 ==========================================
 
