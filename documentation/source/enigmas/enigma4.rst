@@ -41,7 +41,6 @@ The diamond you won has disappeared. Your search leads you to Monty Hall Manor, 
             mountStatusWidget: true
         }
     </script>
-    <div class="thebe-activate"></div>
     <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 
 .. margin::
@@ -870,6 +869,7 @@ Let's run the time travel circuit on a simulator to see the results. Run the cel
     observer.observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
     </script>
     <div id="fixed-content">
+        <div class="thebe-activate"></div>
         <div class="thebe-status thebe-status-light"></div>
     </div>
 

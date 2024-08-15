@@ -35,7 +35,6 @@ Alice and Bob continue their journey in space. They are challenged by Aïka, who
             mountStatusWidget: true
         }
     </script>
-    <div class="thebe-activate"></div>
     <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 
 .. margin::
@@ -901,6 +900,7 @@ Here is the way to use the MCX gate if we wanted to have the control-qubits 20, 
     observer.observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
     </script>
     <div id="fixed-content">
+        <div class="thebe-activate"></div>
         <div class="thebe-status thebe-status-light"></div>
     </div>
 

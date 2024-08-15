@@ -52,16 +52,6 @@ html_theme_options = {
 }
 html_title = ""
 
-html_context = {
-    'page_title': {
-        'index': 'Welcome',
-        'enigma2': 'Enigma 002',
-        'enigma3': 'Enigma 003',
-        'enigma4': 'Enigma 004',
-    }
-}
-
-
 ## supress typing warnings
 nitpick_ignore = [("py:class", "type")]
 

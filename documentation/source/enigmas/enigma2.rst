@@ -35,7 +35,6 @@ Are you ready to shift into second gear? At a carnival, Alice, Bob, Charlie, and
             mountStatusWidget: true
         }
     </script>
-    <div class="thebe-activate"></div>
     <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 
 .. margin::
@@ -876,6 +875,7 @@ Run the following code to execute the quantum circuit for 4 players on a simulat
     observer.observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
     </script>
     <div id="fixed-content">
+        <div class="thebe-activate"></div>
         <div class="thebe-status thebe-status-light"></div>
     </div>
 
