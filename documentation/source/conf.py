@@ -50,7 +50,7 @@ html_theme_options = {
         "image_dark": "_branding/logo_white.png",
     }
 }
-html_title = "Quantum Enigma"
+#html_title = "Quantum Enigma"
 
 
 ## supress typing warnings
