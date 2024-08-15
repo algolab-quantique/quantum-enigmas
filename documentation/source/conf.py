@@ -26,6 +26,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx_mdinclude",
     "sphinx_thebe",
+    "sphinx_design",
 ]
 
 
@@ -37,7 +38,6 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "sphinx_book_theme"
-# html_logo = "_branding/.png"
 html_favicon = "_branding/kettu.png"
 html_theme_options = {
     "repository_url": "https://github.com/algolab-quantique/quantum-enigmas",
@@ -50,8 +50,7 @@ html_theme_options = {
         "image_dark": "_branding/logo_white.png",
     },
 }
-html_title = "Quantum Enigma"
-
+html_title = ""
 
 ## supress typing warnings
 nitpick_ignore = [("py:class", "type")]
