@@ -1,0 +1,20 @@
+1. Inserting an image with html
+
+    If you wish to insert images using the <img> tag, simply doing: 
+        
+        .. raw:: html
+        
+            <img src="../images/example.png">
+    
+    will not work. You have to declare the image somewhere in the document using an rst markup (.. image:: or .. figure:: ). This will cause the script behind the GitHub actions to create a folder "_images" and insert the image inside when translating .rst files to .html files. You can do something like:
+
+        .. image:: ../images/example.png
+            :width: 0%
+            :height: 0px
+            :scale: 0%
+
+    to at least declare the image, but have it take almost no space. It is then possible to insert the image using the <img> tag like this:
+    
+        .. raw:: html
+        
+            <img src="../_images/example.png">
