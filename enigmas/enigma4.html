@@ -1,0 +1,1182 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Enigma 004 : The Monty Hall Exercise</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'enigmas/enigma4';</script>
+    <link rel="icon" href="../_static/kettu.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Enigma 003 : The Four-Square Chessboard" href="enigma3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_black.png" class="logo__image only-light" alt=" - Home"/>
+    <script>document.write(`<img src="../_static/logo_white.png" class="logo__image only-dark" alt=" - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Welcome to Quantum Enigmas Coding Exercises!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercises:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="enigma1.html">Enigma 001 : The Treasure Door</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enigma2.html">Enigma 002 : The Four Hair Colours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enigma3.html">Enigma 003 : The Four-Square Chessboard</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Enigma 004 : The Monty Hall Exercise</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Enigma 004 : The Monty Hall Exercise</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-code-writing"><strong>Exercise 1 - Code writing</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-code-writing"><strong>Exercise 2 - Code writing</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-code-writing"><strong>Exercise 3 - Code writing</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-quick-quiz"><strong>Exercise 4 - Quick quiz</strong></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>This website is still under construction.</p>
+</div>
+<section id="enigma-004-the-monty-hall-exercise">
+<h1>Enigma 004 : The Monty Hall Exercise<a class="headerlink" href="#enigma-004-the-monty-hall-exercise" title="Link to this heading">#</a></h1>
+<p>The diamond you won has disappeared. Your search leads you to Monty Hall Manor, where Kettu has hidden your diamond in one of the three safes in front of you. If you choose the right safe, you can retrieve your diamond, otherwise Kettu will keep it forever. Can you determine the best approach to win to solving this enigma?</p>
+<p><strong>Make sure to watch the following video before getting started with this exercise:</strong></p>
+<iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/Hd9KhRts1uw?rel=0" allowfullscreen="">
+</iframe><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../_images/E4_MCH.png"><img alt="../_images/E4_MCH.png" src="../_images/E4_MCH.png" style="width: 0.0%; height: 0.0px;" />
+</a>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-fade-in">
+<summary class="sd-summary-title sd-card-header sd-bg-warning sd-bg-text-warning">
+<span class="sd-summary-text"><svg version="4.0.0.63c5cb3" width="1.2em" height="1.2em" class="sd-material-icon sd-material-icon-error sd-text-warning" viewBox="0 0 24 24" aria-hidden="true"><path d="M0 0h24v24H0z" fill="none"></path><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg> Important</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">On this website, you will be able to write and run your own Python code. To do so, you will need to click on the “Activate” button to enable all the code editors and establish a connection to a Kernel. Once clicked, you will see that the Status widget will start to show the connection progress, as well as the connection information. You are ready to write and run your code once you see <code class="code docutils literal notranslate"><span class="pre">Status:Kernel</span> <span class="pre">Connected</span></code> and <code class="code docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">thebe.ipynb</span> <span class="pre">status</span> <span class="pre">changed</span> <span class="pre">to</span> <span class="pre">ready[idle]</span></code> just below. <strong>Please note that that refreshing the page in any way will cause you to lose all the code that you wrote</strong>. If you run into any issues, please try to reconnect by clicking on the “Activate” button again or reloading the page.</p>
+</div>
+</details><!-- Configure and load Thebe !-->
+<script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        kernelOptions: {
+            name: "python3",
+        },
+        binderOptions: {
+            repo: "algolab-quantique/quantum-enigmas",
+        },
+        mountActivateWidget: true,
+        mountStatusWidget: true
+    }
+</script>
+<script src="https://unpkg.com/thebe@latest/lib/index.js"></script><aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-fade-in">
+<summary class="sd-summary-title sd-card-header sd-bg-info sd-bg-text-info">
+<span class="sd-summary-text"><svg version="4.0.0.63c5cb3" width="1.2em" height="1.2em" class="sd-material-icon sd-material-icon-info sd-text-info" viewBox="0 0 24 24" aria-hidden="true"><path d="M0 0h24v24H0z" fill="none"></path><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg> Note</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">When running your code, you’ll know that the code is running if you see <code class="code docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">thebe.ipynb</span> <span class="pre">status</span> <span class="pre">changed</span> <span class="pre">to</span> <span class="pre">ready[busy]</span></code>. If it seems to stay on <code class="code docutils literal notranslate"><span class="pre">ready[idle]</span></code> when running your code and/or you’re not getting an output when you’re supposed to, it most likely means that there’s an error in your code. Since the code editor seems to be struggling with outputting error messages, there is no output.</p>
+</div>
+</details></aside>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Run the cell below to install the necessary packages.</p>
+<pre data-executable="true" data-language="python" data-readonly>
+import sys
+!{sys.executable} -m pip install qiskit==1.1.1
+!{sys.executable} -m pip install qiskit_aer==0.14.2
+!{sys.executable} -m pip install pylatexenc==2.10
+
+# Import necessary modules
+import numpy as np
+from qiskit import QuantumCircuit
+</pre><a class="reference internal image-reference" href="../_images/E4_P1.png"><img alt="../_images/E4_P1.png" src="../_images/E4_P1.png" style="width: 0.0%; height: 0.0px;" />
+</a>
+<section id="exercise-1-code-writing">
+<h2><strong>Exercise 1 - Code writing</strong><a class="headerlink" href="#exercise-1-code-writing" title="Link to this heading">#</a></h2>
+<style>
+.zoomable-container {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+
+.zoomable {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+#imageModal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+#imageModal img {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+}
+
+#imageModal .close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+#imageModal .close:hover,
+#imageModal .close:focus {
+    color: #bbb;
+}
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("img01");
+
+        document.querySelectorAll('.zoomable').forEach(function(image) {
+            image.onclick = function() {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+            }
+        });
+
+        var closeBtn = document.getElementsByClassName("close")[0];
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+    });
+</script>
+<div id="imageModal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+</div><p><strong>Write a circuit that would only use 3 qubits instead of 4 (and still assuming that you initially chose safe number 2) for Enigma 004 - The Monty Hall Exercise.</strong></p>
+<style>
+.hint {
+    width: 90%;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: lightblue;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    display: none;
+    text-align: left;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hint img {
+    max-width: 100%;
+    height: auto;
+}
+
+.hint.dark {
+    background-color: #333;
+    color: #fff;
+}
+
+.hint-button {
+    margin: 10px 0;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+.hint-button:hover {
+    background-color: #45a049;
+}
+
+.hint-button.dark {
+    background-color: #555;
+    color: #fff;
+}
+
+.hint-button.dark:hover {
+    background-color: #444;
+}
+</style>
+
+<script>
+function toggleHint(id) {
+    var hint = document.getElementById(id);
+    hint.style.display = (hint.style.display === "block") ? "none" : "block";
+}
+
+var observer = new MutationObserver(function(mutations) {
+    const dark = document.documentElement.dataset.theme === 'dark';
+    const hints = document.getElementsByClassName('hint');
+    const buttons = document.getElementsByClassName('hint-button');
+    for (let hint of hints) {
+        if (dark) {
+            hint.classList.add('dark');
+        } else {
+            hint.classList.remove('dark');
+        }
+    }
+    for (let button of buttons) {
+        if (dark) {
+            button.classList.add('dark');
+        } else {
+            button.classList.remove('dark');
+        }
+    }
+});
+observer.observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
+</script>
+
+<button class="hint-button" onclick="toggleHint('q1_hint1')">Click to reveal HINT 1</button>
+<div id="q1_hint1" class="hint">
+    Use only two qubits to represent the three safes.
+</div>
+
+<button class="hint-button" onclick="toggleHint('q1_hint2')">Click to reveal HINT 2</button>
+<div id="q1_hint2" class="hint">
+    Find a way to obtain <sup>1</sup>&frasl;<sub>3</sub> probability of measuring 00, 01, and 10 (the binary equivalent of 0, 1, and 2).
+</div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<pre data-executable="true" data-language="python">
+problem1_qc = QuantumCircuit(3)
+
+### Start your work here ###
+
+problem1_qc.draw("mpl")
+</pre><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header sd-bg-muted sd-bg-text-muted">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-eye" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2c1.981 0 3.671.992 4.933 2.078 1.27 1.091 2.187 2.345 2.637 3.023a1.62 1.62 0 0 1 0 1.798c-.45.678-1.367 1.932-2.637 3.023C11.67 13.008 9.981 14 8 14c-1.981 0-3.671-.992-4.933-2.078C1.797 10.83.88 9.576.43 8.898a1.62 1.62 0 0 1 0-1.798c.45-.677 1.367-1.931 2.637-3.022C4.33 2.992 6.019 2 8 2ZM1.679 7.932a.12.12 0 0 0 0 .136c.411.622 1.241 1.75 2.366 2.717C5.176 11.758 6.527 12.5 8 12.5c1.473 0 2.825-.742 3.955-1.715 1.124-.967 1.954-2.096 2.366-2.717a.12.12 0 0 0 0-.136c-.412-.621-1.242-1.75-2.366-2.717C10.824 4.242 9.473 3.5 8 3.5c-1.473 0-2.825.742-3.955 1.715-1.124.967-1.954 2.096-2.366 2.717ZM8 10a2 2 0 1 1-.001-3.999A2 2 0 0 1 8 10Z"></path></svg></span><span class="sd-summary-text">Click to reveal the answer</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">problem1_qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">prob_2on3</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span>
+<span class="c1">#Placing the diamond with 1/3 probability for each measure of 00, 01, and 10.</span>
+<span class="n">problem1_qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">prob_2on3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">problem1_qc</span><span class="o">.</span><span class="n">ch</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">problem1_qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">problem1_qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1">#Opening safe 1 if the diamond is in safe 0</span>
+<span class="n">problem1_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="n">ctrl_state</span><span class="o">=</span><span class="s1">&#39;00&#39;</span><span class="p">)</span>
+<span class="n">problem1_qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1">#Opening safe 0 or 1 if the diamond is in safe 2</span>
+<span class="n">problem1_qc</span><span class="o">.</span><span class="n">ch</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">problem1_qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img class="zoomable" src="../_images/E4_P1.png" style="width:100%;cursor:pointer;"></div>
+</details><a class="reference internal image-reference" href="../_images/E4_P2.png"><img alt="../_images/E4_P2.png" src="../_images/E4_P2.png" style="width: 0.0%; height: 0.0px;" />
+</a>
+</section>
+<section id="exercise-2-code-writing">
+<h2><strong>Exercise 2 - Code writing</strong><a class="headerlink" href="#exercise-2-code-writing" title="Link to this heading">#</a></h2>
+<p><strong>Write a circuit (using three qubits to hide the diamond exactly like in the enigma) that would randomly determine the chest you choose at the start, and also determine which safe will be opened.</strong></p>
+<p>You can use the following circuit that is the equivalent of a multicontrolled Hadamard gate:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">problem2_qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<img class="zoomable" src="../_images/E4_MCH.png" style="width:50%;cursor:pointer"><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<button class="hint-button" onclick="toggleHint('q2_hint1')">Click to reveal HINT 1</button>
+<div id="q2_hint1" class="hint">
+    You can use <em>q</em><sub>3</sub>, <em>q</em><sub>4</sub>, and <em>q</em><sub>5</sub> to determine the safe you put your hand on at first and <em>q</em><sub>6</sub>, <em>q</em><sub>7</sub>, and <em>q</em><sub>8</sub> to determine which safe will be opened (safe 0 is linked to <em>q</em><sub>0</sub>, <em>q</em><sub>3</sub>, and <em>q</em><sub>6</sub>; safe 1 is linked to <em>q</em><sub>1</sub>, <em>q</em><sub>4</sub>, and <em>q</em><sub>7</sub>; safe 2 is linked to <em>q</em><sub>2</sub>, <em>q</em><sub>5</sub>, and <em>q</em><sub>8</sub>).
+</div>
+
+<button class="hint-button" onclick="toggleHint('q2_hint2')">Click to reveal HINT 2</button>
+<div id="q2_hint2" class="hint">
+    The circuit to randomly choose the safe you put your hand on at the start is the same as the one used to hide the diamond.
+</div>
+
+<button class="hint-button" onclick="toggleHint('q2_hint3')">Click to reveal HINT 3</button>
+<div id="q2_hint3" class="hint">
+    For the circuit to determine which safe will be opened, start with the three cases where the diamond and your hand are on the same safe.
+</div><pre data-executable="true" data-language="python">
+problem2_qc = QuantumCircuit(9)
+prob_2on3 = 2 * np.arcsin(np.sqrt(2/3))
+
+### Start your work here ###
+
+problem2_qc.draw("mpl")
+</pre><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header sd-bg-muted sd-bg-text-muted">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-eye" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2c1.981 0 3.671.992 4.933 2.078 1.27 1.091 2.187 2.345 2.637 3.023a1.62 1.62 0 0 1 0 1.798c-.45.678-1.367 1.932-2.637 3.023C11.67 13.008 9.981 14 8 14c-1.981 0-3.671-.992-4.933-2.078C1.797 10.83.88 9.576.43 8.898a1.62 1.62 0 0 1 0-1.798c.45-.677 1.367-1.931 2.637-3.022C4.33 2.992 6.019 2 8 2ZM1.679 7.932a.12.12 0 0 0 0 .136c.411.622 1.241 1.75 2.366 2.717C5.176 11.758 6.527 12.5 8 12.5c1.473 0 2.825-.742 3.955-1.715 1.124-.967 1.954-2.096 2.366-2.717a.12.12 0 0 0 0-.136c-.412-.621-1.242-1.75-2.366-2.717C10.824 4.242 9.473 3.5 8 3.5c-1.473 0-2.825.742-3.955 1.715-1.124.967-1.954 2.096-2.366 2.717ZM8 10a2 2 0 1 1-.001-3.999A2 2 0 0 1 8 10Z"></path></svg></span><span class="sd-summary-text">Click to reveal the answer</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">problem2_qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+
+<span class="c1">#hiding the diamond in one of the three safes</span>
+<span class="n">prob_2on3</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">prob_2on3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">ch</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">#choosing one of the three safes</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">prob_2on3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">ch</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1">#door to open in case the diamond and your hand are on safe 0</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">ch</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+<span class="c1">#door to open in case the diamond and your hand are on safe 1</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">ch</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">we must use an extra control on q1 or q4 for the case</span>
+<span class="sd">q8 is in the 1 state to avoid carelessly changing the state of q6</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+<span class="c1">#door to open in case the diamond and your hand are on safe 2</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">we must use an extra control on q2 or q5 for the case</span>
+<span class="sd">q6 is in the 1 state to avoid carelessly changing the state of q7</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">we must use an extra control on q2 or q5 for the case</span>
+<span class="sd">q7 is in the 1 state to avoid carelessly changing the state of q6</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1">#door to open in case the diamond is in safe 0 and your hand are on safe 1</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">8</span><span class="p">)</span>
+<span class="c1">#door to open in case the diamond is in safe 0 and your hand are on safe 2</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="mi">7</span><span class="p">)</span>
+<span class="c1">#door to open in case the diamond is in safe 1 and your hand are on safe 0</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">8</span><span class="p">)</span>
+<span class="c1">#door to open in case the diamond is in safe 1 and your hand are on safe 2</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="mi">6</span><span class="p">)</span>
+<span class="c1">#door to open in case the diamond is in safe 2 and your hand are on safe 0</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">7</span><span class="p">)</span>
+<span class="c1">#door to open in case the diamond is in safe 2 and your hand are on safe 1</span>
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="n">problem2_qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img class="zoomable" src="../_images/E4_P2.png" style="width:100%;cursor:pointer"></div>
+</details><a class="reference internal image-reference" href="../_images/E4_P3-1.png"><img alt="../_images/E4_P3-1.png" src="../_images/E4_P3-1.png" style="width: 0.0%; height: 0.0px;" />
+</a>
+</section>
+<section id="exercise-3-code-writing">
+<h2><strong>Exercise 3 - Code writing</strong><a class="headerlink" href="#exercise-3-code-writing" title="Link to this heading">#</a></h2>
+<p><em><span style="font-size: 24px;">Time travel</span></em></p><p>One very important aspect of quantim computing is that all quantum logic gates have an inverse. This means that it is possible to simulate time traveling by going to the end of an algorithm and coming back at the start simply using the inverse of every gate in a backward manner.</p>
+<p>The following circuit shows the algorithm seen in the video with an extra qubit used for deciding which door will be opened in the case the diamond is in safe 2 at the beginning <strong>(and assuming that you initially chose safe 2)</strong>. The circuit has been written up to the point in time a safe has been opened by Kettu.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qreg_q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">)</span>
+<span class="n">creg_c</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="n">creg_d</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">)</span>
+<span class="n">creg_f</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">)</span>
+<span class="n">creg_g</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">problem3_qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">qreg_q</span><span class="p">,</span> <span class="n">creg_c</span><span class="p">,</span> <span class="n">creg_d</span><span class="p">,</span> <span class="n">creg_f</span><span class="p">,</span> <span class="n">creg_g</span><span class="p">)</span>
+<span class="n">prob_2on3</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">prob_2on3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;&quot;</span>
+<span class="sd">## q4 is used to decide which door will be opened in case</span>
+<span class="sd">   the diamond is in safe 2 at the beginning.</span>
+<span class="sd">## This is necessary since we don&#39;t want this information to be lost</span>
+<span class="sd">   when measuring q3 again after going back in time.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">ch</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img class="zoomable" src="../_images/E4_P3-1.png" style="width:80%;cursor:pointer"><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>Write the rest of the algorithm to travel in time going back to the beginning, choosing a strategy that will allow you to proceed with the rest of the algorithm and win the diamond everytime.</strong></p>
+<style>
+    .code-inline {
+        font-size: 0.85em;
+        background-color: #ECECEC;
+        padding: 4px 4px;
+        border-radius: 4px;
+        color: #92418B;
+    }
+</style>
+
+<button class="hint-button" onclick="toggleHint('q3_hint1')">Click to reveal HINT 1</button>
+<div id="q3_hint1" class="hint">
+    Place the gates in reverse order upto the barrier and choose a safe the diamond is not in.
+</div>
+
+<button class="hint-button" onclick="toggleHint('q3_hint2')">Click to reveal HINT 2</button>
+<div id="q3_hint2" class="hint">
+    Use conditional swap to make sure you choose a safe the diamond is not in. For example, here is how you would apply a NOT gate on <em>q</em><sub>0</sub> with the condition that the classical register g has the value 1: <code class=code-inline>problem3_qc.x(0).c_if(creg_g, 1)</code>
+</div><pre data-executable="true" data-language="python">
+qreg_q = QuantumRegister(5, 'q')
+creg_c = ClassicalRegister(1, 'c')
+creg_d = ClassicalRegister(1, 'd')
+creg_f = ClassicalRegister(1, 'f')
+creg_g = ClassicalRegister(1, 'g')
+problem3_qc = QuantumCircuit(qreg_q, creg_c, creg_d, creg_f, creg_g)
+
+prob_2on3 = 2 * np.arcsin(np.sqrt(2/3))
+problem3_qc.ry(prob_2on3, 0)
+problem3_qc.h(4)
+problem3_qc.ch(0, 1)
+problem3_qc.cx(1, 2)
+problem3_qc.cx(0, 1)
+problem3_qc.x(0)
+problem3_qc.barrier()
+problem3_qc.cx(0, 3)
+problem3_qc.mcx([2, 4], 3)
+problem3_qc.measure(3, creg_g[0])
+
+
+### Start your work here ###
+
+problem3_qc.barrier()
+problem3_qc.measure(0, creg_c[0])
+problem3_qc.measure(1, creg_d[0])
+problem3_qc.measure(2, creg_f[0])
+problem3_qc.measure(3, creg_g[0])
+
+problem3_qc.draw("mpl")
+</pre><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header sd-bg-muted sd-bg-text-muted">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-eye" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2c1.981 0 3.671.992 4.933 2.078 1.27 1.091 2.187 2.345 2.637 3.023a1.62 1.62 0 0 1 0 1.798c-.45.678-1.367 1.932-2.637 3.023C11.67 13.008 9.981 14 8 14c-1.981 0-3.671-.992-4.933-2.078C1.797 10.83.88 9.576.43 8.898a1.62 1.62 0 0 1 0-1.798c.45-.677 1.367-1.931 2.637-3.022C4.33 2.992 6.019 2 8 2ZM1.679 7.932a.12.12 0 0 0 0 .136c.411.622 1.241 1.75 2.366 2.717C5.176 11.758 6.527 12.5 8 12.5c1.473 0 2.825-.742 3.955-1.715 1.124-.967 1.954-2.096 2.366-2.717a.12.12 0 0 0 0-.136c-.412-.621-1.242-1.75-2.366-2.717C10.824 4.242 9.473 3.5 8 3.5c-1.473 0-2.825.742-3.955 1.715-1.124.967-1.954 2.096-2.366 2.717ZM8 10a2 2 0 1 1-.001-3.999A2 2 0 0 1 8 10Z"></path></svg></span><span class="sd-summary-text">Click to reveal the answer</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qreg_q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">)</span>
+<span class="n">creg_c</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="n">creg_d</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">)</span>
+<span class="n">creg_f</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">)</span>
+<span class="n">creg_g</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">problem3_qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">qreg_q</span><span class="p">,</span> <span class="n">creg_c</span><span class="p">,</span> <span class="n">creg_d</span><span class="p">,</span> <span class="n">creg_f</span><span class="p">,</span> <span class="n">creg_g</span><span class="p">)</span>
+
+<span class="n">prob_2on3</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">prob_2on3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">ch</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">creg_g</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">swap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">c_if</span><span class="p">(</span><span class="n">creg_g</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">swap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">c_if</span><span class="p">(</span><span class="n">creg_g</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">mcx</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">creg_c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">creg_d</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">creg_f</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">creg_g</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">problem3_qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img class="zoomable" src="../_images/E4_P3-2.png" style="width:100%;cursor:pointer"></div>
+</details><a class="reference internal image-reference" href="../_images/E4_P3-2.png"><img alt="../_images/E4_P3-2.png" src="../_images/E4_P3-2.png" style="width: 0.0%; height: 0.0px;" />
+</a>
+</section>
+<section id="exercise-4-quick-quiz">
+<h2><strong>Exercise 4 - Quick quiz</strong><a class="headerlink" href="#exercise-4-quick-quiz" title="Link to this heading">#</a></h2>
+<p>Let’s run the time travel circuit on a simulator to see the results. Run the cell below.</p>
+<pre data-executable="true" data-language="python">
+# Time travel circuit
+qreg_q = QuantumRegister(5, 'q')
+creg_c = ClassicalRegister(1, 'c')
+creg_d = ClassicalRegister(1, 'd')
+creg_f = ClassicalRegister(1, 'f')
+creg_g = ClassicalRegister(1, 'g')
+problem3_qc = QuantumCircuit(qreg_q, creg_c, creg_d, creg_f, creg_g)
+
+prob_2on3 = 2 * np.arcsin(np.sqrt(2/3))
+problem3_qc.ry(prob_2on3, 0)
+problem3_qc.h(4)
+problem3_qc.ch(0, 1)
+problem3_qc.cx(1, 2)
+problem3_qc.cx(0, 1)
+problem3_qc.x(0)
+problem3_qc.barrier()
+problem3_qc.cx(0, 3)
+problem3_qc.mcx([2, 4], 3)
+problem3_qc.measure(3, creg_g[0])
+
+problem3_qc.mcx([2, 4], 3)
+problem3_qc.cx(0, 3)
+problem3_qc.barrier()
+problem3_qc.swap(0, 2).c_if(creg_g, 0)
+problem3_qc.swap(1, 2).c_if(creg_g, 1)
+problem3_qc.cx(0, 3)
+problem3_qc.mcx([2, 4], 3)
+
+problem3_qc.barrier()
+problem3_qc.measure(0, creg_c[0])
+problem3_qc.measure(1, creg_d[0])
+problem3_qc.measure(2, creg_f[0])
+problem3_qc.measure(3, creg_g[0])
+
+# Executing the circuit on a simulator
+simulator = AerSimulator()
+result = simulator.run(transpile(problem3_qc, simulator), shots=1000).result()
+counts = result.get_counts(problem3_qc)
+plot_histogram(counts)
+</pre><style>
+
+    .button-23 {
+        background-color: #D7D7D7;
+        border: 1px solid #222222;
+        border-radius: 8px;
+        box-sizing: border-box;
+        color: #222222;
+        cursor: pointer;
+        display: inline-block;
+        font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 20px;
+        margin: 0;
+        outline: none;
+        padding: 13px 23px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        touch-action: manipulation;
+        transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+        user-select: none;
+        -webkit-user-select: none;
+        width: auto;
+    }
+
+    .button-23:focus-visible {
+    box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+    transition: box-shadow .2s;
+    }
+
+    .button-23:active {
+    background-color: #F7F7F7;
+    border-color: #000000;
+    transform: scale(.96);
+    }
+
+    .button-23:disabled {
+    border-color: #DDDDDD;
+    color: #DDDDDD;
+    cursor: not-allowed;
+    opacity: 1;
+    }
+</style><p><strong>What is the meaning of the result?</strong></p>
+<blockquote>
+<div><style>
+    #log1 {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    .correct-answer {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        color: #155724;
+    }
+
+    .incorrect-answer {
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        color: #721c24;
+    }
+</style>
+
+<form id="question1-form">
+    <div id="answers-container-q1"></div>
+    <button type="submit" class="button-23">Submit Answer</button>
+</form>
+<pre id="log1"></pre></div></blockquote>
+<script>
+    // List of answers
+    const answersQ1 = [
+        { id: 'q1a', value: 'a', text: 'You always choose a safe the diamond is not in.' },
+        { id: 'q1b', value: 'b', text: 'The diamond is always in safe 2.' },
+        { id: 'q1c', value: 'c', text: 'There is no more diamond.' }
+    ];
+
+    // Function to shuffle the answers
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    // Shuffle the answers
+    shuffle(answersQ1);
+
+    // Insert shuffled answers into the form
+    const containerQ1 = document.getElementById('answers-container-q1');
+    answersQ1.forEach(answer => {
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.id = answer.id;
+        input.name = 'q1';
+        input.value = answer.value;
+
+        const label = document.createElement('label');
+        label.htmlFor = answer.id;
+        label.textContent = answer.text;
+
+        containerQ1.appendChild(input);
+        containerQ1.appendChild(label);
+        containerQ1.appendChild(document.createElement('br'));
+    });
+
+    // Handle form submission
+    document.querySelector('#question1-form').onsubmit = function(e) {
+        e.preventDefault();
+        const log = document.getElementById('log1');
+        const selectedAnswer = document.querySelector('input[name="q1"]:checked');
+        if (selectedAnswer) {
+            if (selectedAnswer.value === 'a') {
+                log.innerHTML = 'Correct! The result shows that there are only 2 possible states: either the diamond is in safe 0 and safe 1 is open, or safe 1 has the diamond and safe 0 is open. Since we are assuming you initially chose safe 2, you always win by switching safes at the end. The result might suggest that the diamond in never in safe 2, but that is not the case. In the circuit, when the diamond is in safe 2-meaning you will lose-we use conditional SWAP gates to interchange the &#8739;1&#10217; state of <em>q</em><sub>2</sub> with the &#8739;0&#10217; state of <em>q</em><sub>0</sub> or <em>q</em><sub>1</sub>, depending on which door will be opened, ensuring that you always win. This operation may seem like we are moving the diamond to a different safe, but that wouldn\'t make sense in the context of the problem. Instead, you can think of it as swapping the positions of the safes without changing your initial choice. Essentially, you\'re keeping your hand on the same safe position (which started as safe 2), but the safes have been rearranged so that your hand is now on the safe that was open in the past, ensuring that your choice is correct.';
+                log.classList.remove('incorrect-answer');
+                log.classList.add('correct-answer');
+            } else if (selectedAnswer.value === 'b') {
+                log.innerHTML = 'Incorrect! In the 2 possible states, the first 3 qubits (starting from the right) are in the state &#8739;100&#10217; or &#8739;010&#10217;, meaning the diamond is in safe 0 or 1. <b>However, that does not mean the diamond is never in safe 2. See the correct answer for more details.</b>';
+                log.classList.remove('correct-answer');
+                log.classList.add('incorrect-answer');
+            } else if (selectedAnswer.value === 'c') {
+                log.innerHTML = 'Incorrect! If there was no diamond, then first 3 qubits (starting from the right) would be in the &#8739;0&#10217; state.';
+                log.classList.remove('correct-answer');
+                log.classList.add('incorrect-answer');
+            }
+        } else {
+            log.textContent = 'Select an answer before submitting.';
+        }
+    };
+</script><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<style>
+    #fixed-content {
+        position: fixed;
+        right: 10px; /* Initial visible position */
+        top: 250px;
+        width: 210px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 10px;
+        transition: right 0.3s;
+        z-index: 1000;
+    }
+
+    #fixed-content.hidden {
+        right: -210px; /* Hidden position */
+    }
+
+    #toggle-button {
+        position: fixed;
+        right: 220px; /* Position next to the visible content */
+        top: 250px;
+        width: 30px;
+        background-color: #ccc;
+        border: 1px solid #ddd;
+        padding: 10px;
+        cursor: pointer;
+        transition: right 0.3s;
+        z-index: 1001;
+    }
+
+    #toggle-button.hidden {
+        right: 10px; /* Position when content is hidden */
+    }
+
+    .arrow {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-right: 2px solid black;
+        border-bottom: 2px solid black;
+        transform: rotate(-45deg);
+        margin-left: -3px;
+    }
+
+    .arrow.right {
+        transform: rotate(135deg);
+        margin-left: 2px;
+    }
+
+    .thebe-status-light {
+        color: #000; /* light theme text color */
+    }
+
+    .thebe-status-dark {
+        color: #000; /* dark theme text color */
+    }
+
+    /* Color transition */
+    .thebe-status {
+        transition: color 0.3s ease;
+    }
+</style>
+
+<div id="toggle-button">
+    <span class="arrow"></span>
+</div>
+<script type="text/javascript">
+var observer = new MutationObserver(function(mutations) {
+    const dark = document.documentElement.dataset.theme == 'dark';
+    const thebeStatusElements = document.getElementsByClassName('thebe-status');
+    for (let el of thebeStatusElements) {
+        if (dark) {
+            el.classList.add('thebe-status-dark');
+            el.classList.remove('thebe-status-light');
+        } else {
+            el.classList.add('thebe-status-light');
+            el.classList.remove('thebe-status-dark');
+        }
+    }
+});
+observer.observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
+</script>
+<div id="fixed-content">
+    <div class="thebe-activate"></div>
+    <div class="thebe-status thebe-status-light"></div>
+</div>
+
+<script>
+    document.getElementById('toggle-button').onclick = function() {
+        var fixedContent = document.getElementById('fixed-content');
+        var toggleButton = document.getElementById('toggle-button');
+        var arrow = toggleButton.querySelector('.arrow');
+
+        if (fixedContent.classList.contains('hidden')) {
+            fixedContent.classList.remove('hidden');
+            toggleButton.classList.remove('hidden');
+            arrow.classList.remove('right');
+        } else {
+            fixedContent.classList.add('hidden');
+            toggleButton.classList.add('hidden');
+            arrow.classList.add('right');
+        }
+    };
+</script></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./enigmas"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="enigma3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Enigma 003 : The Four-Square Chessboard</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-code-writing"><strong>Exercise 1 - Code writing</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-code-writing"><strong>Exercise 2 - Code writing</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-code-writing"><strong>Exercise 3 - Code writing</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-quick-quiz"><strong>Exercise 4 - Quick quiz</strong></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By AlgoLab
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, AlgoLab.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
