@@ -1,5 +1,5 @@
 ====================================
-Enigma 004 : The Monty Hall Exercice
+Enigma 004 : The Monty Hall Exercise
 ====================================
 
 The diamond you won has disappeared. Your search leads you to Monty Hall Manor, where Kettu has hidden your diamond in one of the three safes in front of you. If you choose the right safe, you can retrieve your diamond, otherwise Kettu will keep it forever. Can you determine the best approach to win to solving this enigma?
@@ -74,7 +74,7 @@ Run the cell below to install the necessary packages.
     :scale: 0%
 
 ------------------------------
-**Exercice 1 - Code writing**
+**Exercise 1 - Code writing**
 ------------------------------
 
 .. raw:: html
@@ -161,7 +161,7 @@ Run the cell below to install the necessary packages.
         <img class="modal-content" id="img01">
     </div>
 
-**Write a circuit that would only use 3 qubits instead of 4 (and still assuming that you initially chose safe number 2) for Enigma 004 - The Monty Hall Exercice.**
+**Write a circuit that would only use 3 qubits instead of 4 (and still assuming that you initially chose safe number 2) for Enigma 004 - The Monty Hall Exercise.**
 
 .. raw:: html
 
@@ -302,7 +302,7 @@ Run the cell below to install the necessary packages.
     :scale: 0%
 
 ------------------------------
-**Exercice 2 - Code writing**
+**Exercise 2 - Code writing**
 ------------------------------
 
 **Write a circuit (using three qubits to hide the diamond exactly like in the enigma) that would randomly determine the chest you choose at the start, and also determine which safe will be opened.**
@@ -430,7 +430,7 @@ You can use the following circuit that is the equivalent of a multicontrolled Ha
     :scale: 0%
 
 ------------------------------
-**Exercice 3 - Code writing**
+**Exercise 3 - Code writing**
 ------------------------------
 
 .. raw:: html
@@ -585,7 +585,7 @@ The following circuit shows the algorithm seen in the video with an extra qubit 
     :scale: 0%
 
 ----------------------------
-**Exercice 4 - Quick quiz**
+**Exercise 4 - Quick quiz**
 ----------------------------
 
 Let's run the time travel circuit on a simulator to see the results. Run the cell below.

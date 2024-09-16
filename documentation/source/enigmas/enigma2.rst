@@ -69,7 +69,7 @@ Run the cell below to install the necessary packages.
     :scale: 1%
 
 --------------------------------
-**Exercice 1 - Code writing**
+**Exercise 1 - Code writing**
 --------------------------------
 
 .. raw:: html
@@ -306,7 +306,7 @@ The enigma video presented a quantum circuit to solve the hair color problem wit
     :scale: 1%
 
 --------------------------------
-**Exercice 2 - Code writing**
+**Exercise 2 - Code writing**
 --------------------------------
 
 Simplify the code with a :code:`for` loop. Can you write a circuit for any number of people using a for loop?
@@ -367,7 +367,7 @@ Simplify the code with a :code:`for` loop. Can you write a circuit for any numbe
 |
 
 --------------------------------
-**Exercice 3 - Quick quiz**
+**Exercise 3 - Quick quiz**
 --------------------------------
 
 .. raw:: html
@@ -522,7 +522,7 @@ The goal of this enigma is to determine all the hair colors with the highest pro
     :scale: 0%
 
 --------------------------------
-**Exercice 4 - Quick quiz**
+**Exercise 4 - Quick quiz**
 --------------------------------
 
 In all of the quantum circuits for this enigma, one qubit is never entangled. Which one is it?
@@ -614,7 +614,7 @@ In all of the quantum circuits for this enigma, one qubit is never entangled. Wh
 |
 
 --------------------------------
-**Exercice 5 - Quick quiz**
+**Exercise 5 - Quick quiz**
 --------------------------------
 
 Run the following code to execute the quantum circuit for 4 players on a simulator.

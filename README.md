@@ -1,9 +1,9 @@
 
-# Quantum Enigmas Exercice Sets
+# Quantum Enigmas Coding Exercises
 
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
-The Quantum Enigmas Exercice Sets repository compiles a series of exercises to indroduce Quantum computing for everyone.
+The Quantum Enigmas Coding Exercises repository compiles a series of exercises to indroduce Quantum computing for everyone.
 
 Access the [Quantum Enigmas](https://www.usherbrooke.ca/iq/quantumenigmas/).
 

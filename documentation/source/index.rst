@@ -3,11 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Quantum Enigmas Exercice Sets!
+Welcome to Quantum Enigmas Coding Exercises!
 ==========================================
 
 
-The Quantum Enigmas Exercice sets are a more advanced series of exercises linked to the `Quantum Enigmas <https://www.usherbrooke.ca/iq/enigmesquantiques/#>`_ animated series. These exercises are designed to be more challenging, as some problems will require you to code in Python using the quantum computing software development kit **Qiskit** to further develop your understanding of quantum computing.
+The Quantum Enigmas Coding Exercises are a more advanced series of exercises linked to the `Quantum Enigmas <https://www.usherbrooke.ca/iq/enigmesquantiques/#>`_ animated series. These exercises are designed to be more challenging, as some problems will require you to code in Python using the quantum computing software development kit **Qiskit** to further develop your understanding of quantum computing.
 
 If these problems are too advanced for you and you would like something more beginner-level, we recommend you start with the `Quantum Enigmas SkillsBuild <https://students.yourlearning.ibm.com/activity/MDLPT-341>`_, which consists of a series of introductory exercises that go more in-depth on the key concepts of each Quantum Enigma.
 
