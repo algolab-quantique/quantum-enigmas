@@ -4,7 +4,7 @@ Enigma 003 : The Four-Square Chessboard
 
 Alice and Bob continue their journey in space. They are challenged by Aïka, who's hidden a key under one of the four chessboard squares. A coin is then randomly placed on each of the four squares. How will Alice communicate to Bob the exact position of the key by flipping only one coin? You will apply a new concept, the control by the 0-state.
 
-**Make sure to watch the following video before getting started with this problem set:**
+**Make sure to watch the following video before getting started with this exercise:**
 
 .. raw:: html
 
@@ -16,7 +16,7 @@ Alice and Bob continue their journey in space. They are challenged by Aïka, who
 .. dropdown:: :material-regular:`error;1.2em;sd-text-warning` Important
     :animate: fade-in
     :color: warning
-    
+
     On this website, you will be able to write and run your own Python code. To do so, you will need to click on the "Activate" button to enable all the code editors and establish a connection to a Kernel. Once clicked, you will see that the Status widget will start to show the connection progress, as well as the connection information. You are ready to write and run your code once you see :code:`Status:Kernel Connected` and :code:`kernel thebe.ipynb status changed to ready[idle]` just below. **Please note that that refreshing the page in any way will cause you to lose all the code that you wrote**. If you run into any issues, please try to reconnect by clicking on the "Activate" button again or reloading the page.
 
 .. raw:: html
@@ -42,7 +42,7 @@ Alice and Bob continue their journey in space. They are challenged by Aïka, who
     .. dropdown:: :material-regular:`info;1.2em;sd-text-info` Note
         :animate: fade-in
         :color: info
-        
+
         When running your code, you'll know that the code is running if you see :code:`kernel thebe.ipynb status changed to ready[busy]`. If it seems to stay on :code:`ready[idle]` when running your code and/or you're not getting an output when you're supposed to, it most likely means that there's an error in your code. Since the code editor seems to be struggling with outputting error messages, there is no output.
 
 |
@@ -56,17 +56,10 @@ Run the cell below to install the necessary packages.
     !{sys.executable} -m pip install qiskit==1.1.1
     !{sys.executable} -m pip install qiskit_aer==0.14.2
     !{sys.executable} -m pip install pylatexenc==2.10
-    </pre>
 
-Now, run the cell below to import the necessary packages.
-
-.. raw:: html
-
-    <pre data-executable="true" data-language="python" data-readonly>
+    # Import necessary modules
     import numpy as np
-    from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister, transpile
-    from qiskit.visualization import plot_histogram
-    from qiskit_aer import Aer, AerSimulator
+    from qiskit import QuantumCircuit
     </pre>
 
 .. image:: ../images/E3_P1.png
@@ -75,7 +68,7 @@ Now, run the cell below to import the necessary packages.
     :scale: 0%
 
 ---------------------------
-**Problem 1 - Quick quiz**
+**Exercice 1 - Quick quiz**
 ---------------------------
 
 .. raw:: html
@@ -165,7 +158,7 @@ Now, run the cell below to import the necessary packages.
 The enigma uses a modulo 2 addition like this one:
 
 .. raw:: html
-    
+
     <style>
         .center {
             margin-left: 45px
@@ -235,7 +228,7 @@ Or
         </div>
     </div>
 
-Meaning that adding any two of them gives the third one as an answer (this is true for any numbers). Playing with modulo 2 additions also has other interesting characteristics. In the enigma, adding the first number to the second is done by applying a CNOT between *q*\ :sub:`4`\  and *q*\ :sub:`6`\  (and *q*\ :sub:`5`\  and *q*\ :sub:`7`\). Here is the code of the algorithm in the enigma. 
+Meaning that adding any two of them gives the third one as an answer (this is true for any numbers). Playing with modulo 2 additions also has other interesting characteristics. In the enigma, adding the first number to the second is done by applying a CNOT between *q*\ :sub:`4`\  and *q*\ :sub:`6`\  (and *q*\ :sub:`5`\  and *q*\ :sub:`7`\). Here is the code of the algorithm in the enigma.
 
 .. code:: python
 
@@ -463,9 +456,9 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
     :height: 0px
     :scale: 0%
 
-----------------------------
-**Problem 2 - Code writing**
-----------------------------
+-----------------------------
+**Exercice 2 - Code writing**
+-----------------------------
 
 **Can you write the circuit for a 4 by 4 square chess set until you calculate the position of the piece to turn?**
 
@@ -588,7 +581,7 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
     #qubits 24 to 27 is where the focus lands at the end which is the key location
     problem2_qc = QuantumCircuit(nb_qubits)
 
-    # The code for this problem is similar to the one in Problem 1, simply longer.
+    # The code for this problem is similar to the one in Exercice 1, simply longer.
     ### Start your work here ###
 
 
@@ -600,7 +593,7 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
     :icon: eye
 
     .. code:: python
-        
+
         nb_coins = 16
         nb_key = 4
         nb_focus_first = 4
@@ -676,7 +669,7 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
         problem2_qc.cx(19, 23)
 
         problem2_qc.draw(output='mpl')
-    
+
     .. raw:: html
 
         <img src="../_images/E3_P2.png" class="zoomable" style="width:100%;cursor:pointer;">
@@ -686,9 +679,9 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
         :height: 0px
         :scale: 0%
 
-----------------------------
-**Problem 3 - Code writing**
-----------------------------
+-----------------------------
+**Exercice 3 - Code writing**
+-----------------------------
 
 **Complete the circuit to allow Alice to turn the right coin knowing that the MCX gate is the multi-control X gate.**
 

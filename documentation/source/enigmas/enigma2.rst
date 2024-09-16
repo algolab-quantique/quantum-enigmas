@@ -4,7 +4,7 @@ Enigma 002 : The Four Hair Colours
 
 Are you ready to shift into second gear? At a carnival, Alice, Bob, Charlie, and Dahlia decide to enter a contest to win an inter galactic trip. The challenge? Each person must guess their own hair color. The team will have to work together to find the right strategy to determine the orange or indigo color of their hair. You will apply a new concept, the principle of parity.
 
-**Make sure to watch the following video before getting started with this problem set:**
+**Make sure to watch the following video before getting started with this exercise:**
 
 .. raw:: html
 
@@ -16,7 +16,7 @@ Are you ready to shift into second gear? At a carnival, Alice, Bob, Charlie, and
 .. dropdown:: :material-regular:`error;1.2em;sd-text-warning` Important
     :animate: fade-in
     :color: warning
-    
+
     On this website, you will be able to write and run your own Python code. To do so, you will need to click on the "Activate" button to enable all the code editors and establish a connection to a Kernel. Once clicked, you will see that the Status widget will start to show the connection progress, as well as the connection information. You are ready to write and run your code once you see :code:`Status:Kernel Connected` and :code:`kernel thebe.ipynb status changed to ready[idle]` just below. **Please note that that refreshing the page in any way will cause you to lose all the code that you wrote**. If you run into any issues, please try to reconnect by clicking on the "Activate" button again or reloading the page.
 
 .. raw:: html
@@ -43,7 +43,7 @@ Are you ready to shift into second gear? At a carnival, Alice, Bob, Charlie, and
         :animate: fade-in
         :color: info
         :open:
-        
+
         When running your code, you'll know that the code is running if you see :code:`kernel thebe.ipynb status changed to ready[busy]`. If it seems to stay on :code:`ready[idle]` when running your code and/or you're not getting an output when you're supposed to, it most likely means that there's an error in your code. Since the code editor seems to be struggling with outputting error messages, there is no output.
 
 |
@@ -57,17 +57,10 @@ Run the cell below to install the necessary packages.
     !{sys.executable} -m pip install qiskit==1.1.1
     !{sys.executable} -m pip install qiskit_aer==0.14.2
     !{sys.executable} -m pip install pylatexenc==2.10
-    </pre>
 
-Now, run the cell below to import the necessary packages.
-
-.. raw:: html
-
-    <pre data-executable="true" data-language="python" data-readonly>
+    # Import necessary modules
     import numpy as np
-    from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister, transpile
-    from qiskit.visualization import plot_histogram
-    from qiskit_aer import Aer, AerSimulator
+    from qiskit import QuantumCircuit
     </pre>
 
 .. image:: ../images/E2_P1-2.png
@@ -76,7 +69,7 @@ Now, run the cell below to import the necessary packages.
     :scale: 1%
 
 --------------------------------
-**Problem 1 - Code writing**
+**Exercice 1 - Code writing**
 --------------------------------
 
 .. raw:: html
@@ -175,7 +168,7 @@ The enigma video presented a quantum circuit to solve the hair color problem wit
     problem_qc.h(2)
     problem_qc.h(3)
     problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7)
-        
+
     # You check if the number of indigo hair color in front of you is even or odd
     problem_qc.cx(1,4)
     problem_qc.cx(2,4)
@@ -219,7 +212,7 @@ The enigma video presented a quantum circuit to solve the hair color problem wit
     problem_qc = QuantumCircuit(12)
 
     ### Start writing your code here. ###
-    
+
 
     # Visualize the circuit
     problem_qc.draw('mpl')
@@ -232,7 +225,7 @@ The enigma video presented a quantum circuit to solve the hair color problem wit
     .. code:: python
 
         problem_qc = QuantumCircuit(12)
-   
+
         problem_qc.h(0)
         problem_qc.h(1)
         problem_qc.h(2)
@@ -240,7 +233,7 @@ The enigma video presented a quantum circuit to solve the hair color problem wit
         problem_qc.h(4)
         problem_qc.h(5)
         problem_qc.barrier(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
-        
+
         # You check if the number of indigo hair color in front of you is even or not
         problem_qc.cx(1,6)
         problem_qc.cx(2,6)
@@ -302,7 +295,7 @@ The enigma video presented a quantum circuit to solve the hair color problem wit
 
         # Visualize the circuit
         problem_qc.draw('mpl')
-    
+
     .. raw:: html
 
         <img class="zoomable" src="../_images/E2_P1-2.png" style="width:100%;cursor:pointer;">
@@ -313,7 +306,7 @@ The enigma video presented a quantum circuit to solve the hair color problem wit
     :scale: 1%
 
 --------------------------------
-**Problem 2 - Code writing**
+**Exercice 2 - Code writing**
 --------------------------------
 
 Simplify the code with a :code:`for` loop. Can you write a circuit for any number of people using a for loop?
@@ -363,18 +356,18 @@ Simplify the code with a :code:`for` loop. Can you write a circuit for any numbe
             for k in range(j+1, nb_qubits):
                 problem_qc.cx(j, k)
             start_qubit = start_qubit+1
-        
+
         # Visualize the circuit
         problem_qc.draw('mpl')
 
     .. raw:: html
-        
+
         <img class="zoomable" src="../_images/E2_P2.png" style="width:100%;cursor:pointer;">
 
 |
 
 --------------------------------
-**Problem 3 - Quick quiz**
+**Exercice 3 - Quick quiz**
 --------------------------------
 
 .. raw:: html
@@ -529,7 +522,7 @@ The goal of this enigma is to determine all the hair colors with the highest pro
     :scale: 0%
 
 --------------------------------
-**Problem 4 - Quick quiz**
+**Exercice 4 - Quick quiz**
 --------------------------------
 
 In all of the quantum circuits for this enigma, one qubit is never entangled. Which one is it?
@@ -621,13 +614,13 @@ In all of the quantum circuits for this enigma, one qubit is never entangled. Wh
 |
 
 --------------------------------
-**Problem 5 - Quick quiz**
+**Exercice 5 - Quick quiz**
 --------------------------------
 
 Run the following code to execute the quantum circuit for 4 players on a simulator.
 
-.. note:: 
-    
+.. note::
+
     When running quantum algorithms, simulators are often used to test the quantum circuits without monopolizing the ressources of a real quantum computer. Simulators are classical computers that mimic the behaviors of quantum computers.
 
 .. raw:: html
@@ -669,7 +662,7 @@ Run the following code to execute the quantum circuit for 4 players on a simulat
         #log5, #log6 {
             white-space: pre-wrap;
             word-wrap: break-word;
-        } 
+        }
     </style>
 
 

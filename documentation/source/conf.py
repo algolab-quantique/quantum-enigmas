@@ -56,5 +56,9 @@ html_title = ""
 nitpick_ignore = [("py:class", "type")]
 
 thebe_config = {
-    "codemirror-theme": "darcula",  # defaut, abcdef, darcula, idea
+    "codemirror-theme": "abcdef",  # defaut, abcdef, darcula, idea
 }
+
+rst_prolog = """.. attention::
+    This website is still under construction.
+"""
