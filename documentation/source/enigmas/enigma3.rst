@@ -68,7 +68,7 @@ Run the cell below to install the necessary packages.
     :scale: 0%
 
 ---------------------------
-**Exercice 1 - Quick quiz**
+**Exercise 1 - Quick quiz**
 ---------------------------
 
 .. raw:: html
@@ -457,7 +457,7 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
     :scale: 0%
 
 -----------------------------
-**Exercice 2 - Code writing**
+**Exercise 2 - Code writing**
 -----------------------------
 
 **Can you write the circuit for a 4 by 4 square chess set until you calculate the position of the piece to turn?**
@@ -581,7 +581,7 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
     #qubits 24 to 27 is where the focus lands at the end which is the key location
     problem2_qc = QuantumCircuit(nb_qubits)
 
-    # The code for this problem is similar to the one in Exercice 1, simply longer.
+    # The code for this problem is similar to the one in Exercise 1, simply longer.
     ### Start your work here ###
 
 
@@ -680,7 +680,7 @@ Meaning that adding any two of them gives the third one as an answer (this is tr
         :scale: 0%
 
 -----------------------------
-**Exercice 3 - Code writing**
+**Exercise 3 - Code writing**
 -----------------------------
 
 **Complete the circuit to allow Alice to turn the right coin knowing that the MCX gate is the multi-control X gate.**
