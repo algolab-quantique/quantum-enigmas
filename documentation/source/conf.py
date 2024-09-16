@@ -48,7 +48,7 @@ html_theme_options = {
     "logo": {
         "image_light": "_branding/logo_black.png",
         "image_dark": "_branding/logo_white.png",
-    }
+    },
 }
 html_title = ""
 
@@ -56,5 +56,9 @@ html_title = ""
 nitpick_ignore = [("py:class", "type")]
 
 thebe_config = {
-    "codemirror-theme": "darcula", #defaut, abcdef, darcula, idea
+    "codemirror-theme": "abcdef",  # defaut, abcdef, darcula, idea
 }
+
+rst_prolog = """.. attention::
+    This website is still under construction.
+"""

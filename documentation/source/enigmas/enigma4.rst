@@ -1,10 +1,10 @@
-===================================
-Enigma 004 : The Monty Hall Problem
-===================================
+====================================
+Enigma 004 : The Monty Hall Exercice
+====================================
 
 The diamond you won has disappeared. Your search leads you to Monty Hall Manor, where Kettu has hidden your diamond in one of the three safes in front of you. If you choose the right safe, you can retrieve your diamond, otherwise Kettu will keep it forever. Can you determine the best approach to win to solving this enigma?
 
-**Make sure to watch the following video before getting started with this problem set:**
+**Make sure to watch the following video before getting started with this exercise:**
 
 
 .. raw:: html
@@ -22,7 +22,7 @@ The diamond you won has disappeared. Your search leads you to Monty Hall Manor, 
 .. dropdown:: :material-regular:`error;1.2em;sd-text-warning` Important
     :animate: fade-in
     :color: warning
-    
+
     On this website, you will be able to write and run your own Python code. To do so, you will need to click on the "Activate" button to enable all the code editors and establish a connection to a Kernel. Once clicked, you will see that the Status widget will start to show the connection progress, as well as the connection information. You are ready to write and run your code once you see :code:`Status:Kernel Connected` and :code:`kernel thebe.ipynb status changed to ready[idle]` just below. **Please note that that refreshing the page in any way will cause you to lose all the code that you wrote**. If you run into any issues, please try to reconnect by clicking on the "Activate" button again or reloading the page.
 
 .. raw:: html
@@ -48,7 +48,7 @@ The diamond you won has disappeared. Your search leads you to Monty Hall Manor, 
     .. dropdown:: :material-regular:`info;1.2em;sd-text-info` Note
         :animate: fade-in
         :color: info
-        
+
         When running your code, you'll know that the code is running if you see :code:`kernel thebe.ipynb status changed to ready[busy]`. If it seems to stay on :code:`ready[idle]` when running your code and/or you're not getting an output when you're supposed to, it most likely means that there's an error in your code. Since the code editor seems to be struggling with outputting error messages, there is no output.
 
 |
@@ -62,17 +62,10 @@ Run the cell below to install the necessary packages.
     !{sys.executable} -m pip install qiskit==1.1.1
     !{sys.executable} -m pip install qiskit_aer==0.14.2
     !{sys.executable} -m pip install pylatexenc==2.10
-    </pre>
 
-Now, run the cell below to import the necessary packages.
-
-.. raw:: html
-
-    <pre data-executable="true" data-language="python" data-readonly>
+    # Import necessary modules
     import numpy as np
-    from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister, transpile
-    from qiskit.visualization import plot_histogram
-    from qiskit_aer import Aer, AerSimulator
+    from qiskit import QuantumCircuit
     </pre>
 
 .. image:: ../images/E4_P1.png
@@ -80,9 +73,9 @@ Now, run the cell below to import the necessary packages.
     :height: 0px
     :scale: 0%
 
-----------------------------
-**Problem 1 - Code writing**
-----------------------------
+------------------------------
+**Exercice 1 - Code writing**
+------------------------------
 
 .. raw:: html
 
@@ -168,7 +161,7 @@ Now, run the cell below to import the necessary packages.
         <img class="modal-content" id="img01">
     </div>
 
-**Write a circuit that would only use 3 qubits instead of 4 (and still assuming that you initially chose safe number 2) for Enigma 004 - The Monty Hall Problem.**
+**Write a circuit that would only use 3 qubits instead of 4 (and still assuming that you initially chose safe number 2) for Enigma 004 - The Monty Hall Exercice.**
 
 .. raw:: html
 
@@ -308,9 +301,9 @@ Now, run the cell below to import the necessary packages.
     :height: 0px
     :scale: 0%
 
-----------------------------
-**Problem 2 - Code writing**
-----------------------------
+------------------------------
+**Exercice 2 - Code writing**
+------------------------------
 
 **Write a circuit (using three qubits to hide the diamond exactly like in the enigma) that would randomly determine the chest you choose at the start, and also determine which safe will be opened.**
 
@@ -321,7 +314,7 @@ You can use the following circuit that is the equivalent of a multicontrolled Ha
     problem2_qc.ry(np.pi/4, 2)
     problem2_qc.mcx([0, 1], 2)
     problem2_qc.ry(-np.pi/4, 2)
-    
+
 .. raw:: html
 
     <img class="zoomable" src="../_images/E4_MCH.png" style="width:50%;cursor:pointer">
@@ -390,7 +383,7 @@ You can use the following circuit that is the equivalent of a multicontrolled Ha
         problem2_qc.mcx([1, 4], 6)
         problem2_qc.ch(6, 8)
         """
-        we must use an extra control on q1 or q4 for the case 
+        we must use an extra control on q1 or q4 for the case
         q8 is in the 1 state to avoid carelessly changing the state of q6
         """
         problem2_qc.mcx([4, 8], 6)
@@ -400,13 +393,13 @@ You can use the following circuit that is the equivalent of a multicontrolled Ha
         problem2_qc.mcx([2, 5], 6)
         problem2_qc.ry(np.pi/4, 7)
         """
-        we must use an extra control on q2 or q5 for the case 
+        we must use an extra control on q2 or q5 for the case
         q6 is in the 1 state to avoid carelessly changing the state of q7
         """
         problem2_qc.mcx([5, 6], 7)
         problem2_qc.ry(-np.pi/4, 7)
         """
-        we must use an extra control on q2 or q5 for the case 
+        we must use an extra control on q2 or q5 for the case
         q7 is in the 1 state to avoid carelessly changing the state of q6
         """
         problem2_qc.mcx([5, 7], 6)
@@ -436,9 +429,9 @@ You can use the following circuit that is the equivalent of a multicontrolled Ha
     :height: 0px
     :scale: 0%
 
-----------------------------
-**Problem 3 - Code writing**
-----------------------------
+------------------------------
+**Exercice 3 - Code writing**
+------------------------------
 
 .. raw:: html
 
@@ -460,9 +453,9 @@ The following circuit shows the algorithm seen in the video with an extra qubit 
 
     problem3_qc.ry(prob_2on3, 0)
     """"
-    ## q4 is used to decide which door will be opened in case 
+    ## q4 is used to decide which door will be opened in case
        the diamond is in safe 2 at the beginning.
-    ## This is necessary since we don't want this information to be lost 
+    ## This is necessary since we don't want this information to be lost
        when measuring q3 again after going back in time.
     """
     problem3_qc.h(4)
@@ -486,7 +479,7 @@ The following circuit shows the algorithm seen in the video with an extra qubit 
 **Write the rest of the algorithm to travel in time going back to the beginning, choosing a strategy that will allow you to proceed with the rest of the algorithm and win the diamond everytime.**
 
 .. raw:: html
-    
+
     <style>
         .code-inline {
             font-size: 0.85em;
@@ -516,7 +509,7 @@ The following circuit shows the algorithm seen in the video with an extra qubit 
     creg_f = ClassicalRegister(1, 'f')
     creg_g = ClassicalRegister(1, 'g')
     problem3_qc = QuantumCircuit(qreg_q, creg_c, creg_d, creg_f, creg_g)
-    
+
     prob_2on3 = 2 * np.arcsin(np.sqrt(2/3))
     problem3_qc.ry(prob_2on3, 0)
     problem3_qc.h(4)
@@ -553,7 +546,7 @@ The following circuit shows the algorithm seen in the video with an extra qubit 
         creg_f = ClassicalRegister(1, 'f')
         creg_g = ClassicalRegister(1, 'g')
         problem3_qc = QuantumCircuit(qreg_q, creg_c, creg_d, creg_f, creg_g)
-        
+
         prob_2on3 = 2 * np.arcsin(np.sqrt(2/3))
         problem3_qc.ry(prob_2on3, 0)
         problem3_qc.h(4)
@@ -591,9 +584,9 @@ The following circuit shows the algorithm seen in the video with an extra qubit 
     :height: 0px
     :scale: 0%
 
---------------------------
-**Problem 4 - Quick quiz**
---------------------------
+----------------------------
+**Exercice 4 - Quick quiz**
+----------------------------
 
 Let's run the time travel circuit on a simulator to see the results. Run the cell below.
 
