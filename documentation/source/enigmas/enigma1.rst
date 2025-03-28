@@ -63,7 +63,7 @@ Run the cell below to install the necessary packages.
     from qiskit import QuantumCircuit
     </pre>
 
-.. image:: ../images/E2_P1-2.png
+.. image:: ../images/E1_P1-2.png
     :width: 0.1%
     :height: 0.001px
     :scale: 1%
@@ -184,7 +184,7 @@ Sometimes a quantum circuit can be simplified. One way of achieving this is by c
 
 .. raw:: html
 
-    <img class="zoomable" src="../_images/E2_P1-1.png" style="width:100%;cursor:pointer;">
+    <img class="zoomable" src="../_images/E1_P1-1.png" style="width:100%;cursor:pointer;">
 
 |
 

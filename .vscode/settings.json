@@ -1,4 +1,0 @@
-{
-    "esbonio.sphinx.confDir": "${workspaceFolder}/documentation/source",
-    "esbonio.sphinx.srcDir": "${workspaceFolder}/documentation/source",
-}
