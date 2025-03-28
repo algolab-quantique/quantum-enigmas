@@ -323,7 +323,7 @@ Try simplifying the circuit and rerun the calculation between each simplificatio
         <img class="zoomable" src="../_images/E1_P2.png" style="width:100%;cursor:pointer;">
 
 .. image:: ../images/E1_P2.png
-    :width: 0.1%
+    :width: 0.05%
     :height: 0.001px
     :scale: 1%
 
