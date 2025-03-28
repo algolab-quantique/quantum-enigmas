@@ -320,9 +320,9 @@ Try simplifying the circuit and rerun the calculation between each simplificatio
 
     .. raw:: html
 
-        <img class="zoomable" src="../_images/E2_P1-2.png" style="width:100%;cursor:pointer;">
+        <img class="zoomable" src="../_images/E1_P2.png" style="width:100%;cursor:pointer;">
 
-.. image:: ../images/E2_P2.png
+.. image:: ../images/E1_P2.png
     :width: 0.1%
     :height: 0.001px
     :scale: 1%
@@ -472,7 +472,7 @@ Can you interpret the results of Question 1?
         };
     </script>
 
-.. image:: ../images/E2_P1-1.png
+.. image:: ../images/E1_P1-1.png
     :width: 0%
     :height: 0px
     :scale: 0%
@@ -617,7 +617,7 @@ Launching algorithms on modern quantum computers does not always lead to 100% su
         };
     </script>
 
-.. image:: ../images/E2_P1-1.png
+.. image:: ../images/E1_P1-1.png
     :width: 0%
     :height: 0px
     :scale: 0%
